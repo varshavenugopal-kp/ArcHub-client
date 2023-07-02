@@ -1,0 +1,8 @@
+.banner{
+    background-image: url('/public/Images/banner.jpg');
+    height: 100vh;
+}
+.image3{
+    background-image: url('/public/Images/image2.jpg');
+    height: 100vh;
+}
