@@ -11,7 +11,7 @@ function AboutModal(props:about) {
   return (
     <div>
       <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="bg-white p-5 rounded-lg shadow-lg">
+        <div className="bg-white p-8 rounded-lg shadow-lg">
         <div>
       <div className='flex justify-end'>
           <button onClick={()=>closeAbout()}><FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></button>
@@ -25,12 +25,8 @@ function AboutModal(props:about) {
       </div>
      <form>
      <div>
-      <input
-      type="textArea"
-      id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-      name="subcate"
-    />
+     <textarea name='description' className='shadow appearance-none border rounded w-80 py-2 px-3 h-32' required></textarea>
+              
 
         
       </div>

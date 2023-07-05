@@ -8,7 +8,7 @@ const companySlice = createSlice({
     initialState: initial,
     reducers: {
        setProfile:(state,action)=>{
-        state.cid=action.payload.ciid
+        state.cid=action.payload.cid
         state.companyemail=action.payload.companyemail
        },
       }

@@ -12,7 +12,7 @@ function DetailsModal(props:details) {
     <div>
       <div className="fixed inset-0 flex items-center justify-center z-50">
     
-    <div className="bg-white p-5 rounded-lg shadow-lg">
+    <div className="bg-white p-8 rounded-lg shadow-lg">
       <div>
       <div className='flex justify-end'>
           <button onClick={()=>closeModal()}><FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></button>
@@ -29,7 +29,7 @@ function DetailsModal(props:details) {
     //   onSubmit={handleSubmit}
       >
 
-       <div className="mb-2 mt-3 flex ">
+       {/* <div className="mb-2 mt-3 flex ">
   <div className="mr-4">
     <label htmlFor="formInputControl1" className="block text-sm mb-1">
      Company Name
@@ -55,7 +55,28 @@ function DetailsModal(props:details) {
     </div>
 
    
-</div>
+</div> */}
+
+<div className='md:flex md:space-x-3 mt-5'>
+  
+              <div className='w-full'>
+                <div>
+                  <label>Company Name</label>
+                </div>
+                <div className='w-full'>
+                  <input type='text' name='title' className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' required></input>
+                </div>
+              </div>
+
+              <div className='w-full'>
+                <div>
+                  <label>Location</label>
+                </div>
+                <div className='w-full'>
+                  <input type='number' name='salary' className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' required></input>
+                </div>
+              </div>
+            </div>
 <div className="mb-2 mt-3 flex ">
 <div className="mr-4">
     <label htmlFor="formInputControl2" className="block text-sm mb-1">
@@ -64,7 +85,7 @@ function DetailsModal(props:details) {
     <input
       type="text"
       id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+      className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
       name="subcate"
     />
     </div>
@@ -76,7 +97,7 @@ function DetailsModal(props:details) {
     <input
       type="text"
       id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+      className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
       name="subcate"
     />
     </div>
@@ -90,7 +111,7 @@ function DetailsModal(props:details) {
     <input
       type="text"
       id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+      className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
       name="subcate"
     />
     </div>
@@ -102,7 +123,7 @@ function DetailsModal(props:details) {
     <input
       type="text"
       id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+      className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
       name="subcate"
     />
     </div>

@@ -82,7 +82,7 @@ useEffect(()=>{
       console.log('aaa');
       
         localStorage.setItem('company',JSON.stringify(data))
-        dispatch(setProfile({companyemail:data.company.email}))
+        dispatch(setProfile({cid:data.company._id,companyemail:data.company.email}))
         navigate('/user');
     }
     if(data.invalid){    

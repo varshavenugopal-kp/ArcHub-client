@@ -62,7 +62,7 @@ function Cnav() {
                  {companyemail?(
                  
                    <button onClick={handleLogout}>
-                     <span>{companyemail}</span>
+                     {/* <span>{companyemail}</span> */}
                    <span>Logout</span>
                    
               </button>

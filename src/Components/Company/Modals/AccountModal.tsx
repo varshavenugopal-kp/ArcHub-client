@@ -30,7 +30,33 @@ function AccountModal(props:account) {
       >
 
        <div>
-  <div className="mr-4">
+
+       <div className='md:flex md:space-x-3 mt-5'>
+              <div className='w-full'>
+                <div>
+                  <label>Company Name</label>
+                </div>
+                <div className='w-full'>
+                  <input type='text' name='title' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' required></input>
+                </div>
+              </div>
+
+              <div className='w-full'>
+                <div>
+                  <label>Location</label>
+                </div>
+                <div className='w-full'>
+                  <input type='number' name='salary' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' required></input>
+                </div>
+              </div>
+            </div>
+       
+
+       
+
+
+
+  {/* <div className="mr-4">
     <label htmlFor="formInputControl1" className="block text-sm mb-1 mt-3">
      Company Name
     </label>
@@ -52,7 +78,7 @@ function AccountModal(props:account) {
       className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-96 h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
       name="subcate"
     />
-    </div>
+    </div> */}
 
    
 </div>
