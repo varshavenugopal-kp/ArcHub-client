@@ -106,28 +106,13 @@ function ProjectModal(props: projects) {
                         </div>
                         <div className='text-center'>
                             <h1 className='font-bold text-2xl'>Upload files</h1>
-                            <span>{cid}</span>
+                           
                         </div>
-                        {/* <div className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                            <hr></hr>
-                        </div> */}
+                      
                     </div>
 
-                    {/* <form>
-
-                        <div className='w-full mt-5  border border-black border-dashed'>
-                            <div className='px-72 py-24'>
-                            <FontAwesomeIcon className='text-4xl' icon={faFileCirclePlus}></FontAwesomeIcon>
-                            </div>
-                            <div>
-
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-                    </form> */}
-                    <form>
+                   
+                    <form className='border border-gray-100 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>
                         <div className='w-full mt-5'>
                             <div>
                                 <label className=''>Project Name</label>

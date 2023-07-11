@@ -8,9 +8,12 @@ if(name==='salary'){
 if(name==='qualification'){
   validateQualification(String(value),err,setErr)
 }
-if(name==='experience'){
-  validateExperience(String(value),err,setErr)
+if(name==='type'){
+  validatetype(String(value),err,setErr)
 }
+// if(name==='experience'){
+//   validateExperience(String(value),err,setErr)
+// }
 }
 
 export function validateTitle(value:string,err:object,setErr:Function):void{
@@ -35,24 +38,24 @@ export function validateSalary(value:number,err:object,setErr:Function):void{
 export function validateQualification(value:string,err:object,setErr:Function):void{
   const QualificationRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
   if((value.trim()).length===0){
-    setErr({...err,Qualification:"Qualification should not be empty"})
+    setErr({...err,qualification:"Qualification should not be empty"})
   }else if(!QualificationRegex.test(value)){
-    setErr({...err,Qualification:"Enter a valid job Qualification"})
+    setErr({...err,qualification:"Enter a valid job Qualification"})
   }else{
-    setErr({...err,Qualification:""})
+    setErr({...err,qualification:""})
   }
 }
 
-export function validateExperience(value:string,err:object,setErr:Function):void{
-  const ExperienceRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
-  if((value.trim()).length===0){
-    setErr({...err,Experience:"Experience should not be empty"})
-  }else if(!ExperienceRegex.test(value)){
-    setErr({...err,Experience:"Enter a valid job Experience"})
-  }else{
-    setErr({...err,Experience:""})
-  }
-}
+// export function validateExperience(value:string,err:object,setErr:Function):void{
+//   const ExperienceRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
+//   if((value.trim()).length===0){
+//     setErr({...err,experience:"Experience should not be empty"})
+//   }else if(!ExperienceRegex.test(value)){
+//     setErr({...err,experience:"Enter a valid job Experience"})
+//   }else{
+//     setErr({...err,experience:""})
+//   }
+// }
 
 export function validatetype(value:string,err:object,setErr:Function):void{
   const typeRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/

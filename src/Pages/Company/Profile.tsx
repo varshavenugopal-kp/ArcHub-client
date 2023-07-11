@@ -15,10 +15,10 @@ function Profile() {
           <SideNav />
         </div>
 
-        {/* <div className="md:col-span-3 col-span-7">
+        <div className="lg:col-span-3 col-span-7">
          <AddProfile/>
           
-        </div> */}
+        </div>
       </div>
 
     </div>

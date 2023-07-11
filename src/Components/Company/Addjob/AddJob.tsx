@@ -63,7 +63,7 @@ const handleSubmt=async(e:FormEvent)=>{
                   <label>Job Title</label>
                 </div>
                 <div className='w-full'>
-                  <input type='text' name='title' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' onChange={addUser} required></input>
+                  <input type='text' name='title' className='w-full shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' onChange={addUser} required></input>
                 </div>
               </div>
 
@@ -72,7 +72,7 @@ const handleSubmt=async(e:FormEvent)=>{
                   <label>Salary</label>
                 </div>
                 <div className='w-full'>
-                  <input type='number' name='salary' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' onChange={addUser} required></input>
+                  <input type='number' name='salary' className='w-full shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' onChange={addUser} required></input>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ const handleSubmt=async(e:FormEvent)=>{
                   <label>Qualification</label>
                 </div>
                 <div className='w-full'>
-                  <input type='text' name='qualification' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' onChange={addUser} required></input>
+                  <input type='text' name='qualification' className='w-full shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' onChange={addUser} required></input>
                 </div>
               </div>
              
@@ -117,7 +117,7 @@ const handleSubmt=async(e:FormEvent)=>{
     <label>Experience</label>
   </div>
   <div className='w-full'>
-    <select name='experience' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' onChange={handleSelectChange} required>
+    <select name='experience' className='w-full shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' onChange={handleSelectChange} required>
       <option value='0'>Select Experience</option>
       <option value='1'>Fresher</option>
       <option value='2'>2-3 years</option>
@@ -126,25 +126,9 @@ const handleSubmt=async(e:FormEvent)=>{
     </select>
   </div>
 </div>
+</div>
 
 
-
-{/* <div className='md:flex md:space-x-6'>
-              <div className='w-full'>
-              <div className='text-xs text-red-600'>
-          <p>{err.qualification}</p>
-         </div>
-              </div>
-
-              <div className='w-full'>
-              <div className='text-xs text-red-600'>
-          <p>{err.experience}</p>
-         </div>
-              </div>
-            </div> */}
-
-
-            </div>
 
             <div className='md:flex md:space-x-3 mt-5'>
               <div className='w-full'>
@@ -152,7 +136,7 @@ const handleSubmt=async(e:FormEvent)=>{
                   <label>Deadline</label>
                 </div>
                 <div className='w-full'>
-                  <input type='date' name='deadline' className='w-full shadow appearance-none border rounded py-2 px-3 h-14' onChange={addUser} required></input>
+                  <input type='date' name='deadline' className='w-full shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' onChange={addUser} required></input>
                 </div>
               </div>
 
@@ -161,23 +145,25 @@ const handleSubmt=async(e:FormEvent)=>{
                   <label>Job type</label>
                 </div>
                 <div className='w-full'>
-                  <input type='text' name='type' className='shadow appearance-none border rounded w-full py-2 px-3 h-14' onChange={addUser} required></input>
+                  <input type='text' name='type' className='shadow appearance-none border rounded w-full py-2 px-3 h-10 lg:h-14' onChange={addUser} required></input>
                 </div>
               </div>
             </div>
 
             <div className='md:flex md:space-x-6'>
+              
+              
               <div className='w-full'>
               <div className='text-xs text-red-600'>
           <p>{err.deadline}</p>
          </div>
               </div>
-
               <div className='w-full'>
               <div className='text-xs text-red-600'>
           <p>{err.type}</p>
          </div>
               </div>
+
             </div>
            
 
@@ -187,7 +173,7 @@ const handleSubmt=async(e:FormEvent)=>{
                 <label className=''>Description</label>
               </div>
               <div className='w-full'>
-                <textarea name='description' className='shadow appearance-none border rounded w-full py-2 px-3 h-32' onChange={handleTextareaChange} required></textarea>
+                <textarea name='description' className='shadow appearance-none border rounded w-full py-2 px-3 h-24 lg:h-32' onChange={handleTextareaChange} required></textarea>
               
               </div>
             </div>

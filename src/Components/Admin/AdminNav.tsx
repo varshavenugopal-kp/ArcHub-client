@@ -70,7 +70,8 @@ const AdminNav=()=> {
              </NavLink>
                 </li>
                 <li className='py-1'>
-                 {adminemail ?(
+                 {adminemail
+                  ?(
                    <button onClick={handleLogout}>
                     <div className='flex space-x-2'>
                        
