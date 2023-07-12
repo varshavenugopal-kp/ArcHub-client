@@ -18,6 +18,7 @@ import Requests from './Pages/Admin/Requests';
 // import AddProfile from './Pages/Company/AddProfile';
 import Profile from './Pages/Company/Profile';
 import JobAdd from './Pages/Company/JobAdd';
+import Categories from './Pages/Admin/Categories';
 
 function App() {
   return (
@@ -48,7 +49,7 @@ function App() {
     } />
      <Route path='/user/addjob'  element={<JobAdd/>
     } />
-   
+    <Route path='/user/categories' element={<Categories/>} />
     
     </Routes>
   );

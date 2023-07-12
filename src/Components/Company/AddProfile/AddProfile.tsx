@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, FormEvent, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faPlus } from '@fortawesome/free-solid-svg-icons'
 import DetailsModal from '../Modals/DetailsModal'
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 import Details from '../ProfileView/Details'
 import ViewAbout from '../ProfileView/ViewAbout'
 import Projectview from '../ProfileView/Projectview'
+import axios from 'axios'
 function AddProfile() {
   const {cid}=useSelector((state:any)=>state.company)
     
@@ -20,7 +21,42 @@ function AddProfile() {
   const [detailsOpen,setDetailsOpen]=useState<boolean>(false)
   const [aboutsOpen,setAboutOpen]=useState<boolean>(false)
   const [projectsOpen,setProjectOpen]=useState<boolean>(false)
+  const [fileUrl,setUrl]=useState<string|null>(null)
+  const [showButton,setShowButton]=useState(false)
 
+ 
+
+ 
+
+
+  const handleFileChange=((e:ChangeEvent<HTMLInputElement>)=>{
+     const file=e.target.files?.[0]
+     if(file){
+        generateUrl(file)
+     }else{
+      console.log("nulll");
+      
+     }
+  })
+
+  const generateUrl=async(img:File)=>{
+     const datas=new FormData()
+     datas.append('file',img)
+     datas.append('upload_preset','user_doc')
+     datas.append('cloud_name',"dn6cqglmo")
+
+     const {data}=await axios.post("https://api.cloudinary.com/v1_1/dn6cqglmo/image/upload",datas)
+     console.log("urls:",data);
+     console.log("hahahahahahahahahahahahahahahahahahahahahahahahahahahaha");
+     
+    setUrl(data.url)
+    if(data.url){
+       setShowButton(true)
+    }
+   
+    
+  }
+ console.log("hereeeeee",fileUrl);
   useEffect(()=>{
     const fetch=async()=>{
      await fetchData();
@@ -57,6 +93,15 @@ function AddProfile() {
      
       })
 
+      const handleImage=async(e:FormEvent)=>{
+        e.preventDefault()
+        try{
+           const {data}=await api.post(`/user/imageAdd/${cid}`,{fileUrl})
+        }catch(error){
+
+        }
+      }
+
     
   const modalOpen=()=>{
     setIsopen(true)
@@ -73,19 +118,45 @@ function AddProfile() {
 
   return (
     <div>
-     <div>
-     <div className='px-8 mt-8 border-x-3 '>
-      
-      <div className='w-full h-96 p-5  bg-red-900 flex justify-end'>
-      <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>
-     <div className='text-center'>
-     <FontAwesomeIcon className='text-black' icon={faCamera} />
-      </div>
-        </div>
      
-      </div>
-      </div>
-
+   
+     <div className='px-8 mt-8 border-x-3 '>
+      {fileUrl?(
+          <div className='w-full h-96 p-5 bg-cover flex justify-end' style={{ backgroundImage: `url(${fileUrl})` }}>
+          <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>
+         <form>
+         <div className='text-center'>
+         <label>
+         <input type="file" accept="image/*" name="file" className="hidden" multiple onChange={handleFileChange} />
+         <FontAwesomeIcon className='text-black' icon={faCamera} />
+         </label>
+         <div>
+         {showButton && <button className='mt-80 bg-sky-950
+          text-white rounded' onClick={handleImage}>upload</button>}
+         </div>
+          </div>
+          </form>
+            </div>
+         
+          </div>
+      ):(
+        <div className='w-full h-96 p-5  bg-red-900 flex justify-end'>
+        <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>
+       <form>
+       <div className='text-center'>
+       <label>
+       <input type="file" accept="image/*" name="file" className="hidden" multiple onChange={handleFileChange} />
+       <FontAwesomeIcon className='text-black' icon={faCamera} />
+       </label>
+        </div>
+        </form>
+          </div>
+       
+        </div>
+      )
+    }
+      
+     
       <div>
 
       {detailsOpen ? (
