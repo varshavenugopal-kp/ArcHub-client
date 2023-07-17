@@ -1,0 +1,34 @@
+.cbanner{
+    background-image: url('/public/Images/banner.jpg');
+}
+a {
+    inset: auto auto 40px 30px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover a {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+  }
+  .bgimg{
+    background-image: url('/public/Images/image1.jpg');
+  }
+  .img{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+  }
+  .card {
+    width: 14rem;
+    height: 24rem;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);}

@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { api } from '../../../Services/axios';
 import { validateJob } from '../../../validations/Jobvalidation';
+import { useSelector } from 'react-redux';
 type jobAuth={
   title?:string;
   salary?:number;
@@ -23,6 +24,7 @@ function AddJob() {
 
  const [job,setJob]=useState<jobAuth>({})
  const [err,setErr]=useState<errAuth>({})
+ const {cid}=useSelector((state:any)=>state.company)
  const addUser=(e:ChangeEvent<HTMLInputElement>)=>{
   setJob({...job,[e.target.name]:e.target.value})
   validateJob(e.target.name,e.target.value,err,setErr)
@@ -39,7 +41,7 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
 const handleSubmt=async(e:FormEvent)=>{
   e.preventDefault()
   try{
-    const {data}=await api.post('/user/addjob',{...job})
+    const {data}=await api.post('/user/addjob',{...job,cId:cid})
     console.log(data);
     
   }

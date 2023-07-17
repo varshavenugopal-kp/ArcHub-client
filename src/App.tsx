@@ -19,6 +19,10 @@ import Requests from './Pages/Admin/Requests';
 import Profile from './Pages/Company/Profile';
 import JobAdd from './Pages/Company/JobAdd';
 import Categories from './Pages/Admin/Categories';
+import Userexplore from './Pages/User/Userexplore';
+import CompanyDetails from './Pages/User/CompanyDetails';
+import GetCompanies from './Pages/User/GetCompanies';
+import Jobs from './Pages/User/Jobs';
 
 function App() {
   return (
@@ -49,8 +53,11 @@ function App() {
     } />
      <Route path='/user/addjob'  element={<JobAdd/>
     } />
-    <Route path='/user/categories' element={<Categories/>} />
-    
+    <Route path='/admin/categories' element={<Categories/>} />
+    <Route path='/explore' element={<Userexplore/>} />
+    <Route path='/company-view' element={<CompanyDetails/>} />
+    <Route path='/companies' element={<GetCompanies/>} />
+    <Route path='/jobs' element={<Jobs/>} />
     </Routes>
   );
 }
