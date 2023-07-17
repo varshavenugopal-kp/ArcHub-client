@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import {  useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
-import { setProfile } from '../../Redux/companySlice'
+import { setCompany } from '../../Redux/companySlice'
 function Cnav() {
     const navigate=useNavigate()
  const dispatch=useDispatch()
@@ -19,7 +19,7 @@ function Cnav() {
 
     const handleLogout=(e:FormEvent)=>{
       e.preventDefault()
-      dispatch(setProfile({}))
+      dispatch(setCompany({}))
       localStorage.removeItem('company')
       console.log("logoutt");
       
@@ -28,7 +28,7 @@ function Cnav() {
   return (
     <div>
        <div>
-        <nav className='shadow-md bg-sky-950 h-20'>
+        <nav className=' shadow-md bg-sky-950 h-20'>
             <div className='px-8 py-6'>
 
             <div className="md:hidden float-right">

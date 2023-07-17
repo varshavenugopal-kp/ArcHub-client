@@ -120,7 +120,7 @@ function AddProfile() {
     <div>
      
    
-     <div className='px-8 mt-8 border-x-3 '>
+     <div className='px-8 mt-8 border-x-3 overflow-scroll'>
       {fileUrl?(
           <div className='w-full h-96 p-5 bg-cover flex justify-end' style={{ backgroundImage: `url(${fileUrl})` }}>
           <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>

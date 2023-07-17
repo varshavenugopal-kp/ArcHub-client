@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
+import { useNavigate } from 'react-router-dom';
+
 interface jobsAuth{
   title:string;
+  _id:string
   salary:number;
   qualification:string;
   experience:string;
@@ -19,6 +22,7 @@ interface cmpAuth{
 }
 
 function Joblist() {
+    const navigate=useNavigate()
     const [data,setData]=useState<jobsAuth[]|null>(null)
 
     useEffect(()=>{
@@ -33,10 +37,19 @@ function Joblist() {
     
    }
    console.log("hfjhgjhgudghgsdffd",data);
+
+   const handleJobClick = (jobId:string) => {
+    // Navigate to the other component with the job ID as a URL parameter
+    navigate(`/jobs?id=${jobId}`);
+  };
    
   return (
+    <div className='border-r-2 border-gray-200 h-screen'>
+       
     <div>
-    <div>
+        <div>
+
+       
     <div className='w-full h-20 border border-gray-100'>
         <div className='p-3 flex justify-between'>
             <div>
@@ -57,13 +70,14 @@ function Joblist() {
             </div>
 
     </div>
-    <div className='p-3'>
+    <div className='p-3 '>
         {
             data?(
                <div className='mt-3'>
                   {
                     data.map((jobs)=>(
-                        <div className='w-full h-20 border-b border-gray-200'>
+                       
+                        <div className='w-full h-20 border-b border-gray-200' key={jobs._id} onClick={() => handleJobClick(jobs._id)}>
                         <div className='flex space-x-5'>
                             <div className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1'>
                             </div>
@@ -89,6 +103,7 @@ function Joblist() {
         }
        
         </div>
+    </div>
     </div>
    
     </div>

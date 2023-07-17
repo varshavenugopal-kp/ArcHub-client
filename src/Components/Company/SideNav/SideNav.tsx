@@ -7,9 +7,9 @@ import { useDispatch } from 'react-redux'
 function SideNav() {
     const { companyemail } = useSelector((state: any) => state.company)
     return (
-        <div className='w-full'>
-            <div className='w-full '>
-                <div className='lg:h-screen h-auto  w-full  bg-gray-300'>
+        <div className=''>
+            <div className=''>
+                <div className='fixed top-0 left-0 h-screen w-72 bg-gray-300'>
                     {/* <div className='px-28 md:px-72 lg:px-32 py-10'> */}
                         <div className='flex justify-center'>
 

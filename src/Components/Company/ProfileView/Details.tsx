@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import DetailsEditModal from '../Modals/DetailsEditModal'
+import { setProfile } from '../../../Redux/UserSlice'
 interface details{
     cmpName?:string
     cmpLocation?:string
@@ -12,10 +14,17 @@ interface details{
 
 function Details() {
     const {cid}=useSelector((state:any)=>state.company)
-    
+    const dispatch=useDispatch()
     const [details,setDetails]=useState<details>()
+    const [editDetail,setEditDetail]=useState<boolean>(false)
     
+    const detailsOpen=()=>{
+      dispatch(setProfile({cmpName:details?.cmpName,cmplocation:details?.cmpLocation,cmpState:details?.cmpState,cmpDistrict:details?.cmpDistrict,contact:details?.Contact,website:details?.Website}))
 
+      setEditDetail(true)
+    }
+  
+  
     useEffect(()=>{
        fetchData()
     },[]) 
@@ -26,6 +35,7 @@ function Details() {
          setDetails(response.data.details.details)
          
     })
+ console.log("lklklklklklklk",details?.cmpName);
     console.log("ggggg",details);
     
   return (
@@ -62,13 +72,17 @@ function Details() {
           </div>
           </div>
           <div className='flex justify-end'>
-          <button className="bg-sky-950 h-12 hover:bg-sky-900 text-white px-4 rounded" >
+          <button className="bg-sky-950 h-12 hover:bg-sky-900 text-white px-4 rounded" onClick={()=>detailsOpen()}>
            Edit details
           </button>
           </div>
          
          
         </div>
+     </div>
+     <div className=''>
+      
+      {editDetail && <DetailsEditModal setEitDetails={setEditDetail}/>}
      </div>
     </div>
   )
