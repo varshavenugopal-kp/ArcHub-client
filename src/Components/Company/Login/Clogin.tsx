@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../../../Services/axios'
 import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
-import { setProfile } from '../../../Redux/companySlice'
+import { setCompany} from '../../../Redux/companySlice'
 import { NavLink } from 'react-router-dom'
 
 type userLog ={
@@ -82,7 +82,7 @@ useEffect(()=>{
       console.log('aaa');
       
         localStorage.setItem('company',JSON.stringify(data))
-        dispatch(setProfile({cid:data.company._id,companyemail:data.company.email}))
+        dispatch(setCompany({cid:data.company._id,companyemail:data.company.email}))
         navigate('/user');
     }
     if(data.invalid){    

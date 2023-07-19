@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../Explore/Explore.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { api } from '../../../Services/axios'
 import { log } from 'console'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 interface catAuth{
     category:string
+    file:string
 }
 function ExplorePage() {
     const [data,setData]=useState<catAuth[]|null>(null)
@@ -41,17 +44,33 @@ function ExplorePage() {
                   </div>
                   {
                    data?(
-                    <div className='grid grid-cols-5 mt-10'>
+                    <div className='px-12'>
+                    <div className='grid grid-cols-3 gap-7 mt-10'>
                     
                     {
                        data.map((category)=>(
-                        <div className='cardss relative mt-10'>
-                        <h1 className='mt-16 px-5'>{category.category}</h1>
-                        <h1 className='px-5'>Design</h1>
-                         <img src='\Images\image1.jpg' className='absolute bottom-0 mb-3 px-2'></img>
-                      </div>
+                    //     <div className='cardss relative mt-10'>
+                    //     <h1 className='mt-16 px-5'>{category.category}</h1>
+                    //     <h1 className='px-5'>Design</h1>
+                    //      <img src='\Images\image1.jpg' className='absolute bottom-0 mb-3 px-2'></img>
+                    //   </div>
+
+                    <div className='w-full h-80 border border-gray-300 rounded-md '>
+                        <div>
+                       
+                        <img src={category.file} className='mt-4 pt-7 px-6 h-24'></img>
+                        <h1 className='mt-6 text-2xl font-medium px-5 '>{category.category}</h1>
+                        <div className='flex'>
+                        <h1 className='mt-4 text-xs font-semibold font-serif px-5 text-gray-400'>VIEW MORE</h1>
+                        <div><FontAwesomeIcon className='text-black mt-4' icon={faArrowRight} /></div>
+                         
+                        </div>
+                        </div>
+
+                    </div>
                        ))
                     }
+             </div>
              </div>
                    ):(
                       <div></div>

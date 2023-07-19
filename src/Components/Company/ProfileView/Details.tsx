@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import DetailsEditModal from '../Modals/DetailsEditModal'
-import { setProfile } from '../../../Redux/UserSlice'
+// import { setProfile } from '../../../Redux/UserSlice'
+import { setCompany } from '../../../Redux/companySlice'
 interface details{
     cmpName?:string
     cmpLocation?:string
@@ -19,14 +20,15 @@ function Details() {
     const [editDetail,setEditDetail]=useState<boolean>(false)
     
     const detailsOpen=()=>{
-      dispatch(setProfile({cmpName:details?.cmpName,cmplocation:details?.cmpLocation,cmpState:details?.cmpState,cmpDistrict:details?.cmpDistrict,contact:details?.Contact,website:details?.Website}))
-
+  
       setEditDetail(true)
     }
   
   
     useEffect(()=>{
        fetchData()
+       console.log(cid);
+       
     },[]) 
 
     const fetchData=(async()=>{

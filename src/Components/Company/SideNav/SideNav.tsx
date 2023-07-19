@@ -4,6 +4,7 @@ import { faHandshake, faMessage, faUser } from '@fortawesome/free-regular-svg-ic
 import { faBarsProgress } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 function SideNav() {
     const { companyemail } = useSelector((state: any) => state.company)
     return (
@@ -26,7 +27,10 @@ function SideNav() {
                     <div className='py-8 font-medium text-xl space-y-3'>
             <div className='flex space-x-3'>
                 <div><FontAwesomeIcon className='text-black' icon={faUser} /></div>
-                <div>Profile</div>
+                
+                <NavLink to='/user/profile'>
+                    <div>Profile</div>
+                </NavLink>
             </div>
             <div className='flex space-x-3 py-3'>
                 <div><FontAwesomeIcon className='text-black' icon={faBarsProgress} /></div>
@@ -42,7 +46,10 @@ function SideNav() {
             </div>
             <div className='flex space-x-3 py-2'>
                 <div><FontAwesomeIcon className='text-black' icon={faUser} /></div>
-                <div>Jobs</div>
+                
+                <NavLink to='/user/profile'>
+                   <div>Jobs</div>
+                </NavLink>
             </div>
         </div>
         </div>

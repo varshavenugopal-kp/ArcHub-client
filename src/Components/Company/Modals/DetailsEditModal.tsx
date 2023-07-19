@@ -1,31 +1,47 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { api } from '../../../Services/axios'
 
 
 interface editDetails{
     setEitDetails:Function
 }
 interface DetailsAuth {
-    cname?: string
-    clocation?: string
-    cdistrict?: string
-    cState?: string
-    Ccontact?: number
-    Cwebsite?: string
+    cmpName?: string
+    cmpLocation?: string
+    cmpDistrict?: string
+    cmpState?: string
+    Contact?: number
+    Website?: string
   }
 
 function DetailsEditModal(props:editDetails) {
     const [data,setData]=useState<DetailsAuth>({})
-    const {cmpName,cmplocation,cmpState,cmpDistrict,contact,website}=useSelector((state:any)=>state.company)
+    const [detail,setDetail]=useState<DetailsAuth>({})
+    const {cid}=useSelector((state:any)=>state.company)
     const closeModal = () => {
         props.setEitDetails(false)
       }
 
+      useEffect(()=>{
+        fetchData()
+     },[]) 
+ 
+     const fetchData=(async()=>{
+      console.log("bbbbbbbbb",cid);
+      
+          const response=await api.get(`/user/detailsEdit/${cid}`)
+          console.log("responseheeeyyyyy",response);
+          setDetail(response.data.details.details)
+          
+     })
+
       const addDetails = ((e: ChangeEvent<HTMLInputElement>) => {
-        setData({ ...data, [e.target.name]: e.target.value })
+        setDetail({ ...detail, [e.target.name]: e.target.value })
       })
+      // setDetail({cmpName:cmpName,cmpLocation:cmplocation,cmpState:cmpState,cmpDistrict:cmpDistrict,Contact:contact,Website:website})
     return (
    <>
     <div className='fixed inset-0 flex items-center justify-center z-50'>
@@ -35,7 +51,7 @@ function DetailsEditModal(props:editDetails) {
               <button onClick={() => closeModal()}><FontAwesomeIcon icon={faXmark}></FontAwesomeIcon></button>
             </div>
             <div className='text-center'>
-              <h1 className='font-bold text-2xl'>Company Details{cmpName}</h1>
+              <h1 className='font-bold text-2xl'>Company Details</h1>
             </div>
             <div className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
               <hr></hr>
@@ -49,7 +65,7 @@ function DetailsEditModal(props:editDetails) {
     <label>Company Name</label>
   </div>
   <div className='w-full'>
-    <input type='text' name='cmpName' value={cmpName} className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' onChange={addDetails} required></input>
+    <input type='text' name='cmpName' value={detail.cmpName} className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' onChange={addDetails} required></input>
   </div>
 </div>
 
@@ -58,7 +74,7 @@ function DetailsEditModal(props:editDetails) {
     <label>Location</label>
   </div>
   <div className='w-full'>
-    <input type='text' name='cmpLocation' value={cmplocation} className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' onChange={addDetails} required></input>
+    <input type='text' name='cmpLocation' value={detail.cmpLocation} className='w-80 shadow appearance-none border rounded py-2 px-3 h-12' onChange={addDetails} required></input>
   </div>
 </div>
 </div>
@@ -72,7 +88,7 @@ function DetailsEditModal(props:editDetails) {
                   id="formInputControl2"
                   className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
                   name="cmpDistrict"
-                  value={cmpDistrict}
+                  value={detail.cmpDistrict}
                   onChange={addDetails}
                   required />
               </div>
@@ -86,7 +102,7 @@ function DetailsEditModal(props:editDetails) {
                   id="formInputControl2"
                   className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
                   name="cmpState"
-                  value={cmpState}
+                  value={detail.cmpState}
                   onChange={addDetails}
                   required />
               </div>
@@ -101,7 +117,7 @@ function DetailsEditModal(props:editDetails) {
                   id="formInputControl2"
                   className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
                   name="Contact"
-                  value={contact}
+                  value={detail.Contact}
                   onChange={addDetails}
                   required />
               </div>
@@ -115,7 +131,7 @@ function DetailsEditModal(props:editDetails) {
                   id="formInputControl2"
                   className='w-80 shadow appearance-none border rounded py-2 px-3 h-12'
                   name="Website"
-                  value={website}
+                  value={detail.Website}
                   onChange={addDetails}
                   required />
               </div>

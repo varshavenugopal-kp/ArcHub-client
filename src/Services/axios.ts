@@ -9,9 +9,13 @@ export const api=axios.create({
 api.interceptors.request.use(
     (config)=>{
         let token=localStorage.getItem('admin')
-        if(token){
+        let userToken=localStorage.getItem('user')
+        let cmpToken=localStorage.getItem('company')
+        
             config.headers['token']=token
-        }
+            config.headers['userToken']=userToken
+            config.headers['cmpToken']=cmpToken
+        
         return config
     },
     (error)=>{

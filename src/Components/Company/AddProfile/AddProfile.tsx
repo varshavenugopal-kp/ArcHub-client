@@ -11,9 +11,11 @@ import Details from '../ProfileView/Details'
 import ViewAbout from '../ProfileView/ViewAbout'
 import Projectview from '../ProfileView/Projectview'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 function AddProfile() {
   const {cid}=useSelector((state:any)=>state.company)
-    
+  const navigate=useNavigate()
+  const company = localStorage.getItem('company');
   const [isOpen,setIsopen]=useState<boolean>(false)
   const [about,setAbout]=useState<boolean>(false)
   const [projects,setProjects]=useState<boolean>(false)
@@ -23,11 +25,6 @@ function AddProfile() {
   const [projectsOpen,setProjectOpen]=useState<boolean>(false)
   const [fileUrl,setUrl]=useState<string|null>(null)
   const [showButton,setShowButton]=useState(false)
-
- 
-
- 
-
 
   const handleFileChange=((e:ChangeEvent<HTMLInputElement>)=>{
      const file=e.target.files?.[0]
@@ -59,8 +56,13 @@ function AddProfile() {
  console.log("hereeeeee",fileUrl);
   useEffect(()=>{
     const fetch=async()=>{
-     await fetchData();
-    // await fetchProject();
+    
+     if(!company){
+            
+      navigate('/user/login')
+  }else{
+    await fetchData();
+  }
     }
     fetch()
     
@@ -75,7 +77,9 @@ function AddProfile() {
       console.log("responseeee",response.data.details.details);
 
       console.log("projectssss",response.data.details.projects);
-      
+      if(response.data.details.image){
+        setUrl(response.data.details.image)
+      }
 
       if(response.data.details.details){
         setDetailsOpen(true)
@@ -140,7 +144,7 @@ function AddProfile() {
          
           </div>
       ):(
-        <div className='w-full h-96 p-5  bg-red-900 flex justify-end'>
+        <div className='w-full h-96 p-5  bg-gray-300 flex justify-end'>
         <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>
        <form>
        <div className='text-center'>
@@ -200,12 +204,6 @@ function AddProfile() {
        )
       }
 
-
-
-
-
-      
-     
       <div className='px-8 mt-4 border-x-3 '>
       <div className='w-full h-12 p-5 flex justify-between items-center bg-gray-300'>
       <h1 className='text-xl'>Accounts & Profile</h1>

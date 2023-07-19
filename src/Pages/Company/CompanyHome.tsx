@@ -14,7 +14,7 @@ function CompanyHome() {
         <SideNav/>
       </div>
       <div className='md:col-span-3 col-span-7'>
-
+<CHome/>
       </div>
 
      </div>
