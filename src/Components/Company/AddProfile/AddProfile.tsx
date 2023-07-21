@@ -12,17 +12,21 @@ import ViewAbout from '../ProfileView/ViewAbout'
 import Projectview from '../ProfileView/Projectview'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import ServiceModal from '../Modals/ServiceModal'
+import ServiceView from '../ProfileView/ServiceView'
 function AddProfile() {
   const {cid}=useSelector((state:any)=>state.company)
   const navigate=useNavigate()
   const company = localStorage.getItem('company');
   const [isOpen,setIsopen]=useState<boolean>(false)
   const [about,setAbout]=useState<boolean>(false)
+  const [service,setServices]=useState<boolean>(false)
   const [projects,setProjects]=useState<boolean>(false)
   const [Account,setAccount]=useState<boolean>(false)
   const [detailsOpen,setDetailsOpen]=useState<boolean>(false)
   const [aboutsOpen,setAboutOpen]=useState<boolean>(false)
   const [projectsOpen,setProjectOpen]=useState<boolean>(false)
+  const [openService,setOpenService]=useState<boolean>(false)
   const [fileUrl,setUrl]=useState<string|null>(null)
   const [showButton,setShowButton]=useState(false)
 
@@ -90,6 +94,10 @@ function AddProfile() {
        if(response.data.details.projects){
         setProjectOpen(true)
        } 
+       if(response.data.details.services){
+          setOpenService(true)
+       }
+       
       
     }catch(error){
 
@@ -118,6 +126,9 @@ function AddProfile() {
   }
   const AccountOpen=()=>{
     setAccount(true)
+  }
+  const servicesOpen=()=>{
+    setServices(true)
   }
 
   return (
@@ -190,6 +201,21 @@ function AddProfile() {
 
 
        )}
+
+
+       {openService?(
+        <ServiceView/>
+        
+       ):(
+        <div className='px-8 mt-4 border-x-3 '>
+      <div className='w-full h-12 p-5 flex justify-between items-center bg-gray-300'>
+      <h1 className='text-xl'>Services</h1>
+       <div className='text-end'><button onClick={()=>servicesOpen()}><FontAwesomeIcon className='text-black' icon={faPlus} /></button></div>
+      </div>
+      </div>
+       )}
+
+
      
 
        {projectsOpen?(
@@ -203,6 +229,8 @@ function AddProfile() {
         </div>
        )
       }
+
+
 
       <div className='px-8 mt-4 border-x-3 '>
       <div className='w-full h-12 p-5 flex justify-between items-center bg-gray-300'>
@@ -219,6 +247,11 @@ function AddProfile() {
      <div className=''>
       
       {about && <AboutModal setAbout={setAbout}/>}
+     </div>
+
+     <div className=''>
+      
+      {service && <ServiceModal setServices={setServices}/>}
      </div>
      <div className=''>
       

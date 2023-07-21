@@ -7,6 +7,7 @@ import { url } from 'inspector'
 import { api } from '../../../Services/axios'
 import { useSelector } from 'react-redux'
 const bgImage='/Images/image1.jpg'
+
 interface companyAuth{
   cmpname?: string
   cmplocation?: string
@@ -15,10 +16,14 @@ interface companyAuth{
   contact?: number
   website?: string
 }
-function CompanyView() {
+interface compannyProps{
+  cid:string
+}
+// interface CompanyViewProps extends RouteComponentProps<CompanyViewParams> {}
+const CompanyView:React.FC<compannyProps>=({cid})=> {
   
   const [data,setData]=useState<companyAuth[]|null>(null)
-  const {cid}=useSelector((state:any)=>state.company)
+  
 
   useEffect(()=>{
      fetchData()

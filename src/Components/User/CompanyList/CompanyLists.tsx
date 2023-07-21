@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import '../CompanyList/CompanyList.css'
 import { api } from '../../../Services/axios'
 import { log } from 'console'
+import { NavLink, Navigate, useNavigate } from 'react-router-dom'
 function CompanyLists() {
     interface cmpAuth{
+      _id:string
         cname:string
         location:string
+        file:string
     }
+    const navigate=useNavigate()
     const [data,setData]=useState<cmpAuth[]|null>(null)
     useEffect(()=>{
         fetchData()
@@ -17,12 +21,15 @@ function CompanyLists() {
         const response=await api.get('/getCompany')
         console.log("ohhh",response);
         
-        // if(response){
-        //     setData()
-        // }
+        if(response){
+            setData(response.data.companyData)
+        }
         }catch(error){
 
         }
+    }
+    const handleClick=(cid:string)=>{
+      navigate(`/company-view?id=${cid}`)
     }
   return (
     <div>
@@ -31,12 +38,25 @@ function CompanyLists() {
 
       </div>
       <div className='px-36 py-16'>
-      <div className='grid grid-cols-5 mt-10'>
-      <div className='crd relative mt-10'>
-                        <h1 className='mt-16 px-5'>gvhgvhgvh</h1>
-                        <h1 className='px-5'>Design</h1>
-                         <img src='\Images\image1.jpg' className='absolute bottom-0 mb-3 px-2'></img>
-                      </div>
+      <div className='grid grid-cols-4 gap-5 mt-10'>
+
+        {
+          data?.map((company)=>(
+            <div className='w-full h-80 border border-gray-300 rounded-md ' key={company._id} onClick={()=>handleClick(company._id)}>
+             
+                        <div>
+                       <h1 className='mt-6 text-2xl font-medium px-5 '>{company.cname}</h1>
+                       {/* <h1 className='font-medium px-5 '>{company.cname}</h1> */}
+                        <div className='w-full p-3 mt-10'>
+                        <img src={company.file} ></img>
+                          </div>
+                        
+                        </div>
+
+                    </div>
+          ))
+        }
+      
         </div>
       </div>
 
