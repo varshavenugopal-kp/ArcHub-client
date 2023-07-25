@@ -10,7 +10,7 @@ function Profile() {
         <Cnav />
       </div>
 
-      <div className="grid grid-cols-4">
+      {/* <div className="grid grid-cols-4">
         <div className="lg:col-span-1 col-span-7 ">
           <SideNav />
         </div>
@@ -19,7 +19,16 @@ function Profile() {
          <AddProfile/>
           
         </div>
-      </div>
+      </div> */}
+       <div className="grid grid-cols-7 gap-4">
+    <div className="md:col-span-2 col-span-7 bg-slate-200"> 
+    <SideNav/>
+    </div>
+     
+    <div className="md:col-span-5 col-span-7"> 
+     <AddProfile/>
+    </div>
+     </div>
 
     </div>
   )

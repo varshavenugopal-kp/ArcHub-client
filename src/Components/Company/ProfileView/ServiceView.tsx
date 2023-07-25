@@ -19,6 +19,9 @@ function ServiceView() {
     const fetchData=(async()=>{
      const myServices=await api.get(`/user/getServices/${cid}`)
       console.log("servicess",myServices);
+      if(myServices.data.services.services.length>0){
+        setServicesShow(myServices.data.services.services)
+      }
     //   setServicesShow(myServices.data.details.services)
     })
     // console.log("nandana",servicesShow);
@@ -32,31 +35,26 @@ function ServiceView() {
       </div>
 
       {servicesShow ? (
-        <div className='grid grid-cols-4'>
-          <div className='images h-56 w-full border border-b-gray-600  rounded shadow'>
-            {servicesShow.map((service, index) => (
-              <div key={index}>
-                {/* <img src={project.url[0]} alt={project.pname} /> */}
-        <div>{service.category}
-            </div>
-
-                  <div>
-
-                    {service.details}
-                    </div>
-                    <div>
-                    <a href="#" className="button">
-        Find out more 
+      <div>
+      
+      {servicesShow.map((service, index) =>(
+       <div className="inline-block px-3">
         
-      </a>
-                    </div>
-                 
+         <div className="w-72 h-48 max-w-xs overflow-hidden  bg-gray-200 shadow-lg  hover:shadow-xl transition-shadow duration-300 ease-in-out">
+          <div key={index}>
+            <div>{service.category}
+         </div>
+         <div>
 
-                </div>
-             
-            ))}
+              {service.details}
+              </div>
           </div>
-        </div>
+           </div>
+   
+      </div>
+        ))}
+  </div>
+ 
       ) : (
         <div></div>
       )}

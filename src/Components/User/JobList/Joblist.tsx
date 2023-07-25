@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { useSelector } from 'react-redux';
+import Jobs from '../../../Pages/User/Jobs';
 
 interface jobsAuth{
   title:string;
@@ -21,10 +27,13 @@ interface cmpAuth{
     location:string
 }
 
-function Joblist() {
+const Joblist: React.FC=()=> {
     const navigate=useNavigate()
     const [data,setData]=useState<jobsAuth[]|null>(null)
-
+    const [selected,setSelected]=useState(false)
+    const {userid,email}=useSelector((state:any)=>state.user)
+    console.log("ooopsss",userid);
+    
     useEffect(()=>{
        fetchData()
     },[])
@@ -37,6 +46,16 @@ function Joblist() {
     
    }
    console.log("hfjhgjhgudghgsdffd",data);
+   
+   const setChange=(jobId:string)=>{
+    setSelected(true)
+    api.post('/addBookmark',{uid:userid,jobId:jobId})
+   }
+   const setOnChange=(jobId:string)=>{
+    setSelected(false)
+    api.post('/bookmarkRemove',{uid:userid,jobId:jobId})
+   }
+
 
    const handleJobClick = (jobId:string) => {
     // Navigate to the other component with the job ID as a URL parameter
@@ -78,9 +97,11 @@ function Joblist() {
                     data.map((jobs)=>(
                        
                         <div className='w-full h-20 border-b border-gray-200' key={jobs._id} onClick={() => handleJobClick(jobs._id)}>
+                        <div className='flex justify-between'>
                         <div className='flex space-x-5'>
                             <div className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1'>
                             </div>
+                       
                             <div>
                                 <div>
                                     <h1>{jobs.title}</h1>
@@ -90,12 +111,33 @@ function Joblist() {
                                 <h1>{jobs?.cmpInfo[0].cname}   {jobs?.cmpInfo[0].location}</h1>
                                 </div>
 
-                            </div>
+                            </div> </div>
+                             {selected?
+                             (
+                                <div className='pe-5 mt-6'><i className="fa-solid fa-bookmark" onClick={()=>setOnChange(jobs._id)}></i></div>
+                             ):(
+                              
+                      
+                                <div className='pe-5 mt-6'><FontAwesomeIcon className='text-black' icon={faBookmark} onClick={()=>setChange(jobs._id)}/></div>
+        
+                              
+                             )
+                            }
+                       
+                      
+                        {/* <div className='pe-5 mt-6'><FontAwesomeIcon className='text-black' icon={faBookmark} onClick={setChange}/></div> */}
+        
+
                         </div>
+
+
+                       
                          </div>
                     ))
                   }
+                  
                </div>
+              
             ):(
                <div>
                 </div>

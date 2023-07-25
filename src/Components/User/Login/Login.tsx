@@ -131,7 +131,7 @@ if(data.user){
   console.log('aaa');
   
     localStorage.setItem('users',JSON.stringify(data))
-    dispatch(setProfile({ email:data.user.email}))
+    dispatch(setProfile({userid:data.user._id, email:data.user.email}))
     navigate('/');
 }
 if(data.invalid){    

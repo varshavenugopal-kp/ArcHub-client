@@ -8,6 +8,7 @@ import { api } from '../../../Services/axios'
 import { useSelector } from 'react-redux'
 const bgImage='/Images/image1.jpg'
 
+
 interface companyAuth{
   cmpname?: string
   cmplocation?: string
@@ -15,7 +16,19 @@ interface companyAuth{
   cmpState?: string
   contact?: number
   website?: string
+ 
+
 }
+interface projectsAuth{
+  pname?:string
+  description?:string
+  url?:string[]
+}
+interface serviceAuth{
+   category:string
+   details:string
+}
+
 interface compannyProps{
   cid:string
 }
@@ -23,7 +36,8 @@ interface compannyProps{
 const CompanyView:React.FC<compannyProps>=({cid})=> {
   
   const [data,setData]=useState<companyAuth[]|null>(null)
-  
+const [project,setProject]=useState<projectsAuth[]|null>(null)
+const [service,setService]=useState<serviceAuth[]|null>(null)
 
   useEffect(()=>{
      fetchData()
@@ -31,8 +45,18 @@ const CompanyView:React.FC<compannyProps>=({cid})=> {
 
   const fetchData=(async()=>{
     const response=await api.get(`/getCompanyDetails/${cid}`)
+    console.log("please come",response);
+    
+    if(response){
+      setData(response.data.companies.details)
+      setProject(response.data.companies.projects)
+      setService(response.data.companies.services)
+      
+    }
 
   })
+  // console.log("here is data",data);
+  
   return (
     <div>
       <div className='h-screen p-3'>
@@ -55,13 +79,27 @@ const CompanyView:React.FC<compannyProps>=({cid})=> {
       </div>
       <div className='px-8'>
         <div className='w-full h-80 border border-gray-700 rounded-md '>
-
+        <h1 className='px-10 mt-10 text-3xl font-bold'>About us</h1>
         </div>
       </div>
+
+      <div className='px-8 mt-10'>
+        <div className='w-full h-80 border border-gray-700 rounded-md '>
+        <h1 className='px-10 mt-10 text-3xl font-bold'>Server</h1>
+        </div>
+      </div>
+
+
+
+
+
       <div className='px-8 mt-10'>
         <div className='w-full h-auto border border-gray-700 rounded-md '>
         <h1 className='px-10 mt-10 text-3xl font-bold'>WORKS</h1>
-      <div className='grid grid-cols-4 gap-2  p-10'>
+      <div className='grid grid-cols-4 gap-4  p-10'>
+        {
+          
+        }
        
           <div className='images h-96 w-full border border-b-gray-600  rounded shadow '>
             <div className='bg-cover h-full w-full  bg-center border rounded-lg' style={{backgroundImage:`url(${'/Images/image1.jpg'})`}}>
@@ -72,32 +110,7 @@ const CompanyView:React.FC<compannyProps>=({cid})=> {
              </div>
             </div>
 
-            <div className='images h-96 w-full border border-b-gray-600  rounded shadow '>
-            <div className='bg-cover h-full w-full  bg-center border rounded-lg' style={{backgroundImage:`url(${'/Images/image1.jpg'})`}}>
-                   
-                  <div className='text-3xl h-48 flex flex-col justify-end text-black'>
-
-                    </div>
-             </div>
-            </div>
-
-            <div className='images h-96 w-full border border-b-gray-600  rounded shadow '>
-            <div className='bg-cover h-full w-full  bg-center border rounded-lg' style={{backgroundImage:`url(${'/Images/image1.jpg'})`}}>
-                   
-                  <div className='text-3xl h-48 flex flex-col justify-end text-black'>
-
-                    </div>
-             </div>
-            </div>
-
-            <div className='images h-96 w-full border border-b-gray-600  rounded shadow '>
-            <div className='bg-cover h-full w-full  bg-center border rounded-lg' style={{backgroundImage:`url(${'/Images/image1.jpg'})`}}>
-                   
-                  <div className='text-3xl h-48 flex flex-col justify-end text-black'>
-
-                    </div>
-             </div>
-            </div>
+           
           </div>
         </div>
       </div>

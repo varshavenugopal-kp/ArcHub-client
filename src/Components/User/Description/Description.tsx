@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../Services/axios';
 interface details{
   title:string;
@@ -27,7 +27,7 @@ jobId:string
 const Description:React.FC<DescriptionProps>=({jobId})=> {
    const [jobs,setJobs]=useState<details|null>(null)
    const [jobOpen,setjobOpen]=useState<boolean>(false)
-
+   const navigate=useNavigate()
    console.log("hihlo",jobId);
    useEffect(()=>{
       fetchData()
@@ -48,11 +48,11 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
     }   
    })
    console.log("heyy data",jobs);
-
-   const formOpen=()=>{
-    setjobOpen(true)
+   
+   const handleClick=(jobId:string)=>{
+    navigate(`/applyJobs?id=${jobId}`)
    }
-
+   
   return (
     <div>    
 <div className='flex justify-between items-center'>
@@ -62,7 +62,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
       </div>
       <div >
         <button className='bg-sky-950
-          text-white rounded p-1' onClick={()=>formOpen()}>Apply Now</button>
+          text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
       </div>
  </div>
 

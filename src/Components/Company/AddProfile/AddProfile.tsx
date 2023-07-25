@@ -94,7 +94,9 @@ function AddProfile() {
        if(response.data.details.projects){
         setProjectOpen(true)
        } 
-       if(response.data.details.services){
+       if(response.data.details.services.length>0){
+        console.log("Moyanth varsha",response.data.details.services);
+        
           setOpenService(true)
        }
        
@@ -135,7 +137,7 @@ function AddProfile() {
     <div>
      
    
-     <div className='px-8 mt-8 border-x-3 overflow-scroll'>
+     <div className='px-8 mt-8 border-x-3 '>
       {fileUrl?(
           <div className='w-full h-96 p-5 bg-cover flex justify-end' style={{ backgroundImage: `url(${fileUrl})` }}>
           <div className='w-5 h-5 lg:w-7 lg:h-7 rounded-full bg-white '>
@@ -205,6 +207,7 @@ function AddProfile() {
 
        {openService?(
         <ServiceView/>
+      // <div>{openService}tfyujhjhjhjh</div>
         
        ):(
         <div className='px-8 mt-4 border-x-3 '>

@@ -23,6 +23,10 @@ import Userexplore from './Pages/User/Userexplore';
 import CompanyDetails from './Pages/User/CompanyDetails';
 import GetCompanies from './Pages/User/GetCompanies';
 import Jobs from './Pages/User/Jobs';
+import JobList from './Pages/Company/JobList';
+import JobEdit from './Pages/Company/JobEdit';
+import ViewCompany from './Components/User/CompanyView/ViewCompany';
+import ApplyJobs from './Pages/User/ApplyJobs';
 
 function App() {
   return (
@@ -58,6 +62,10 @@ function App() {
     <Route path='/company-view' element={<CompanyDetails/>} />
     <Route path='/companies' element={<GetCompanies/>} />
     <Route path='/jobs' element={<Jobs/>} />
+    <Route path='/user/job-List' element={<JobList/>} />
+    <Route path='/user/Editjob' element={<JobEdit/>} />
+    <Route path='/viewCompany' element={<ViewCompany/>} />
+    <Route path='/applyJobs' element={<ApplyJobs/>} />
     </Routes>
   );
 }
