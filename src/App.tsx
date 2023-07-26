@@ -27,6 +27,7 @@ import JobList from './Pages/Company/JobList';
 import JobEdit from './Pages/Company/JobEdit';
 import ViewCompany from './Components/User/CompanyView/ViewCompany';
 import ApplyJobs from './Pages/User/ApplyJobs';
+import Chat from './Components/Chat/Chat';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
     <Route path='/user/Editjob' element={<JobEdit/>} />
     <Route path='/viewCompany' element={<ViewCompany/>} />
     <Route path='/applyJobs' element={<ApplyJobs/>} />
+    <Route path='/chat' element={<Chat/>} />
     </Routes>
   );
 }
