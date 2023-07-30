@@ -10,7 +10,7 @@ function UProfile() {
         <Nav/>
       </div>
       <div className="grid grid-cols-7 gap-4">
-    <div className="md:col-span-2 col-span-7 bg-slate-200"> 
+    <div className="md:col-span-2 col-span-7 bg-slate-200 mt-10 ml-10 shadow-md"> 
     <UserSideNav/>
     </div>
      

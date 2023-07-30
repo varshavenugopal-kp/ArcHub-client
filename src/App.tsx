@@ -32,6 +32,9 @@ import SingleChat from './Pages/SingleChat';
 import UProfile from './Pages/User/UProfile';
 import List from './Pages/User/List';
 import DashboardAdmin from './Pages/Company/DashboardCompany';
+import UserProfile from './Pages/User/UserProfile';
+import CompanyLists from './Components/User/CompanyList/CompanyLists';
+import GetCatCompanies from './Pages/User/GetCatCompanies';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -78,6 +81,10 @@ function App() {
     {/* <Route path='/getApplied' element={<getApplied/>}/> */}
     <Route path='/List' element={<List/>} />
     <Route path='/dashboard' element={<DashboardAdmin/>} />
+    <Route path='/profile' element={<UserProfile/>} />
+    <Route path='/getCompanies' element={<GetCatCompanies/>} />
+  
+    
     
     </Routes>
   );
