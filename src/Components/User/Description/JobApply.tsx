@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
+import { useSelector } from 'react-redux'
 interface apply{
   first:string
   last:string
@@ -17,6 +18,7 @@ interface jobProps{
   jobId:string
   }
 const JobApply:React.FC<jobProps>=({jobId})=> {
+  const {userid,email}=useSelector((state:any)=>state.user)
   const [job,setData]=useState({})
   const [skills,setSkills]=useState<string[]>([])
   const [id,setId]=useState('')
@@ -77,7 +79,7 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
   const handleClick=async(e:FormEvent)=>{
     e.preventDefault()
     try{
-      await api.post('/jobApplied',{...job,skills,jobid:jobId,cid:id})
+      await api.post('/jobApplied',{...job,skills,jobid:jobId,cid:id,userId:userid})
     }
     catch(error){
 

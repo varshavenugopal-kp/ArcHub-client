@@ -28,6 +28,11 @@ import JobEdit from './Pages/Company/JobEdit';
 import ViewCompany from './Components/User/CompanyView/ViewCompany';
 import ApplyJobs from './Pages/User/ApplyJobs';
 import Chat from './Components/Chat/Chat';
+import SingleChat from './Pages/SingleChat';
+import UProfile from './Pages/User/UProfile';
+import List from './Pages/User/List';
+import DashboardAdmin from './Pages/Company/DashboardCompany';
+// import getApplied from './Pages/User/getApplied';
 
 function App() {
   return (
@@ -67,7 +72,13 @@ function App() {
     <Route path='/user/Editjob' element={<JobEdit/>} />
     <Route path='/viewCompany' element={<ViewCompany/>} />
     <Route path='/applyJobs' element={<ApplyJobs/>} />
-    <Route path='/chat' element={<Chat/>} />
+    <Route path='/chat' element={<SingleChat role={'company'}/>} />
+    <Route path='/user/chat' element={<SingleChat role={'user'}/>} />
+    <Route path='/userProfile' element={<UProfile/>} />
+    {/* <Route path='/getApplied' element={<getApplied/>}/> */}
+    <Route path='/List' element={<List/>} />
+    <Route path='/dashboard' element={<DashboardAdmin/>} />
+    
     </Routes>
   );
 }
