@@ -5,9 +5,11 @@ import { faCamera, faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { api } from '../../Services/axios'
+import { log } from 'console'
 
 function UserSideNav() {
   const [files,setFile]=useState<string|null>(null)
+  const [user,setUser]=useState()
   const {userid,email}=useSelector((state:any)=>state.user)
  
   const handleFileChange=(async(e:ChangeEvent<HTMLInputElement>)=>{
@@ -24,18 +26,23 @@ function UserSideNav() {
      
     }
  })
-//  useEffect(()=>{
+ useEffect(()=>{
   
-//     fetchData();
+    fetchData();
 
-//   },[])
-  // const fetchData(async()=>{
-  //   try{
+  },[])
+  const fetchData=(async()=>{
+    try{
+      const response=await api.get(`/getUserInfo/${userid}`)
+      console.log('stop',response);
+      setUser(response.data.profile)
       
-  //   }catch(error){
+    }catch(error){
 
-  //   }
-  // })
+    }
+  })
+  console.log(user,"oooo");
+  
   const handleImage=async(e:FormEvent)=>{
     e.preventDefault()
     try{
@@ -91,7 +98,7 @@ console.log("hereeeeee",files);
            </div>
            
             </label>
-              <img src="./Images/user.png" alt="" /> 
+              <img src={user?user:"./Images/user.png"} alt="" /> 
               </div>
             )
           }

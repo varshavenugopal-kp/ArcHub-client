@@ -17,7 +17,7 @@ interface jobsAuth{
   deadline:Date;
   type:string;
   description:string
-  cname:string
+  cname?:string
   location:string
   cmpInfo:cmpAuth[]
 
@@ -140,7 +140,7 @@ const Joblist: React.FC=()=> {
                             <div className='flex space-x-5'>
                              <div className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1'></div>
                              <div><h1>{jobs.title}</h1></div>
-                             <div><h1>{jobs?.cmpInfo[0].cname}   {jobs?.cmpInfo[0].location}</h1></div>
+                             <div><h1>{jobs?.cmpInfo[0]?.cname}   {jobs?.cmpInfo[0]?.location}</h1></div>
                             </div>
                             {selected?
                              (

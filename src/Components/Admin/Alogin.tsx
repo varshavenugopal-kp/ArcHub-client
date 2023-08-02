@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import jwtDecode from 'jwt-decode'
-import { api } from '../../Services/axios';
+import { api, apiAuth } from '../../Services/axios';
 import { useDispatch } from 'react-redux';
 import { setProfile } from '../../Redux/adminSlice';
 
@@ -73,7 +73,7 @@ useEffect(()=>{
               setErr((prevState) => ({ ...prevState, password: 'Password cannot be empty' }));
           }
          else {
-              const {data} = await api.post('/admin/login',{...admin}, { withCredentials: true });
+              const {data} = await apiAuth.post('/admin/login',{...admin}, { withCredentials: true });
               console.log('data=',data);
               // if(data.student?.username && data.student?.email){
               //   dispatch(studentLogged({username:data.student.username,email:data.student.email}))

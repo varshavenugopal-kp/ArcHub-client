@@ -10,22 +10,38 @@ export const api=axios.create({
 
 api.interceptors.request.use(
     (config)=>{
-        let token=localStorage.getItem('admin')
+        let token:any=localStorage.getItem('admin')
+        // console.log("addd",token);
+        if(token){
+            token=JSON.parse(token)
+            token=token.token
+        console.log("minnn",token);
+        }
+        
 
 
-        // let userToken:any=localStorage.getItem('user')
-        // if(userToken) userToken=JSON.parse(userToken)
-        // userToken=userToken.token
-        // console.log("llll",userToken);
+        let userToken:any=localStorage.getItem('users')
+        if(userToken) {
+            userToken=JSON.parse(userToken)
+        userToken=userToken.token
+        console.log("llll",userToken);
+        }
+
+
+        // let empToken:any=localStorage.getItem('users')
+        //  console.log("emp token=",empToken);
 
         let cmpToken:any=localStorage.getItem('company')
+         console.log("jjj",cmpToken);
+         
+        
         if(cmpToken) cmpToken=JSON.parse(cmpToken)
         cmpToken=cmpToken.token
         console.log("llll",cmpToken);
 
         
             config.headers['token']=token
-            // config.headers['userToken']=userToken
+            config.headers['userToken']=userToken
             config.headers['cmpToken']=cmpToken
         
         return config

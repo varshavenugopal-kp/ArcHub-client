@@ -36,6 +36,10 @@ import UserProfile from './Pages/User/UserProfile';
 import CompanyLists from './Components/User/CompanyList/CompanyLists';
 import GetCatCompanies from './Pages/User/GetCatCompanies';
 import Projects from './Pages/User/Projects';
+import ResetPassword from './Pages/User/ResetPassword';
+import PasswordReset from './Pages/User/PasswordReset';
+import Applied from './Pages/User/Applied';
+import Applicationslist from './Pages/Company/Applicationslist';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -85,6 +89,11 @@ function App() {
     <Route path='/profile' element={<UserProfile/>} />
     <Route path='/getCompanies' element={<GetCatCompanies/>} />
     <Route path='/getProjects' element={<Projects/>} />
+    <Route path='/pswdReset' element={<ResetPassword/>} />
+    <Route path='/resetPswd' element={<PasswordReset/>} />
+    <Route path='/appliedJobs' element={<Applied/>} />
+    <Route path='/user/applications' element={<Applicationslist/>} />
+
   
     
     

@@ -1,22 +1,23 @@
-import { pid } from 'process'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { api } from '../../../Services/axios'
-interface applied{
-  userId:string
-}
 interface jobs{
-   appliedjobs:string[]
-   title:string
-   salary:number
-   type:string
-}
-function AppliedList() {
-    const {userid,email}=useSelector((state:any)=>state.user)
-    console.log("okk",userid);
+    details:details
+   
+ }
+ interface details{
+    firstName:string
+    lastName:string
+    email:string
+    AppliedDate?:Date
+ }
+ 
     
-    const[datas,setdata]=useState<jobs[]>()
-    const [jobs,setJobs]=useState<jobs[]>()
+    
+function Applications() {
+    const { cid } = useSelector((state: any) => state.company)
+    const[datas,setdata]=useState<jobs[]>([])
+    const [jobs,setJobs]=useState<jobs[]>([])
     useEffect(()=>{
       fetchData()
       
@@ -25,20 +26,23 @@ function AppliedList() {
     
     const fetchData=(async()=>{
        
-       const {data}=await api.get(`/getAppliedJobs/${userid}`)
-      
-       console.log("here are... ",data);
+       const {data}=await api.get(`/user/getApplications/${cid}`)
+        console.log("ttt",data);
+        
+    //    console.log("here are... ",data);
        
        if(data)
        {
-         setdata(data.getApplied[0].appliedjobs)
+         setdata(data.getApplied)
          
        }
     })
     console.log("mmmmmm",datas);
    
+    
   return (
     <div>
+      
       <div className='mt-14'>
       <div>
             <h1 className='font-bold text-3xl text-sky-950'>
@@ -51,10 +55,10 @@ function AppliedList() {
         <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
-                    Title
+                    Sl.No
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    Type
+                    Name
                 </th>
                 <th scope="col" className="px-6 py-3">
                     salary
@@ -67,18 +71,20 @@ function AppliedList() {
         </thead>
         <tbody>
            {
-            datas?.map((obj)=>(
+            datas?.map((obj,index)=>(
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
              
-              
+             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {index+1}
+                    </th>
               <td className="px-6 py-4">
-                  {obj.title}
+                  {obj.details.firstName+' '+obj.details.lastName}
               </td>
               <td className="px-6 py-4">
-                  {obj.type}
+                  {obj.details.email}
               </td>
               <td className="px-6 py-4">
-                  {obj.salary} LPA
+                  
               </td>
               {/* <td className="px-6 py-4">
                   {obj.}
@@ -100,4 +106,4 @@ function AppliedList() {
   )
 }
 
-export default AppliedList
+export default Applications

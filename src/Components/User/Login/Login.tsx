@@ -83,7 +83,7 @@ const Login=(props:LoginProps) =>{
           
          
       }
-      const {data} = await apiAuth.post('/login',{...user}, { withCredentials: true });
+      const {data} = await api.post('/login',{...user}, { withCredentials: true });
       console.log("mmm",data.user);
       if(data.user){
         localStorage.setItem('users',JSON.stringify(data))

@@ -31,7 +31,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
    console.log("hihlo",jobId);
    useEffect(()=>{
       fetchData()
-   },[])
+   },[jobId])
    const fetchData=(async()=>{
     const response=await api.get(`/getjobDetails/${jobId}`)
     console.log("response here",response);
@@ -58,7 +58,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
 <div className='flex justify-between items-center'>
       <div className='px-4'>
        <h1 className='text-xl'>{jobs?.title}</h1>
-       <h1 className='text-blue-800 font-medium'>{jobs?.cmpInfo[0].cname}</h1>
+       <h1 className='text-blue-800 font-medium'>{jobs?.cmpInfo[0]?.cname}</h1>
       </div>
       <div >
         <button className='bg-sky-950
@@ -89,7 +89,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
             <div className='mt-3'>
             <ul className='text-xs'>
               <li className='mt-3'>{jobs?.type}</li>
-              <li className='mt-3'>{jobs?.cmpInfo[0].location}</li>
+              <li className='mt-3'>{jobs?.cmpInfo[0]?.location}</li>
               <li className='mt-3'>{jobs?.salary} LPA</li>
               <li className='mt-3'>{jobs?.qualification}</li>
               <li className='mt-3'>{jobs?.experience}</li>
@@ -106,7 +106,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
                 <div  className='px-4 mt-3'>
                   <h1 className='text-xs text-gray-500'>About Us:</h1>
                   <p className='mt-3 text-sm'>
-                    {jobs?.cmpInfo[0].description}
+                    {jobs?.cmpInfo[0]?.description}
                   </p>
                   <h1 className='text-xs text-gray-500 mt-4'>About job:</h1>
                   <p className='mt-3 text-sm'>
