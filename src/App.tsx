@@ -35,6 +35,7 @@ import DashboardAdmin from './Pages/Company/DashboardCompany';
 import UserProfile from './Pages/User/UserProfile';
 import CompanyLists from './Components/User/CompanyList/CompanyLists';
 import GetCatCompanies from './Pages/User/GetCatCompanies';
+import Projects from './Pages/User/Projects';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
     <Route path='/dashboard' element={<DashboardAdmin/>} />
     <Route path='/profile' element={<UserProfile/>} />
     <Route path='/getCompanies' element={<GetCatCompanies/>} />
+    <Route path='/getProjects' element={<Projects/>} />
   
     
     

@@ -5,6 +5,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import {persistor,store} from './Redux/store'
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 // import ChatProvider from './Context/ChatContext';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,11 +15,15 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
     <BrowserRouter>
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}>
     {/* <ChatProvider> */}
       <App />
+      
     {/* </ChatProvider> */}
-    
+    </GoogleOAuthProvider>
     </BrowserRouter>
+
+
     </Provider>
   </React.StrictMode>
 );

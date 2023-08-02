@@ -2,9 +2,12 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { validateUser } from '../../../validations/Cvalidation'
 import { useNavigate } from 'react-router-dom';
 import {api} from '../../../Services/axios'
-import companySlice from '../../../Redux/companySlice';
+import companySlice, { setCompany } from '../../../Redux/companySlice';
 import { NavLink } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import { useDispatch } from 'react-redux';
 type cmpnyAuth={
     cname:string;
     location:string;
@@ -16,6 +19,7 @@ type cmpnyAuth={
     file:string
 }
 function Register() {
+  const dispatch=useDispatch()
     const navigate=useNavigate()
     const [company,setUser]=useState<cmpnyAuth>({cname:'',location:'',district:'',state:'',email:'',password:'',cpassword:'',file:''})
     const [err,setErr]=useState({cname:'',location:'',district:'',state:'',email:'',password:'',cpassword:'',file:''})
@@ -77,7 +81,22 @@ if (file) {
         console.log("datahere",data.url);
         
       })
-  
+    // const googleSubmit=async(res:CredentialResponse)=>{
+    //   const result:any=jwtDecode(res.credential as string)
+    //     const company={
+    //         firstname:result.name.split(' ')[0],
+    //         lastname:result.name.split(' ')[1],
+           
+    //         email:result.email,
+    //         password:'Google@@123',
+            
+    //         isGoogle:true
+    //     }
+    //     const {data}=await api.post('/user/register',{...company},{withCredentials:true})
+    //     localStorage.setItem('company',JSON.stringify(data))
+    //     dispatch(setCompany({cid:data.company._id,companyemail:data.company.email}))
+    //     navigate('/user');
+    // }
   
     return (
     <div>
@@ -194,6 +213,16 @@ if (file) {
           </button>
 
           </div>
+         
+
+{/* <GoogleLogin
+  onSuccess={credentialResponse => {
+    googleSubmit(credentialResponse)
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/> */}
           <div className='flex justify-center'>
             <h5 className='text-sm'>Already Registered?</h5>
             <NavLink to='/user/login'>

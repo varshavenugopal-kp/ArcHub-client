@@ -5,6 +5,10 @@ import axios from 'axios'
 import { api } from '../../../Services/axios'
 import { validateData } from '../../../validations/RegValidation'
 import { NavLink } from 'react-router-dom'
+import { GoogleLogin,CredentialResponse } from '@react-oauth/google';
+import jwtDecode from 'jwt-decode';
+import { useDispatch } from 'react-redux'
+import { setProfile } from '../../../Redux/UserSlice'
 type userAuth={
   fname:string;
   lname:string;
@@ -14,6 +18,7 @@ type userAuth={
   cpassword:string
 }
 const Register=()=> {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
   const[user,setUser]=useState<userAuth>({fname:'',lname:'',email:'',password:'',cpassword:''})
   const [err, setErr] = useState({ fname: '', lname: '', email: '', password: '', cpassword:''})
@@ -49,6 +54,24 @@ const Register=()=> {
 
     }
   }
+
+  const googleSubmit=async(res:CredentialResponse)=>{
+    const result:any=jwtDecode(res.credential as string)
+      const user={
+          fname:result.name.split(' ')[0],
+          lname:result.name.split(' ')[1],
+         
+          email:result.email,
+          password:'Google@@123',
+          
+          isGoogle:true
+      }
+      const {data} = await api.post('/register',{...user}, { withCredentials: true });
+      // localStorage.setItem('users',JSON.stringify(data))
+      // dispatch(setProfile({userid:data.user._id, email:data.user.email}))
+      navigate('/login');
+  }
+
   return (
     <>
     <div className='flex justify-center mt:20 md:mt-20'>
@@ -132,11 +155,24 @@ const Register=()=> {
           <p>{err.cpassword}</p>
          </div>
           </div>
-          <div className='mt-6 flex justify-center'>
-          <button className="bg-sky-950 hover:bg-sky-900 text-white px-4 rounded h-9">
+          <div className='mt-6 justify-center'>
+            <div className='flex justify-center mb-3'>
+              <button className="bg-sky-950 hover:bg-sky-900 text-white px-4 rounded h-9">
            Register
 
           </button>
+            </div>
+           <div className='flex justify-center mb-3'>
+             <GoogleLogin
+  onSuccess={credentialResponse => {
+    googleSubmit(credentialResponse)
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
+           </div>
+         
      
           </div>
           <div className='flex justify-center'>

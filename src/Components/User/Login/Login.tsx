@@ -2,12 +2,13 @@ import React, { ChangeEvent, FormEvent, useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { api } from '../../../Services/axios'
+import { api, apiAuth } from '../../../Services/axios'
 import { json } from 'stream/consumers'
 import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { setProfile } from '../../../Redux/UserSlice'
 import { NavLink } from 'react-router-dom'
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 
 
 interface LoginProps{
@@ -70,12 +71,34 @@ const Login=(props:LoginProps) =>{
   //   console.log(props);
     
   //  }
-
+  const googleSubmit=async(res:CredentialResponse)=>{
+    const result:any=jwtDecode(res.credential as string)
+    console.log("mnmnnm" ,result);
+    
+      const user={
+         
+         
+          email:result.email,
+          password:'Google@@123',
+          
+         
+      }
+      const {data} = await apiAuth.post('/login',{...user}, { withCredentials: true });
+      console.log("mmm",data.user);
+      if(data.user){
+        localStorage.setItem('users',JSON.stringify(data))
+        dispatch(setProfile({userid:data.user._id, email:data.user.email}))
+        navigate('/');
+      }
+    
+  }
      
 useEffect(()=>{
   const user = localStorage.getItem('users');
-  console.log(user);
+  console.log(user,"lllll");
   if(user){
+    console.log(user,'uers');
+    
      const token = JSON.parse(user)
      console.log('token=',token);
      const decodedToken: any = jwtDecode(token.token);
@@ -207,6 +230,15 @@ if(data.invalid){
           <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
            
           </div>
+
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    googleSubmit(credentialResponse)
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}

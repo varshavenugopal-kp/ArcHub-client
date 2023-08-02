@@ -1,11 +1,12 @@
 
 import React, { ChangeEvent, FormEvent, useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { api } from '../../../Services/axios'
+import { api, apiAuth } from '../../../Services/axios'
 import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { setCompany} from '../../../Redux/companySlice'
 import { NavLink } from 'react-router-dom'
+import { GoogleLogin } from '@react-oauth/google';
 
 type userLog ={
     email:string;
@@ -72,7 +73,7 @@ useEffect(()=>{
             setErr((prevState) => ({ ...prevState, password: 'Password cannot be empty' }));
         }
        else {
-            const {data} = await api.post('/user/login',{...company}, { withCredentials: true });
+            const {data} = await apiAuth.post('/user/login',{...company}, { withCredentials: true });
             console.log('data=',data);
             // if(data.student?.username && data.student?.email){
             //   dispatch(studentLogged({username:data.student.username,email:data.student.email}))
@@ -156,6 +157,15 @@ useEffect(()=>{
           <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
            
           </div>
+
+          <GoogleLogin
+  onSuccess={credentialResponse => {
+    console.log(credentialResponse);
+  }}
+  onError={() => {
+    console.log('Login Failed');
+  }}
+/>
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}

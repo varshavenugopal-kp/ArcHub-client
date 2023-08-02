@@ -1,20 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { api } from '../../../Services/axios';
+import { url } from 'inspector';
+interface projects{
+  pname:string
+  url:string[]
+}
+const ViewCompany:React.FC<{pname?:string}>=({pname})=>{
+const [project,setProject]=useState<projects>()
 
-function ViewCompany() {
+  console.log("projectname",pname);
+  useEffect(()=>{
+      fetchData()
+  },[])
+
+  const fetchData=(async()=>{
+     const response=await api.get(`/getProjectByName/${pname}`)
+     console.log("hohoo",response);
+     setProject(response.data.projects)
+     
+  })
+ 
   return (
     <>
     <div className='h-screen'>
-      <div className='w-full h-2/3 bg-green-300'>
-        {/* Content */}
+
+      <div className='w-full h-2/3'>
+        {/* Content */}<img className='w-full h-full ' src={project?.url[0]}/>
       </div>
-      <div className='flex pt-20 justify-center space-x-1'>
+      {/* {
+        displayedImages?.map((images)=>(
+           
+        ))
+      } */}
+      <div className='gap-2 lg:px-52 md:px-16 px-4 md:grid grid-cols-2  mt-8'>
+        {project?.url.map((obj)=>
+        <div className='w-full h-72  bg-amber-500 mb-4 md:mb-0 '>
+          <img className='w-full h-full' src={obj}/>
+        </div>
+        )}
+      {/* <div className='flex pt-20 justify-center space-x-1'>
         <div className='h-72 w-1/3 bg-yellow-300'></div>
         <div className='h-72 w-1/3 bg-yellow-200'></div>
     </div>
     <div className='flex pt-1 justify-center space-x-1'>
         <div className='h-72 w-1/3  bg-yellow-200'></div>
         <div className='h-72 w-1/3 bg-yellow-300'></div>
-    </div>
+    </div> */}
+      </div>
+     
+     
     <div>
         <div className='w-full px-36 pt-10'>
             <p className='text-xl'>ALL THE LOREM IPSUM GENERATORS ON THE INTERNET TEND TO REPEAT PREDEFINED CHUNKS AS NECESSARY, MAKING THIS THE FIRST TRUE</p>

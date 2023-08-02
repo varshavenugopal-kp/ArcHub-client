@@ -4,11 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { api } from '../../../Services/axios'
 import { log } from 'console'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 interface catAuth{
     category:string
     file:string
+    _id:string
 }
 function ExplorePage() {
+    const navigate=useNavigate()
     const [data,setData]=useState<catAuth[]|null>(null)
     useEffect(()=>{
         fetchData()
@@ -28,6 +31,9 @@ function ExplorePage() {
         }
         console.log("ethyooo",data);
         
+        const handleClick=(catId:string)=>{
+            navigate(`/companies?id=${catId}`)
+        }
   return (
     <>
           <div className='h-screen'>
@@ -62,7 +68,7 @@ function ExplorePage() {
                         <h1 className='mt-6 text-2xl font-medium px-5 '>{category.category}</h1>
                         <div className='flex'>
                         <h1 className='mt-4 text-xs font-semibold font-serif px-5 text-gray-400'>VIEW MORE</h1>
-                        <div><FontAwesomeIcon className='text-black mt-4' icon={faArrowRight} /></div>
+                        <div><FontAwesomeIcon className='text-black mt-4' icon={faArrowRight} key={category._id} onClick={()=>handleClick(category._id)}/></div>
                          
                         </div>
                         </div>
