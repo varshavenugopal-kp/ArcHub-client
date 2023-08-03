@@ -128,7 +128,7 @@ useEffect(()=>{
         Password
       </label>
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" ' name="password" onChange={addUser}></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" ' name="password" onChange={addUser}></input>
           </div>
           </div>
 

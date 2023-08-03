@@ -20,6 +20,7 @@ interface jobsAuth{
   cname?:string
   location:string
   cmpInfo:cmpAuth[]
+  bookmarks:string[]
 
 }
 interface cmpAuth{
@@ -29,7 +30,7 @@ interface cmpAuth{
 
 const Joblist: React.FC=()=> {
     const navigate=useNavigate()
-    const [data,setData]=useState<jobsAuth[]|null>(null)
+    const [data,setData]=useState<jobsAuth[]>([])
     const [selected,setSelected]=useState(false)
     const {userid,email}=useSelector((state:any)=>state.user)
     console.log("ooopsss",userid);
@@ -47,13 +48,33 @@ const Joblist: React.FC=()=> {
    }
    console.log("hfjhgjhgudghgsdffd",data);
    
-   const setChange=(jobId:string)=>{
-    setSelected(true)
-    api.post('/addBookmark',{uid:userid,jobId:jobId})
+   const setChange=async(jobId:string)=>{
+    await api.post('/addBookmark',{uid:userid,jobId:jobId})
+
+    const arr=data.map((obj)=>{
+        if(obj._id===jobId){
+            return {...obj,bookmarks:[...obj.bookmarks??[],userid]}
+        }else{
+            return obj
+        }
+    })
+    setData(arr)
+
+
+
    }
    const setOnChange=(jobId:string)=>{
     setSelected(false)
     api.post('/bookmarkRemove',{uid:userid,jobId:jobId})
+    const arr=data.map((obj)=>{
+        if(obj._id===jobId){
+            return {...obj,bookmarks:[...obj.bookmarks.filter(obj=>obj!==userid)]}
+        }else{
+            return obj
+        }
+    })
+    setData(arr)
+
    }
 
 
@@ -142,7 +163,7 @@ const Joblist: React.FC=()=> {
                              <div><h1>{jobs.title}</h1></div>
                              <div><h1>{jobs?.cmpInfo[0]?.cname}   {jobs?.cmpInfo[0]?.location}</h1></div>
                             </div>
-                            {selected?
+                            {jobs.bookmarks.includes(userid)?
                              (
                                 <div className='pe-5 mt-6'><i className="fa-solid fa-bookmark" onClick={()=>setOnChange(jobs._id)}></i></div>
                              ):(

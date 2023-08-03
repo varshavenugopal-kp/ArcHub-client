@@ -107,7 +107,7 @@ console.log("hereeeeee",files);
 
 
            <div className='mt-2'>
-            <h1 className='text-xl text-slate-950'>hghgd</h1>
+            <h1 className='text-xl text-slate-950'>{email}</h1>
            </div>
            
            <div className='mb-8 mt-5 w-60 mx-auto'>

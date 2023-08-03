@@ -46,10 +46,13 @@ if (file) {
         e.preventDefault()
         try{
           const {cname,location,district,state,email,password,cpassword,file}=company
-          console.log('kkkkk',company)
+          // console.log('kkkkk',company)
           if(cname!==''&&location!==''&&district!==''&&email!==''&&state!==''&&password!==''&&cpassword!==''&&file!==''){
+
             const {cname,location,district,state,email,password,cpassword,file}=err
             if(cname===''&&location===''&&district===''&&email===''&&state===''&&password===''&&cpassword===''&&file===''){
+             console.log({company});
+             
               const {data}=await api.post('/user/register',{...company},{withCredentials:true})
               console.log("rrrrr",data);
         
@@ -63,7 +66,8 @@ if (file) {
           
           
         }catch(error){
-    
+          console.log(error);
+          
         }
       }
 
@@ -176,7 +180,7 @@ if (file) {
           <div className='mt-6'>
           
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='password' placeholder="Password" onChange={addUser}></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='password' placeholder="Password" onChange={addUser}></input>
           </div>
           </div>
 
@@ -189,7 +193,7 @@ if (file) {
             
           
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='cpassword' placeholder="Confirm Password" onChange={addUser} required></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='cpassword' placeholder="Confirm Password" onChange={addUser} required></input>
           </div>
           </div>
           <div>

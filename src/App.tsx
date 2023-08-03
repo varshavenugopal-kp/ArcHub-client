@@ -40,6 +40,7 @@ import ResetPassword from './Pages/User/ResetPassword';
 import PasswordReset from './Pages/User/PasswordReset';
 import Applied from './Pages/User/Applied';
 import Applicationslist from './Pages/Company/Applicationslist';
+import Saved from './Pages/User/Saved';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
     <Route path='/resetPswd' element={<PasswordReset/>} />
     <Route path='/appliedJobs' element={<Applied/>} />
     <Route path='/user/applications' element={<Applicationslist/>} />
+    <Route path='/savedJobs' element={<Saved/>} />
 
   
     

@@ -201,7 +201,7 @@ if(data.invalid){
         Password
       </label>
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" ' name="password" onChange={addUser}></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" ' name="password" onChange={addUser}></input>
           </div>
           </div>
 
@@ -209,8 +209,9 @@ if(data.invalid){
           <p>{err.password}</p>
          </div>
           <div>
-            <label className='text-xs text-sky-600 flex justify-center mt-2 mr-2 lg:justify-end'>
-              Forgot password?</label>
+          <NavLink to='/pswdReset'>
+              <h6 className='text-xs  text-sky-600'>  Forgot password?</h6>
+            </NavLink>
           </div>
 
           <div className='mt-5 flex justify-center'>

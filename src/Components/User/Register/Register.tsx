@@ -69,7 +69,7 @@ const Register=()=> {
       const {data} = await api.post('/register',{...user}, { withCredentials: true });
       // localStorage.setItem('users',JSON.stringify(data))
       // dispatch(setProfile({userid:data.user._id, email:data.user.email}))
-      navigate('/login');
+      navigate('/');
   }
 
   return (
@@ -134,7 +134,7 @@ const Register=()=> {
           <div className='mt-6'>
           
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='password' placeholder="Password" onChange={addUser} required></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='password' placeholder="Password" onChange={addUser} required></input>
           </div>
           </div>
 
@@ -147,7 +147,7 @@ const Register=()=> {
             
           
           <div className='w-full'>
-          <input type='text' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='cpassword' placeholder="Confirm Password" onChange={addUser} required></input>
+          <input type='password' className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"' id="username" name='cpassword' placeholder="Confirm Password" onChange={addUser} required></input>
           </div>
           </div>
           <div>

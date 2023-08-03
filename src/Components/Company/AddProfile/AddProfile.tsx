@@ -91,7 +91,7 @@ function AddProfile() {
       if(response.data.details.description)
         setAboutOpen(true)
 
-       if(response.data.details.projects){
+       if(response.data.details.projects.length>0){
         setProjectOpen(true)
        } 
        if(response.data.details.services.length>0){

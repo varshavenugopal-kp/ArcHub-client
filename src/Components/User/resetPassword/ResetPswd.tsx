@@ -46,7 +46,7 @@ function ResetPswd() {
 <form className='w-96 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>
    <div className='w-70'>
      <div>
-       <h1 className='text-center font-bold'>LOGIN</h1>
+       <h1 className='text-center font-bold'>RESET PASSWORD</h1>
      </div>
      <div>
     

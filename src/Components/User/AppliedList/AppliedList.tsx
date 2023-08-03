@@ -41,7 +41,7 @@ function AppliedList() {
     <div>
       <div className='mt-14'>
       <div>
-            <h1 className='font-bold text-3xl text-sky-950'>
+            <h1 className='font-bold text-2xl text-sky-950'>
              Applied Jobs
             </h1>
           </div>

@@ -35,9 +35,11 @@ api.interceptors.request.use(
          console.log("jjj",cmpToken);
          
         
-        if(cmpToken) cmpToken=JSON.parse(cmpToken)
-        cmpToken=cmpToken.token
-        console.log("llll",cmpToken);
+        if(cmpToken){
+            cmpToken=JSON.parse(cmpToken)
+            cmpToken=cmpToken.token
+            console.log("llll",cmpToken);
+        }
 
         
             config.headers['token']=token
