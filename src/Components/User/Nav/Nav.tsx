@@ -51,14 +51,19 @@ const Nav=()=> {
 
         <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
           <li className='py-1'>
-            <NavLink to=''>
-                <span>About</span>
+            <NavLink to='/'>
+                <span>Home</span>
             </NavLink>
          </li>
          <li className='py-1'>
-                    <a href="#">
-                        <span>Home</span>
-                    </a>
+         <NavLink to='/explore'>
+                <span>Explore</span>
+            </NavLink>
+                </li>
+                <li className='py-1'>
+         <NavLink to='/jobs'>
+                <span>Careers</span>
+            </NavLink>
                 </li>
                 <li className='py-1'>
                  {email?(

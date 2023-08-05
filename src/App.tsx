@@ -81,8 +81,8 @@ function App() {
     <Route path='/user/Editjob' element={<JobEdit/>} />
     <Route path='/viewCompany' element={<ViewCompany/>} />
     <Route path='/applyJobs' element={<ApplyJobs/>} />
-    <Route path='/chat' element={<SingleChat role={'company'}/>} />
-    <Route path='/user/chat' element={<SingleChat role={'user'}/>} />
+    <Route path='/chat' element={<SingleChat role={'user'}/>} />
+    <Route path='/user/chat' element={<SingleChat role={'company'}/>} />
     <Route path='/userProfile' element={<UProfile/>} />
     {/* <Route path='/getApplied' element={<getApplied/>}/> */}
     <Route path='/List' element={<List/>} />

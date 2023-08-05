@@ -12,6 +12,7 @@ interface apply{
   qualification:string
   experience:string
   file:string
+  date:Date
   other:string
 }
 interface jobProps{
@@ -21,6 +22,8 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
   const {userid,email}=useSelector((state:any)=>state.user)
   const [job,setData]=useState({})
   const [skills,setSkills]=useState<string[]>([])
+  const [date, setCurrentDate] = useState(new Date().toISOString().slice(0, 10)); // Set the current date as the initial value
+  
   const [id,setId]=useState('')
   const [skill,setSkill]=useState<string>('')
  console.log("id heree",jobId);
@@ -29,6 +32,8 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
   fetchData()
  },[])
 
+ 
+ 
  const fetchData=(async()=>{
   const response=await api.get(`/getId/${jobId}`)
   console.log("response????",response);
@@ -79,7 +84,17 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
   const handleClick=async(e:FormEvent)=>{
     e.preventDefault()
     try{
-      await api.post('/jobApplied',{...job,skills,jobid:jobId,cid:id,userId:userid})
+      await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
+      setData({first:'',
+        last:'',
+        email:'',
+        phone:'',
+        qualification:'',
+        experience:'',
+        file:'',
+        date:'',
+        
+      })
     }
     catch(error){
 
@@ -121,6 +136,7 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
         <div className='mt-5'>
           <p>Experience</p>
           <input type="text" name='experience' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+       
         </div>
         <div className='col-span-2 mt-5'>
           <div className='flex w-full '>
@@ -140,24 +156,15 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
 
         <div className='col-span-2 mt-5'>
           <p>Resume</p>
-          <label
-                                className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                                <span className="flex items-center space-x-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <span className="font-medium text-gray-600">
-                                        
-                                        <span className="text-blue-600 underline">browse file</span>
-                                    </span>
-                                </span>
-                                <input type="file" accept="image/*" name="file_upload" className='hidden' onChange={handleFileChange}/>
-                               
-                            </label>
+          <div className='w-full'>
+         <input type='file' accept="image/*" name="file" onChange={handleFileChange} required></input>
+            </div>                     
+                          
          
         </div>
+        <input type="text" name='date'  className=' hidden'  value={date}
+        onChange={(e) => setCurrentDate(e.target.value)}/>
+       
        
         <div className='flex justify-center col-span-2 mt-8'>
         <button className='bg-black text-white h-10 w-32 px-2 rounded'>Submit</button>

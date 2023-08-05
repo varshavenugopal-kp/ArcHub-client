@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios';
 import { url } from 'inspector';
+import { NavLink } from 'react-router-dom';
 interface projects{
   pname:string
   url:string[]
@@ -19,33 +20,27 @@ const [project,setProject]=useState<projects>()
      setProject(response.data.projects)
      
   })
- 
+   const arr1=project?.url.slice(1,5)
+   const arr2=project?.url.slice(5)
   return (
     <>
     <div className='h-screen'>
-
+      
       <div className='w-full h-2/3'>
-        {/* Content */}<img className='w-full h-full ' src={project?.url[0]}/>
+        {/* Content */}<img className='w-full h-full ' src={project?.url[6]}/>
       </div>
       {/* {
         displayedImages?.map((images)=>(
            
         ))
       } */}
-      <div className='gap-2 lg:px-52 md:px-16 px-4 md:grid grid-cols-2  mt-8'>
-        {project?.url.map((obj)=>
-        <div className='w-full h-72  bg-amber-500 mb-4 md:mb-0 '>
+      <div className='gap-2 lg:px-64 md:px-16 px-4 md:grid grid-cols-2  mt-8'>
+        {arr1?.map((obj)=>
+        <div className='w-full h-72 mb-4 md:mb-0 '>
           <img className='w-full h-full' src={obj}/>
         </div>
         )}
-      {/* <div className='flex pt-20 justify-center space-x-1'>
-        <div className='h-72 w-1/3 bg-yellow-300'></div>
-        <div className='h-72 w-1/3 bg-yellow-200'></div>
-    </div>
-    <div className='flex pt-1 justify-center space-x-1'>
-        <div className='h-72 w-1/3  bg-yellow-200'></div>
-        <div className='h-72 w-1/3 bg-yellow-300'></div>
-    </div> */}
+     
       </div>
      
      
@@ -64,6 +59,24 @@ Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, 
         </div>
        
     </div>
+    <div className='grid grid-cols-4 gap-2 px-20  py-10'>
+      {
+        arr2?.map((obj)=>(
+          <div className='h-96 w-80 bg-gray-200'>
+                <img className='h-full w-full' src={obj}></img>
+                
+              </div>
+        ))
+      }
+    </div>
+    <div className='lg:h-20 px-10 flex justify-end'>
+      <NavLink to='/explore'>
+    <div className='h-10 w-24 bg-sky-950'>
+      <h1 className='text-xs p-2 mt-2 text-white cursor-pointer'>Back to Details</h1>
+    </div>
+    </NavLink>
+    </div>
+    
     </div>
    
     </>

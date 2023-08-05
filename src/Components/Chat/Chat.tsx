@@ -7,18 +7,18 @@ interface role{
 }
 interface user{
   _id:string,
-  userName:string,
-  firstName:string,
-  lastName:string,
-  profileImg:string
+  fname:string,
+  email:string,
+  lname:string,
+  image:string
 
 }
 interface company{
   _id:string,
-  username:string,
-  firstname:string,
-  lastname:string,
-  profileImg:string
+  cname:string,
+  // firstname:string,
+  // lastname:string,
+  // profileImg:string
 
 }
 interface latest{
@@ -70,7 +70,10 @@ function Chat(props:role) {
 const selectChat = (user: Chats) => {
   setselectedUser(user);
 };
-
+      console.log("selectedUser",selectedUser);
+      console.log("chatId came",chatId);
+      
+      
 const setMessageFn = (e: React.ChangeEvent<HTMLInputElement>) => {
   setNewMessage(e.target.value);
   console.log("kkk", newMessage);
@@ -79,13 +82,21 @@ const setMessageFn = (e: React.ChangeEvent<HTMLInputElement>) => {
 useEffect(() => {
   const fetch = async () => {
     if (props.role === "user") {
+      console.log("useridghgghvhvh",userid);
+      
       const data = await api.get(`/chat/user-chat/${userid}`);
-      console.log("stchat=", data.data);
-      setChats(data.data.allChats);
+      console.log("logggg");
+      
+      console.log("userchat=", data.data);
+
+      setChats(data.data.chats);
       console.log("chts=", chats);
     } else {
+      console.log("bvvgvhgvhgv",cid);
+      console.log("chaat opennnn");
+      
       const data = await api.get(`/chat/company-chat/${cid}`);
-      console.log("tutchat=", data.data);
+      console.log("cmpchat=", data.data);
       setChats(data.data.allChats);
     }
   };
@@ -98,7 +109,7 @@ useEffect(() => {
 
     if (chatId !== newMessage.chat._id) {
       console.log(
-        `Message from ${newMessage.user?.firstName} ${newMessage.user?.firstName}`
+        `Message from ${newMessage.user?.fname} ${newMessage.user?.lname}`
       );
     } else {
       setMessages((messages) => [...messages, newMessage]);
@@ -107,7 +118,8 @@ useEffect(() => {
 },[socket]);
 
 const handleMessageFetch = async (chatId: string) => {
-  console.log("chtid=", chatId);
+  console.log("hey chatid", chatId);
+
   const { data } = await api.get(`/message/${chatId}`);
   console.log(data.messages);
   setMessages(data.messages);
@@ -128,6 +140,8 @@ const sendMessage = async (
     currentUserId,
     currentRole,
   });
+  console.log("brototype",data);
+  
   return data;
 };
 
@@ -139,6 +153,8 @@ const handleMessageSent = async () => {
     console.log("Got the message response", res);
     setNewMessage("");
     socket?.emit("new message", res.msg);
+    console.log("messageee",res.msg);
+    
     setMessages([...messages, res.msg]);
   }
 };
@@ -146,6 +162,10 @@ const handleMessageSent = async () => {
 useEffect(() => {
   socket.emit("setup", currentUserId);
 }, [currentUserId, socket]);
+
+console.log("chats here",chats);
+console.log("chatId here",chatId);
+
   return (
     <div className="container mx-auto">
     <div className="min-w-full border rounded lg:grid lg:grid-cols-3">
@@ -190,13 +210,13 @@ useEffect(() => {
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                     <img
                       className="object-cover w-10 h-10 rounded-full"
-                      src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
+                      src={obj.user.image}
                       alt="username"
                     />
                     <div className="w-full pb-2">
                       <div className="flex justify-between">
                         <span className="block ml-2 font-semibold text-gray-600">
-                          {obj.company.username}
+                          {obj.user.fname}
                         </span>
                         <span className="block ml-2 text-sm text-gray-600">
                           25 minutes
@@ -227,7 +247,7 @@ useEffect(() => {
                     <div className="w-full pb-2">
                       <div className="flex justify-between">
                         <span className="block ml-2 font-semibold text-gray-600">
-                          {obj.user.userName}
+                          {obj.company.cname}
                         </span>
                         <span className="block ml-2 text-sm text-gray-600">
                           25 minutes

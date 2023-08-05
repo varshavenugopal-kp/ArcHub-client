@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios';
+import { useSelector } from 'react-redux';
 type userAuth={
   fname?:string;
   lname?:string;
@@ -8,31 +9,30 @@ type userAuth={
  
 }
 function UserProfile() {
-  // const  [data,setData]=useState<userAuth>()
-  // const addUser=(e:ChangeEvent<HTMLInputElement>)=>{
-  //   setData({...data,[e.target.name]:e.target.value})
-   
-  //  }
-  //  useEffect(()=>{
-  //   fetchData()
-  // },[])
-  // const fetchData=(async()=>{
-  //   const response=await api.get(`/user/singleJob/${jobId}`)
-  //   console.log("please come",response);
-  //   setData(response.data.jobs[0])
+  const [data,setData]=useState<userAuth>()
+  const {userid,email}=useSelector((state:any)=>state.user)
+  const [edit,setEdit]=useState<boolean>(false)
+  useEffect(()=>{
+    fetchData()
+  },[edit])
+  const fetchData=(async()=>{
+    const response=await api.get(`/getUserInfo/${userid}`)
+    console.log("here are the data",response);
+    setData(response.data.userData)
     
-  // })
-  // const handleEdit=(async(e:FormEvent)=>{
-  //      e.preventDefault()
-  //      try{
-  //       console.log("hey varshaa");
-        
-  //       const editData=await api.post('/user/editJob',{...data,jobId:data?._id})
-  //      }
-  //      catch(error){
+  })
 
-  //      }
-  // })
+  const addData = ((e: ChangeEvent<HTMLInputElement>) => {
+   
+      setData({ ...data, [e.target.name]: e.target.value })
+    
+   
+  })
+  const handleUpdate=()=>{
+    api.post(`/updateProfile/${userid}`,{data})
+  }
+ console.log("????",edit);
+ 
   return (
     <div>
         <div className='flex justify-center'>
@@ -44,15 +44,15 @@ function UserProfile() {
       <div className=' mt-10   '>
         <div className='mt-5'>
           <p>Firstname</p>
-          <input type="text" name='fname' className='w-full border-2 rounded py-2 px-2 outline-none ' />
+          <input type="text" name='fname' value={data?.fname} className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={addData} readOnly={!edit}/>
         </div>
         <div className='mt-5'>
           <p>Lastname</p>
-          <input type="text" name='lname' className='w-full border-2 rounded py-2 px-2 outline-none '/>
+          <input type="text" name='lname' value={data?.lname} className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={addData} readOnly={!edit}/>
         </div>
         <div className='mt-5'>
           <p>Email</p>
-          <input type="text" name='email' className='w-full border-2 rounded py-2 px-2 outline-none ' />
+          <input type="text" name='email' value={data?.email} className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={addData} readOnly={!edit}/>
         </div>
         
        
@@ -63,10 +63,15 @@ function UserProfile() {
 
 
        
-       
-        <div className='flex justify-center col-span-2 mt-8'>
-        <button className='bg-black text-white h-10 w-32 px-2 rounded'>Submit</button>
+       <div className='flex space-x-2'>
+       <div className='flex justify-center col-span-2 mt-8'>
+        <div className='bg-black text-white text-center h-10 w-32 px-2 rounded cursor-pointer' onClick={()=>setEdit(true)}>edit</div>
         </div>
+        <div className='flex justify-center col-span-2 mt-8'>
+        <button className='bg-black text-white h-10 w-32 px-2 rounded' onClick={handleUpdate}>Submit</button>
+        </div>
+       </div>
+        
       </div>
 
       </div>

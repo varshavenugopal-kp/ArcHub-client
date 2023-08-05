@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../Services/axios';
+import { useSelector } from 'react-redux';
 interface details{
   title:string;
   _id:string
@@ -23,14 +24,30 @@ interface cmpAuth{
 interface DescriptionProps{
 jobId:string
 }
+interface jobs{
+  _id:string
+   appliedjobs:string[]
+   title:string
+   salary:number
+   type:string
+   jobId:string
+   
+}
+interface applied{
+  userId:string
+}
 
 const Description:React.FC<DescriptionProps>=({jobId})=> {
+  const {userid,email}=useSelector((state:any)=>state.user)
    const [jobs,setJobs]=useState<details|null>(null)
+   const [applied,setApplied]=useState<jobs[]>()
    const [jobOpen,setjobOpen]=useState<boolean>(false)
    const navigate=useNavigate()
    console.log("hihlo",jobId);
    useEffect(()=>{
       fetchData()
+      fetchjobs()
+      
    },[jobId])
    const fetchData=(async()=>{
     const response=await api.get(`/getjobDetails/${jobId}`)
@@ -38,6 +55,9 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
     console.log("varshaaaaaa",response);
     
     
+     
+      
+     
     
     if(response){
       const item=response.data.jobs[0]
@@ -47,6 +67,16 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
       
     }   
    })
+
+   const fetchjobs=(async()=>{
+    const {data}=await api.get(`/getAppliedJobs/${userid}`)
+    console.log("uffff",data);
+    setApplied(data.getApplied)
+    
+  })
+
+   
+
    console.log("heyy data",jobs);
    
    const handleClick=(jobId:string)=>{

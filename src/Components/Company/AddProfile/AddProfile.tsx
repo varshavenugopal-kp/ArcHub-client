@@ -29,6 +29,7 @@ function AddProfile() {
   const [openService,setOpenService]=useState<boolean>(false)
   const [fileUrl,setUrl]=useState<string|null>(null)
   const [showButton,setShowButton]=useState(false)
+  
 
   const handleFileChange=((e:ChangeEvent<HTMLInputElement>)=>{
      const file=e.target.files?.[0]
@@ -39,6 +40,8 @@ function AddProfile() {
       
      }
   })
+
+ 
 
   const generateUrl=async(img:File)=>{
      const datas=new FormData()

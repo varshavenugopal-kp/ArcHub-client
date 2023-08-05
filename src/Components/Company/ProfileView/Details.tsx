@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import DetailsEditModal from '../Modals/DetailsEditModal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { setProfile } from '../../../Redux/UserSlice'
 import { setCompany } from '../../../Redux/companySlice'
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons'
 interface details{
     cmpName?:string
     cmpLocation?:string
@@ -44,11 +46,14 @@ function Details() {
     <div>
       <div className='px-8 mt-4 border-x-3'>
         <div className=''>
-          <div>
+          <div className='flex justify-between'>
+
             <h1 className='text-2xl font-semibold'>Company Details</h1>
-            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+            <div className='mt-2'><FontAwesomeIcon icon={faPenToSquare} className='text-lg' onClick={()=>detailsOpen()}/></div>
+            
           
           </div>
+          <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 
           <div className='grid grid-cols-6'>
             <div>
@@ -74,9 +79,7 @@ function Details() {
           </div>
           </div>
           <div className='flex justify-end'>
-          <button className="bg-sky-950 h-12 hover:bg-sky-900 text-white px-4 rounded" onClick={()=>detailsOpen()}>
-           Edit details
-          </button>
+         
           </div>
          
          

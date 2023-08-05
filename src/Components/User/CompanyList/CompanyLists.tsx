@@ -10,6 +10,7 @@ function CompanyLists() {
         location:string
         file:string
         email:string
+        logo:string
     }
     const navigate=useNavigate()
     const [data,setData]=useState<cmpAuth[]|null>(null)
@@ -35,11 +36,19 @@ function CompanyLists() {
   return (
     <div>
       <div className='h-screen'>
-      <div className='logo w-full h-1/2 bg-slate-700 bg-cover'>
+      <div className='himage w-full h-1/2 bg-slate-700 bg-cover'>
 
       </div>
       <div className='px-36 py-16'>
-      <div className='grid grid-cols-4 gap-5 mt-10'>
+      <div>
+                      <h2 className='text-red-600 text-xl'>Our trusted companies</h2>
+                      <h1 className='text-2xl mt-3'>Provide the Guaranteed
+Quality in Construction</h1>
+                      <p className='mt-5'>
+                      Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. strategies to ensure proactive domination. 
+                      </p>
+                  </div>
+      <div className='grid grid-cols-4 gap-5 mt-7'>
 
         {
           data?.map((company)=>(
@@ -60,7 +69,7 @@ function CompanyLists() {
 <div className="max-w-xs">
     <div className="bg-white shadow-xl rounded-lg py-3">
         <div className="photo-wrapper p-2">
-            <img className="w-32 h-32 rounded-full mx-auto"/>
+            <img src={company.logo} className="w-32 h-32 rounded-full mx-auto"/>
         </div>
         <div className="p-2">
             <h3 className="text-center text-xl text-gray-900 font-medium leading-8">{company.cname}</h3>
@@ -80,7 +89,7 @@ function CompanyLists() {
             </tbody></table>
 
             <div className="text-center my-3">
-                <a className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"  key={company._id} onClick={()=>handleClick(company._id)}>View Profile</a>
+                <a className="text-xs cursor-pointer text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"  key={company._id} onClick={()=>handleClick(company._id)}>View Profile</a>
             </div>
 
         </div>

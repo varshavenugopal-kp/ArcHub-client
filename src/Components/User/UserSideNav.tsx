@@ -35,7 +35,7 @@ function UserSideNav() {
     try{
       const response=await api.get(`/getUserInfo/${userid}`)
       console.log('stop',response);
-      setUser(response.data.profile)
+      setUser(response.data.userData.image)
       
     }catch(error){
 
@@ -114,15 +114,15 @@ console.log("hereeeeee",files);
             <hr className='border border-black'/>
            </div>
         </div>
-        <div className=' mb-20 pl-48 md:pl-32'>
+        <div className=' mb-20'>
             {/* <div className=' bg-amber-300 '> */}
-            <ul className="space-y-4">
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faUser} className='text-lg text-custom-blue'/><span className='ml-4 text-base '>Personal Info</span></li>
-            <li className='cursor-pointer' ><FontAwesomeIcon icon={faBook} className='text-lg text-cyan-600'/><span className='ml-4 text-base'>Appllied jobs</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faUsers} className='text-lg text-yellow-400'/><span className='ml-3 text-base'>Bookmarks</span></li>
-            {/* <li className='cursor-pointer'><FontAwesomeIcon icon={faCalendar} className='text-lg text-green-600'/><span className='ml-4 text-base'>Slots</span></li> */}
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faMessage} className='text-lg text-violet-950'/><span className='ml-4 text-base'>Message</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faCoins} className='text-lg text-red-800'/><span className='ml-4 text-base'>Reset Password</span></li>
+            <ul className="space-y-4 ">
+            <li className='cursor-pointer px-28  group/item hover:bg-slate-100'><FontAwesomeIcon icon={faUser} className='text-lg text-custom-blue'/><span className='ml-4 text-base '>Personal Info</span></li>
+            <li className='cursor-pointer px-28 group/item hover:bg-slate-100 ' ><FontAwesomeIcon icon={faBook} className='text-lg text-cyan-600'/><span className='ml-4 text-base'>Appllied jobs</span></li>
+            <li className='cursor-pointer px-28 group/item hover:bg-slate-100'><FontAwesomeIcon icon={faUsers} className='text-lg text-yellow-400'/><span className='ml-3 text-base'>Bookmarks</span></li>
+            {/* <li className='cursor-pointer px-28 group/item hover:bg-slate-100'><FontAwesomeIcon icon={faCalendar} className='text-lg text-green-600'/><span className='ml-4 text-base'>Slots</span></li> */}
+            <li className='cursor-pointer px-28 group/item hover:bg-slate-100'><FontAwesomeIcon icon={faMessage} className='text-lg text-violet-950'/><span className='ml-4 text-base'>Message</span></li>
+            <li className='cursor-pointer px-28 group/item hover:bg-slate-100'><FontAwesomeIcon icon={faCoins} className='text-lg text-red-800'/><span className='ml-4 text-base'>Reset Password</span></li>
             </ul>  
             {/* </div> */}
            

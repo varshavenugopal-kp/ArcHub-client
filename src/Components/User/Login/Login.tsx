@@ -232,6 +232,7 @@ if(data.invalid){
            
           </div>
 
+          <div className='ms-8'>
           <GoogleLogin
   onSuccess={credentialResponse => {
     googleSubmit(credentialResponse)
@@ -240,10 +241,11 @@ if(data.invalid){
     console.log('Login Failed');
   }}
 />
+          </div>
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}
-          <div className='flex justify-center'>
+          <div className='flex justify-center mt-5'>
             <h5 className='text-sm'>Not a member?</h5>
             <NavLink to='/register'>
               <h6 className='text-xs  text-sky-600'> register here</h6>

@@ -3,6 +3,8 @@ import { api } from '../../../Services/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCompany } from '../../../Redux/companySlice'
 import AboutEdit from '../Modals/AboutEdit'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons'
 // import AboutEditModal from '../Modals/AboutEditModal'
 
 interface about{
@@ -32,19 +34,19 @@ function ViewAbout() {
    
   return (
     <div>
-      <div className='px-8  border-x-3'>
-      <div>
+      <div className='px-8  border-x-3 mt-5'>
+      <div className='flex justify-between'>
             <h1 className='text-2xl font-semibold'>About company</h1>
+            <div className='mt-2'><FontAwesomeIcon icon={faPenToSquare} className='text-lg' onClick={()=>openModal()}/></div>
+            </div>
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           
-          </div>
+         
           <div>
             {about?.description}
           </div>
           <div className='flex justify-end'>
-          <button className="bg-sky-950 h-12 hover:bg-sky-900 text-white px-4 rounded" onClick={()=>openModal()}>
-           Edit About
-          </button>
+         
           </div>
       </div>
       <div>
