@@ -3,17 +3,28 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { api } from '../../../Services/axios'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-regular-svg-icons'
 interface applied{
   userId:string
 }
 interface jobs{
   _id:string
-   appliedjobs:string[]
-   title:string
-   salary:number
-   type:string
-   
+   appliedjobs:appliedjobs[]
+   details:details
+   jobId:string
 }
+
+interface appliedjobs{
+  title:string
+  salary:number
+  type:string
+ 
+}
+interface details{
+  date:Date
+}
+
 const AppliedList:React.FC=()=>{
   const navigate=useNavigate()
     const {userid,email}=useSelector((state:any)=>state.user)
@@ -35,7 +46,7 @@ const AppliedList:React.FC=()=>{
        
        if(data)
        {
-         setdata(data.getApplied[0].appliedjobs)
+         setdata(data.getApplied)
         //  setJobs(data.getApplied[0].jobId)
        }
     })
@@ -44,65 +55,97 @@ const AppliedList:React.FC=()=>{
       // Navigate to the other component with the job ID as a URL parameter
       navigate(`/jobs?id=${jobId}`);
     };
-  
+    const handleClick=(jobId:string)=>{
+      console.log("heyy idd",jobId);
+      
+      navigate(`/getAppliedDetails?id=${jobId}`)
+    }
    
   return (
-    <div className='border-r-2 border-gray-200 h-screen'>
-       
     <div>
-        <div>
-
+      <div className='mt-14'>
+      <div>
+            <h1 className='font-bold text-3xl text-sky-950'>
+             Applied Jobs
+            </h1>
+          </div>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-10">
+    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">
        
-   
-   
-    <div className='p-3 '>
-        {
-            data?(
-               <div className='mt-3 '>
-                  {
-                   
-                    data.map((jobs)=>(
-                        <div className="w-full p-6 mt-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                           <div  className='flex justify-between'>
-                            <div className=''>
-<div className='flex space-x-5'>
-<div className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1'></div>
-                             <div><h1 className='mt-3'>{jobs.title}</h1></div>
-</div>
-
-                             
-                             <div className='ms-16'>
-                                <h1 className='text-sm font-medium text-gray-600'>name</h1>
-                                <h1  className='text-sm text-gray-600'>   loc</h1>
-                             </div>
-                            </div>
-                            
-                            </div>
-                            <a href="#" className=" text-sm font-medium text-center text-black flex" key={jobs._id} onClick={() => handleJobClick(jobs._id)}>
-                                Read more
-                                <svg className="w-3.5 h-3.5 ml-2 mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    ))
-                    
-                  }
-
-               </div>
+        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" className="px-6 py-3">
+                    Sl.No
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Job Title
+                </th>
+                <th scope="col" className="px-6 py-3">
+                    Job Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                 salary
+                </th>
               
-            ):(
-               <div>
-                </div>
-            )
-        }
-       
-        </div>
-    </div>
-    </div>
-   
-    </div>
+                <th scope="col" className="px-6 py-3">
+                 Applied Date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Details
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+           {
+            data?.map((jobs,index)=>(
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+             
+             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {index+1}
+                    </th>
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {jobs.appliedjobs[0].title}
+                    </th>
+              <td className="px-6 py-4">
+              {jobs.appliedjobs[0].type}
+              </td>
+              <td className="px-6 py-4">
+              {jobs.appliedjobs[0].salary} LPA
+              </td>
+             
+              <td className="px-6 py-4">
+              {jobs.details.date ? jobs.details.date.toLocaleString() : 'N/A'}
+              
+              </td>
+              <td className="px-6 py-4" key={jobs.jobId} onClick={()=>handleClick(jobs.jobId)}>
+                   
+                     view  <FontAwesomeIcon icon={faEye} className='text-lg  text-black'/>
+                    </td>
+              {/* <td className="px-6 py-4">
+                  {obj.}
+              </td> */}
+              {/* <td className="px-6 py-4">
+              <button className='h-10 w-24 bg-sky-950' onClick={()=>handleButtonClick(obj.details.email)}>
+                <h1 className='text-white'>Accept</h1>
+                </button>
+              </td> */}
+             
+          </tr>
+            ))
+           }
+           
+        </tbody>
+    </table>
 
+     
+
+      </div>
+    </div>
+    </div>
+    // <div className='border-r-2 border-gray-200 h-screen'>
+       
+   
   )
 }
 

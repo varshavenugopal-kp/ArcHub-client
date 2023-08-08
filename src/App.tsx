@@ -41,6 +41,14 @@ import PasswordReset from './Pages/User/PasswordReset';
 import Applied from './Pages/User/Applied';
 import Applicationslist from './Pages/Company/Applicationslist';
 import Saved from './Pages/User/Saved';
+import Projectss from './Pages/Company/Projectss';
+import Dashboard from './Components/Admin/Dashboard';
+import DashboardCompany from './Pages/Company/DashboardCompany';
+import AdminDashboard from './Pages/Admin/AdminDashboard';
+import ApplyDetails from './Pages/Company/ApplyDetails';
+import AppliedDetails from './Pages/User/AppliedDetails';
+import ProtectedAdmin from './Components/ProtectedAdmin';
+import ProtectedUser from './Components/ProtectedUser';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -58,43 +66,48 @@ function App() {
     } />
      <Route path='/admin/login'  element={<AdminLogin/>
     } />
-    <Route path='/admin/user-list'  element={<UserList/>
+    <Route path='/admin/user-list'  element={<ProtectedAdmin><UserList/></ProtectedAdmin>
     } />
     <Route path='/user'  element={<CompanyHome/>
     } />
     <Route path='/admin'  element={<HomeAdmin/>
     } />
-     <Route path='/admin/company-list'  element={<CompanyList/>
+     <Route path='/admin/company-list'  element={<ProtectedAdmin><CompanyList/></ProtectedAdmin>
     } />
-     <Route path='/admin/requests'  element={<Requests/>
+     <Route path='/admin/requests'  element={<ProtectedAdmin><Requests/></ProtectedAdmin>
     } />
     <Route path='/user/profile'  element={<Profile/>
     } />
      <Route path='/user/addjob'  element={<JobAdd/>
     } />
-    <Route path='/admin/categories' element={<Categories/>} />
-    <Route path='/explore' element={<Userexplore/>} />
-    <Route path='/company-view' element={<CompanyDetails/>} />
-    <Route path='/companies' element={<GetCompanies/>} />
-    <Route path='/jobs' element={<Jobs/>} />
+    <Route path='/admin/categories' element={<ProtectedAdmin><Categories/></ProtectedAdmin>} />
+    <Route path='/explore' element={<ProtectedUser><Userexplore/></ProtectedUser>} />
+    <Route path='/company-view' element={<ProtectedUser><CompanyDetails/></ProtectedUser>} />
+    <Route path='/companies' element={<ProtectedUser><GetCompanies/></ProtectedUser>} />
+    <Route path='/jobs' element={<ProtectedUser><Jobs/></ProtectedUser>} />
     <Route path='/user/job-List' element={<JobList/>} />
     <Route path='/user/Editjob' element={<JobEdit/>} />
-    <Route path='/viewCompany' element={<ViewCompany/>} />
-    <Route path='/applyJobs' element={<ApplyJobs/>} />
+    <Route path='/viewCompany' element={<ProtectedUser><ViewCompany/></ProtectedUser>} />
+    <Route path='/applyJobs' element={<ProtectedUser><ApplyJobs/></ProtectedUser>} />
     <Route path='/chat' element={<SingleChat role={'user'}/>} />
     <Route path='/user/chat' element={<SingleChat role={'company'}/>} />
-    <Route path='/userProfile' element={<UProfile/>} />
+    <Route path='/userProfile' element={<ProtectedUser><UProfile/></ProtectedUser>} />
     {/* <Route path='/getApplied' element={<getApplied/>}/> */}
     <Route path='/List' element={<List/>} />
-    <Route path='/dashboard' element={<DashboardAdmin/>} />
+    <Route path='/admin/dashboard' element={<ProtectedAdmin><DashboardCompany/></ProtectedAdmin>} />
     <Route path='/profile' element={<UserProfile/>} />
-    <Route path='/getCompanies' element={<GetCatCompanies/>} />
+    <Route path='/getCompanies' element={<ProtectedUser><GetCatCompanies/></ProtectedUser>} />
     <Route path='/getProjects' element={<Projects/>} />
     <Route path='/pswdReset' element={<ResetPassword/>} />
     <Route path='/resetPswd' element={<PasswordReset/>} />
     <Route path='/appliedJobs' element={<Applied/>} />
     <Route path='/user/applications' element={<Applicationslist/>} />
     <Route path='/savedJobs' element={<Saved/>} />
+    <Route path='/cProject' element={<Projectss/>} />
+    <Route path='/user/applicationsDetails' element={<ApplyDetails/>} />
+    <Route path='/user/userDashboard' element={<AdminDashboard/>} />
+    <Route path='/getAppliedDetails' element={<AppliedDetails/>} />
+    
 
   
     

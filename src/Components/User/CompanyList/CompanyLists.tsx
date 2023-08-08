@@ -14,17 +14,33 @@ function CompanyLists() {
     }
     const navigate=useNavigate()
     const [data,setData]=useState<cmpAuth[]|null>(null)
+    const [query, setQuery] = useState('')
+    const [filterList,setFilter] = useState<any>([])
+    const [page,setPage]=useState([])
+    const [pageNo,setPageNo]=useState(1)
+
     useEffect(()=>{
         fetchData()
-    },[])
+    },[pageNo])
+    useEffect(()=>{
+      const filteredList = data?.filter((user) => {
+        const usernameMatch = user.cname
+          .toLowerCase()
+          .includes(query.toLowerCase());
+        return usernameMatch
+      });
+      setFilter(filteredList);
+    }, [query, data]);
+   
 
     const fetchData=async()=>{
         try{
-        const response=await api.get('/getCompany')
+        const response=await api.get(`/getCompany?page=${pageNo}`,{withCredentials:true})
         console.log("ohhh",response);
         
         if(response){
             setData(response.data.companyData)
+            setPage(response.data.pages)
         }
         }catch(error){
 
@@ -33,11 +49,15 @@ function CompanyLists() {
     const handleClick=(cid:string)=>{
       navigate(`/company-view?id=${cid}`)
     }
+    console.log("pageNo:",pageNo);
+    
   return (
     <div>
       <div className='h-screen'>
       <div className='himage w-full h-1/2 bg-slate-700 bg-cover'>
-
+      <input type="search" className='inputBox rounded-full' placeholder="Search here..." value={query}
+              onChange={(e) => setQuery(e.target.value)}/>
+      
       </div>
       <div className='px-36 py-16'>
       <div>
@@ -51,19 +71,8 @@ Quality in Construction</h1>
       <div className='grid grid-cols-4 gap-5 mt-7'>
 
         {
-          data?.map((company)=>(
-            // <div className='w-full h-80 border border-gray-300 rounded-md ' key={company._id} onClick={()=>handleClick(company._id)}>
-             
-            //             <div>
-            //            <h1 className='mt-6 text-2xl font-medium px-5 '>{company.cname}</h1>
-            //            {/* <h1 className='font-medium px-5 '>{company.cname}</h1> */}
-            //             <div className='w-full p-3 mt-10'>
-            //             <img src={company.file} ></img>
-            //               </div>
-                        
-            //             </div>
-
-            //         </div>
+          filterList?.map((company:any)=>(
+          
             <div className="mt-16">
 
 <div className="max-w-xs">
@@ -102,7 +111,18 @@ Quality in Construction</h1>
       
         </div>
       </div>
-
+      <nav aria-label="Page navigation example " className='flex justify-end pe-36'>
+  <ul className="inline-flex -space-x-px text-sm">
+  {
+    page.map((obj)=>(
+      <li>
+      <div onClick={(e)=>setPageNo(obj)} className="flex items-center justify-center px-3 h-8 leading-tight cursor-pointer text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{obj}</div>
+    </li>
+    ))
+  }
+ 
+  </ul>
+</nav>
       </div>
     </div>
   )

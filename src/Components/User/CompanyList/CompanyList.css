@@ -10,3 +10,24 @@
   .himage{
     background-image: url('/public/Images/headerimg.jpg');
 }
+.inputBox {
+  background: transparent; /* Set the background to transparent */
+  border: none;
+  position: relative;
+  display: block;
+  outline: none;
+  width: 400px;
+  height: 35px;
+  top: 50px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #000000;
+  -webkit-box-shadow: 0 2px 10px 1px rgba(248, 245, 245, 0.5);
+  box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Placeholder styles remain the same */
+::-webkit-input-placeholder { color: #000000; }
+:-moz-placeholder { color: #000000; }
+::-moz-placeholder { color: #0e0d0d; }
+:-ms-input-placeholder { color: #070707; }

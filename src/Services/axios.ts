@@ -15,7 +15,7 @@ api.interceptors.request.use(
         if(token){
             token=JSON.parse(token)
             token=token.token
-        console.log("minnn",token);
+        // console.log("minnn",token);
         }
         
 
@@ -24,7 +24,7 @@ api.interceptors.request.use(
         if(userToken) {
             userToken=JSON.parse(userToken)
         userToken=userToken.token
-        console.log("llll",userToken);
+        // console.log("llll",userToken);
         }
 
 
@@ -32,13 +32,13 @@ api.interceptors.request.use(
         //  console.log("emp token=",empToken);
 
         let cmpToken:any=localStorage.getItem('company')
-         console.log("jjj",cmpToken);
+        //  console.log("jjj",cmpToken);
          
         
         if(cmpToken){
             cmpToken=JSON.parse(cmpToken)
             cmpToken=cmpToken.token
-            console.log("llll",cmpToken);
+            // console.log("llll",cmpToken);
         }
 
         

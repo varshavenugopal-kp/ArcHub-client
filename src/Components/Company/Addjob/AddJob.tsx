@@ -105,15 +105,6 @@ const handleSubmt=async(e:FormEvent)=>{
               </div>
              
 
-              {/* <div className='w-full'>
-                <div>
-                  <label>Experience</label>
-                </div>
-                <div className='w-full'>
-                  <input type='number' name='experience' className='w-full shadow appearance-none border rounded py-2 px-3 h-14'></input>
-                </div>
-              </div> */}
-
 <div className='w-full'>
   <div>
     <label>Experience</label>

@@ -1,101 +1,62 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import { api } from '../../../Services/axios';
-import { useSelector } from 'react-redux';
-interface details{
-  title:string;
-  _id:string
-  salary:number;
-  qualification:string;
-  experience:string;
-  deadline:Date;
-  type:string;
-  description:string
-  cname:string
-  location:string
-  cmpInfo:cmpAuth[]
-
-}
-interface cmpAuth{
-  cname:string
-  location:string
-  description:string
-}
+import { useNavigate } from 'react-router-dom';
+import { api } from '../../Services/axios';
 interface DescriptionProps{
-jobId:string
-}
-interface jobs{
-  _id:string
-   appliedjobs:string[]
-   title:string
-   salary:number
-   type:string
-   jobId:string
-   
-}
-interface applied{
-  userId:string
-}
-
-const Description:React.FC<DescriptionProps>=({jobId})=> {
-  const {userid,email}=useSelector((state:any)=>state.user)
-   const [jobs,setJobs]=useState<details|null>(null)
-   const [applied,setApplied]=useState<jobs[]>()
-   const [jobOpen,setjobOpen]=useState<boolean>(false)
-   const navigate=useNavigate()
+    jobId:string
+    }
+    interface details{
+        title:string;
+        _id:string
+        salary:number;
+        qualification:string;
+        experience:string;
+        deadline:Date;
+        type:string;
+        description:string
+        cname:string
+        location:string
+        cmpInfo:cmpAuth[]
+      
+      }
+      interface cmpAuth{
+        cname:string
+        location:string
+        description:string
+      }
+const DetailsApplied:React.FC<DescriptionProps>=({jobId})=> {
+    const [jobs,setJobs]=useState<details|null>(null)
+    const navigate=useNavigate()
    console.log("hihlo",jobId);
+
    useEffect(()=>{
-      fetchData()
-      // fetchjobs()
-      
-   },[jobId])
-   const fetchData=(async()=>{
-    const response=await api.get(`/getjobDetails/${jobId}`)
-    console.log("response here",response);
-    console.log("varshaaaaaa",response);
+    fetchData()
+    // fetchjobs()
     
+ },[jobId])
+ const fetchData=(async()=>{
+  const response=await api.get(`/getjobDetails/${jobId}`)
+  console.log("response here",response);
+  console.log("varshaaaaaa",response);
+  if(response){
+    const item=response.data.jobs[0]
+    console.log("heyyyyyy",item);
     
-     
-      
-     
+    setJobs(item)
     
-    if(response){
-      const item=response.data.jobs[0]
-      console.log("heyyyyyy",item);
-      
-      setJobs(item)
-      
-    }   
-   })
-
-  //  const fetchjobs=(async()=>{
-  //   const {data}=await api.get(`/getAppliedJobs/${userid}`)
-  //   console.log("uffff",data);
-  //   setApplied(data.getApplied)
-    
-  // })
-
-   
-
-   console.log("heyy data",jobs);
-   
-   const handleClick=(jobId:string)=>{
-    navigate(`/applyJobs?id=${jobId}`)
-   }
+  }   
+ })
+  
    
   return (
-    <div>    
-<div className='flex justify-between items-center'>
+    <div>
+        <div>
+
+        </div>
+      <div className='flex'>
       <div className='px-4'>
        <h1 className='text-xl'>{jobs?.title}</h1>
        <h1 className='text-blue-800 font-medium'>{jobs?.cmpInfo[0]?.cname}</h1>
       </div>
-      <div >
-        <button className='bg-sky-950
-          text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
-      </div>
- </div>
-
       <div className='mt-4'>
       <div className='border-b border-gray-300 '>
       <h1 className='px-4 mb-2'>Job description</h1>
@@ -145,8 +106,10 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
                 </div>
               </div>
           </div>
+      
+ </div>
     </div>
   )
 }
 
-export default Description
+export default DetailsApplied

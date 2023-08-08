@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios';
 import { useSelector } from 'react-redux';
 type userAuth={
@@ -25,18 +25,23 @@ function UserProfile() {
   const addData = ((e: ChangeEvent<HTMLInputElement>) => {
    
       setData({ ...data, [e.target.name]: e.target.value })
-    
+      console.log(data,"userdata");
+      
    
   })
-  const handleUpdate=()=>{
-    api.post(`/updateProfile/${userid}`,{data})
+  const handleUpdate=async(e:FormEvent)=>{
+    e.preventDefault()
+   console.log("kjkjkji");
+   console.log("~~~~~~~~~~~~",data,"~~~~~~~~~~~~~~~~")
+   const editdata=await api.post(`/updateProfile/${userid}`,{data});
+   console.log(editdata)
   }
  console.log("????",edit);
  
   return (
     <div>
         <div className='flex justify-center'>
-    <form className='w-full px-10 lg:px-10 py-10 '>
+    <form className='w-full px-10 lg:px-10 py-10 ' onSubmit={handleUpdate}>
       <div className='p-10 shadow-lg bg-slate-50' >
         <div className='border-b border-black'>
            <h1 className='text-center text-2xl font-medium pb-3'>Personal Info</h1>
@@ -65,10 +70,10 @@ function UserProfile() {
        
        <div className='flex space-x-2'>
        <div className='flex justify-center col-span-2 mt-8'>
-        <div className='bg-black text-white text-center h-10 w-32 px-2 rounded cursor-pointer' onClick={()=>setEdit(true)}>edit</div>
+        <div className='bg-black pt-2 px-12 text-white h-10 w-32 rounded cursor-pointer' onClick={()=>setEdit(true)}>edit</div>
         </div>
         <div className='flex justify-center col-span-2 mt-8'>
-        <button className='bg-black text-white h-10 w-32 px-2 rounded' onClick={handleUpdate}>Submit</button>
+        <button  className='bg-black text-white h-10 w-32 px-2 rounded'>Submit</button>
         </div>
        </div>
         

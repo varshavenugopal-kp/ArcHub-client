@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 interface jobAuth{
     title:string;
     _id:string
@@ -16,12 +17,13 @@ interface jobAuth{
 function ListJob() {
     const navigate=useNavigate()
     const [job,setJob]=useState<jobAuth[]|null>(null)
+    const {cid}=useSelector((state:any)=>state.company)
 
     useEffect(()=>{
         fetchData()
      },[])
     const fetchData=async()=>{
-     const response=await api.get('/user/jobList')
+     const response=await api.get(`/user/listJob/${cid}`)
      console.log("got response",response);
      if(response){
          setJob(response.data.jobs)
