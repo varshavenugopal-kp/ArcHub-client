@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { api } from '../../../Services/axios';
 import { validateJob } from '../../../validations/Jobvalidation';
 import { useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ type errAuth = {
   type?: string;
   description?: string;}
 function AddJob() {
-
+ const navigate=useNavigate()
  const [job,setJob]=useState<jobAuth>({})
  const [err,setErr]=useState<errAuth>({})
  const {cid}=useSelector((state:any)=>state.company)
@@ -43,7 +43,7 @@ const handleSubmt=async(e:FormEvent)=>{
   try{
     const {data}=await api.post('/user/addjob',{...job,cId:cid})
     console.log(data);
-    
+    navigate('/user/job-List')
   }
   catch(err){
 

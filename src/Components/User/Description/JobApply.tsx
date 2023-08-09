@@ -4,6 +4,7 @@ import axios from 'axios'
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 interface apply{
   first:string
   last:string
@@ -19,6 +20,7 @@ interface jobProps{
   jobId:string
   }
 const JobApply:React.FC<jobProps>=({jobId})=> {
+  const navigate=useNavigate()
   const {userid,email}=useSelector((state:any)=>state.user)
   const [job,setData]=useState({})
   const [skills,setSkills]=useState<string[]>([])
@@ -48,6 +50,10 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
 
 //   }
 //  }
+const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  setData({ ...job, [e.target.name]: e.target.value });
+ 
+};
 
   const AddJob=((e:ChangeEvent<HTMLInputElement>)=>{
          
@@ -95,6 +101,8 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
         date:'',
         
       })
+      navigate('/appliedJobs')
+
     }
     catch(error){
 
@@ -135,8 +143,15 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
         </div>
         <div className='mt-5'>
           <p>Experience</p>
-          <input type="text" name='experience' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
-       
+          <div className='w-full'>
+    <select name='experience' className='w-full shadow appearance-none border rounded py-2 px-3 '  onChange={handleSelectChange} required>
+      <option value='0'>Select Experience</option>
+      <option value='1'>Fresher</option>
+      <option value='2'>2-3 years</option>
+      <option value='3'>4-5 years</option>
+      <option value='4'>above 6 years</option>
+    </select>
+  </div>
         </div>
         <div className='col-span-2 mt-5'>
           <div className='flex w-full '>

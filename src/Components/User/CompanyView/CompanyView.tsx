@@ -10,6 +10,7 @@ import Projects from '../../../Pages/User/Projects'
 import { useNavigate } from 'react-router-dom'
 import { log } from 'console'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+import Footer from '../Footer/Footer'
 const bgImage = '/Images/image1.jpg'
 
 
@@ -225,6 +226,9 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
           }
       </div>
     </div>
+    <div>
+        <Footer/>
+      </div>
  </div>
   )
 }

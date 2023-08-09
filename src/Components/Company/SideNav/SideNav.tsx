@@ -8,13 +8,14 @@ import { faCamera, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faBarsProgress } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { api } from '../../../Services/axios'
 import axios from 'axios'
 function SideNav() {
     const {cid, companyemail } = useSelector((state: any) => state.company)
     const [logo,setLogo]=useState<string|null>()
     const [user,setUser]=useState()
+    const navigate=useNavigate()
 
     const handleFileChange=(async(e:ChangeEvent<HTMLInputElement>)=>{
         const file=e.target.files?.[0]
@@ -105,12 +106,12 @@ function SideNav() {
         <div className=' mb-20 pl-48 md:pl-32'>
             {/* <div className=' bg-amber-300 '> */}
             <ul className="space-y-4">
-            <li className='cursor-pointer group/item hover:bg-slate-100'><FontAwesomeIcon icon={faUser} className='text-lg text-custom-blue'/><span className='ml-4 text-base '>Personal Info</span></li>
-            <li className='cursor-pointer group/item hover:bg-slate-100' ><FontAwesomeIcon icon={faBook} className='text-lg text-cyan-600'/><span className='ml-4 text-base'>Jobs</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faUsers} className='text-lg text-yellow-400'/><span className='ml-3 text-base'>Post job</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faCalendar} className='text-lg text-green-600'/><span className='ml-4 text-base'>Applications</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faMessage} className='text-lg text-violet-950'/><span className='ml-4 text-base'>Message</span></li>
-            <li className='cursor-pointer'><FontAwesomeIcon icon={faCoins} className='text-lg text-red-800'/><span className='ml-4 text-base'>Projects</span></li>
+            <li className='cursor-pointer ' onClick={()=>navigate('/user/profile')}><FontAwesomeIcon icon={faUser} className='text-lg text-custom-blue'/><span className='ml-4 text-base '>Personal Info</span></li>
+            <li className='cursor-pointer ' onClick={()=>navigate('/user/job-List')}><FontAwesomeIcon icon={faBook} className='text-lg text-cyan-600'/><span className='ml-4 text-base'>Jobs</span></li>
+            <li className='cursor-pointer' onClick={()=>navigate('/user/addjob')}><FontAwesomeIcon icon={faUsers} className='text-lg text-yellow-400'/><span className='ml-3 text-base'>Post job</span></li>
+            <li className='cursor-pointer' onClick={()=>navigate('/user/applications')}><FontAwesomeIcon icon={faCalendar} className='text-lg text-green-600'/><span className='ml-4 text-base'>Applications</span></li>
+            <li className='cursor-pointer' onClick={()=>navigate('/user/chat')}><FontAwesomeIcon icon={faMessage} className='text-lg text-violet-950'/><span className='ml-4 text-base'>Message</span></li>
+            {/* <li className='cursor-pointer'><FontAwesomeIcon icon={faCoins} className='text-lg text-red-800'/><span className='ml-4 text-base'>Projects</span></li> */}
             </ul>  
             {/* </div> */}
            

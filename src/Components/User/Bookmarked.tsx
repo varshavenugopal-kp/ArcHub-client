@@ -53,10 +53,10 @@ job?(
           <div className="max-w-4xl px-10 my-4 mt-10 py-6 bg-white rounded-lg shadow-md flex justify-between">
           
           <div className="mt-2">
-              <a className="text-2xl text-gray-700 font-bold hover:text-gray-600" href="#">{key.title}</a>
+              <a className="text-xl text-gray-700 font-bold hover:text-gray-600" href="#">{key.title}</a>
               <p className="mt-2 text-gray-600">{key.title}</p>
               <p className="mt-2 text-gray-600">Application Deadline: {new Date(key.deadline).toLocaleString()}</p>
-              <div className=" text-sm font-medium text-center text-black flex" pt-5 key={key._id} onClick={() => handleClick(key._id)}>
+              <div className=" text-sm font-medium text-center text-black flex cursor-pointer" pt-5 key={key._id} onClick={() => handleClick(key._id)}>
                                 Read more
                                 <svg className="w-3.5 h-3.5 ml-2 mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />

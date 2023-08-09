@@ -3,6 +3,7 @@ import Nav from '../../Components/User/Nav/Nav'
 import ProjectDetails from '../../Components/User/ProjectDetails/ProjectDetails'
 import ViewCompany from '../../Components/User/CompanyView/ViewCompany'
 import { useLocation } from 'react-router-dom';
+import Footer from '../../Components/User/Footer/Footer';
 
 function Projects() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function Projects() {
         
         {pname&&<ViewCompany pname={pname}/>}
       </div>
+     
     </div>
   )
 }

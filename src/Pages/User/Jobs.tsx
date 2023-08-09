@@ -47,8 +47,8 @@ function Jobs() {
     <div className=' grid grid-cols-2'>
       
         <div className='overflow-y-scroll'>
-        <div className='w-full h-20 border border-gray-100'>
-        <div className='p-3 flex space-x-5'>
+        {/* <div className='w-full h-20 border border-gray-100'> */}
+        {/* <div className='p-3 flex space-x-5'>
             <div className=''>
                 <h3 className='text-sm ms-2'>job title</h3>
                 <div className='w-full'>
@@ -76,9 +76,9 @@ function Jobs() {
 
         </div>
        
-            </div>
+            </div> */}
 
-    </div>
+    {/* </div> */}
     {/* {isjobs && !isApplied ? (
   <div>
     <div className='px-5'>
@@ -100,6 +100,9 @@ function Jobs() {
     </div>
   </div>
 )} */}
+<div>
+  <h1 className='text-xl px-5 mt-5'>All jobs</h1>
+</div>
          <div>
           <Joblist/>
          </div>

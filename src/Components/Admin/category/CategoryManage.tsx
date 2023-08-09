@@ -72,21 +72,28 @@ function CategoryManage() {
    <>
   
    <div>
-   <div className="grid grid-cols-12  mt-24">
+    <div className='flex justify-center'>
+      <h1 className='text-2xl mt-8'>Categories</h1>
+    </div>
+  
+   <div className="grid grid-cols-12 mt-7">
+   
   <div className=" col-span-9  flex justify-end">
+  
     
-  <input type='text' value={cat.category} name="category" className=' w-2/3 shadow appearance-none border rounded py-2 px-3 h-10 lg:h-14' placeholder='enter category' onChange={addCategory}></input>
+  <input type='text' value={cat.category} name="category" className=' w-2/3 shadow appearance-none border rounded py-2 px-3 ms-9 h-10 lg:h-14' placeholder='enter category' onChange={addCategory}></input>
 
   {/* <button className='bg-sky-950 h-14 hover:bg-sky-900 text-white px-4 rounded' onClick={}>Add Image</button> */}
-  <input type='file' accept='image/*' name='file' onChange={handleFileChange}></input>
+  {/* <input type='file' accept='image/*' name='file' onChange={handleFileChange}></input> */}
   </div>
   <div className="col-span-3 ms-3 ">
             <button className='bg-sky-950 h-14 hover:bg-sky-900 text-white px-4 rounded' onClick={handleSubmit}>Add</button>
   </div>
-  <div>
-    
-  </div>
+  
    </div>
+   <div className='ms-96 pt-4'>
+  <input type='file' accept='image/*' name='file' onChange={handleFileChange}></input>
+  </div>
    <div className='px-44
    '>
    <div className='relative shadow-md sm:rounded-lg mx-10 '>

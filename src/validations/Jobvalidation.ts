@@ -17,7 +17,7 @@ if(name==='type'){
 }
 
 export function validateTitle(value:string,err:object,setErr:Function):void{
-  const titleRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
+  const titleRegex:RegExp=/^[a-zA-Z0-9' ']{4,20}$/
   if((value.trim()).length===0){
     setErr({...err,title:"Title should not be empty"})
   }else if(!titleRegex.test(value)){
@@ -36,7 +36,7 @@ export function validateSalary(value:number,err:object,setErr:Function):void{
 }
 
 export function validateQualification(value:string,err:object,setErr:Function):void{
-  const QualificationRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
+  const QualificationRegex:RegExp=/^[a-zA-Z0-9]{4,20}$/
   if((value.trim()).length===0){
     setErr({...err,qualification:"Qualification should not be empty"})
   }else if(!QualificationRegex.test(value)){
@@ -58,7 +58,7 @@ export function validateQualification(value:string,err:object,setErr:Function):v
 // }
 
 export function validatetype(value:string,err:object,setErr:Function):void{
-  const typeRegex:RegExp=/^[a-zA-Z0-9]{4,12}$/
+  const typeRegex:RegExp=/^[a-zA-Z0-9' ']{4,20}$/
   if((value.trim()).length===0){
     setErr({...err,type:"type should not be empty"})
   }else if(!typeRegex.test(value)){

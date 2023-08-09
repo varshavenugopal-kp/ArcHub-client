@@ -126,7 +126,7 @@ function Applications() {
               {obj.details.date ? obj.details.date.toLocaleString() : 'N/A'}
               
               </td>
-              <td className="px-6 py-4" key={obj.userId} onClick={()=>handleClick(obj.userId)}>
+              <td className="px-6 py-4 cursor-pointer" key={obj.userId} onClick={()=>handleClick(obj.userId)}>
                    
                      view  <FontAwesomeIcon icon={faEye} className='text-lg  text-black'/>
                     </td>

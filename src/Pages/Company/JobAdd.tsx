@@ -2,6 +2,7 @@ import React from 'react'
 import Cnav from '../../Components/Company/Cnav'
 import AddJob from '../../Components/Company/Addjob/AddJob'
 import SideNav from '../../Components/Company/SideNav/SideNav'
+import Footer from '../../Components/User/Footer/Footer'
 
 function JobAdd() {
   return (
@@ -17,6 +18,9 @@ function JobAdd() {
                 <AddJob/>
             </div>
      
+      </div>
+      <div className='mt-28'>
+        <Footer/>
       </div>
     </div>
   )

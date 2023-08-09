@@ -45,13 +45,9 @@ const AdminNav=()=> {
 
 
         <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
-          <li className='py-1'>
-            <NavLink to=''>
-                <span>About</span>
-            </NavLink>
-         </li>
+         
          <li className='py-1'>
-                    <a href="#">
+                    <a href="/admin/dashboard">
                         <span>Dashboard</span>
                     </a>
                    </li>
@@ -60,6 +56,20 @@ const AdminNav=()=> {
                     <NavLink to='/admin/user-list'>
                   
                   <span>Clients</span>
+             </NavLink>
+                </li>
+                <li className='py-1'>
+                    
+                    <NavLink to='/admin/requests'>
+                  
+                  <span>Requests</span>
+             </NavLink>
+                </li>
+                <li className='py-1'>
+                    
+                    <NavLink to='/admin/categories'>
+                  
+                  <span>Categories</span>
              </NavLink>
                 </li>
                 <li className='py-1'>
@@ -76,7 +86,7 @@ const AdminNav=()=> {
                     <div className='flex space-x-2'>
                        
                        
-                       <span>{adminemail}</span>
+                       
                    <span>Logout</span>
                     </div>
                    

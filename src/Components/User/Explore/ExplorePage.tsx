@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { api } from '../../../Services/axios'
 import { log } from 'console'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 interface catAuth{
     category:string
     file:string
@@ -41,13 +41,21 @@ function ExplorePage() {
 
               </div>
               <div className='px-36 py-16'>
-                  <div>
+                <NavLink to='/companies'>
+          <div className='w-32 h-10 bg-sky-900 float-right'><h1 className='text-white pt-2 px-2'>All Companies</h1></div>
+                
+                </NavLink>
+              
+                <div>
                       <h2 className='text-red-600'>What we do</h2>
                       <h1 className='text-3xl mt-3'>Our Services</h1>
                       <p className='mt-5'>
                           If you need to repair or replace your Plumbing system, call today and talk to one of our Plumbing specialists. They’ll answer all your questions and arrange an appointment at your convenience.
                       </p>
                   </div>
+                  
+               
+                  
                   {
                    data?(
                     <div className='px-12'>

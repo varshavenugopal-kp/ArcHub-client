@@ -157,7 +157,7 @@ useEffect(()=>{
           <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
            
           </div>
-
+          <div className='ms-9'>
           <GoogleLogin
   onSuccess={credentialResponse => {
     console.log(credentialResponse);
@@ -166,11 +166,13 @@ useEffect(()=>{
     console.log('Login Failed');
   }}
 />
+          </div>
+          
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}
 
-<div className='flex justify-center'>
+<div className='flex justify-center mt-3'>
             <h5 className='text-sm'>Not a member?</h5>
             <NavLink to='/user/register'>
               <h6 className='text-xs  text-sky-600'> register here</h6>
