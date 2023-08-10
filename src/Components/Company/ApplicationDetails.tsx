@@ -66,6 +66,14 @@ const ApplicationDetails:React.FC<compannyProps>=({userId})=> {
         console.error('Error sending email:', error);
       }
     };
+
+    function downloadImage(imageUrl: string) {
+      
+      const link = document.createElement("a");
+      link.href = imageUrl;
+      link.download = "image.jpg";
+      link.click();
+  }
    
    
   return (
@@ -153,6 +161,12 @@ const ApplicationDetails:React.FC<compannyProps>=({userId})=> {
                     view Resume </a>
              
                      </div>
+                     <div className='h-10 w-28 bg-sky-950 mt-5 flex justify-center items-center'>
+                     <a href={datas[0]?.file} onClick={()=>downloadImage(datas[0]?.file as string)} className='text-white  '>
+                    view Resume </a>
+             
+                     </div>
+
 
                      <div className='flex space-x-1 mt-4 cursor-pointer' onClick={()=>handleButtonClick(datas[0]?.details?.email)}>
                        

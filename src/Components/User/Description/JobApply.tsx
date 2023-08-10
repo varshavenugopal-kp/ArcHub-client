@@ -5,16 +5,28 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { validateJobApply } from '../../../validations/ApplyValidation'
 interface apply{
-  first:string
-  last:string
-  email:string
-  phone:number
-  qualification:string
-  experience:string
-  file:string
-  date:Date
-  other:string
+  first?:string
+  last?:string
+  email?:string
+  phone?:number
+  qualification?:string
+  experience?:string
+  file?:string
+  date?:Date
+  other?:string
+}
+interface errAuth{
+  first?:string
+  last?:string
+  email?:string
+  phone?:number
+  qualification?:string
+  experience?:string
+  file?:string
+  date?:Date
+  other?:string
 }
 interface jobProps{
   jobId:string
@@ -22,10 +34,10 @@ interface jobProps{
 const JobApply:React.FC<jobProps>=({jobId})=> {
   const navigate=useNavigate()
   const {userid,email}=useSelector((state:any)=>state.user)
-  const [job,setData]=useState({})
+  const [job,setData]=useState<apply>({})
   const [skills,setSkills]=useState<string[]>([])
   const [date, setCurrentDate] = useState(new Date().toISOString().slice(0, 10)); // Set the current date as the initial value
-  
+  const [err,setErr]=useState<errAuth>({})
   const [id,setId]=useState('')
   const [skill,setSkill]=useState<string>('')
  console.log("id heree",jobId);
@@ -52,12 +64,13 @@ const JobApply:React.FC<jobProps>=({jobId})=> {
 //  }
 const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   setData({ ...job, [e.target.name]: e.target.value });
- 
+  validateJobApply(e.target.name,e.target.value,err,setErr)
 };
 
   const AddJob=((e:ChangeEvent<HTMLInputElement>)=>{
          
          setData({...job,[e.target.name]:e.target.value})
+         validateJobApply(e.target.name,e.target.value,err,setErr)
   })
   const handleFileChange=((e:ChangeEvent<HTMLInputElement>)=>{
      const file=e.target.files?.[0]
@@ -90,19 +103,25 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   const handleClick=async(e:FormEvent)=>{
     e.preventDefault()
     try{
-      await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
-      setData({first:'',
-        last:'',
-        email:'',
-        phone:'',
-        qualification:'',
-        experience:'',
-        file:'',
-        date:'',
-        
-      })
-      navigate('/appliedJobs')
-
+     const{first,last,email,phone,qualification,experience}=job
+     if(first!==''&&last!==''&&email!==''&&phone!==0&&qualification!==''&&experience!==''){
+       const{first,last,email,phone,qualification,experience}=err
+       if(first==''&&last==''&&email==''&&phone==0&&qualification==''&&experience==''){
+        await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
+        setData({first:'',
+          last:'',
+          email:'',
+          phone:0,
+          qualification:'',
+          experience:'',
+          file:'',  
+        })
+        navigate('/appliedJobs')
+  
+       }
+     }
+     navigate('/jobs')
+      
     }
     catch(error){
 
@@ -110,6 +129,8 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   }
   console.log("adhinnn",job);
   console.log("haaaanish",skills);
+  console.log("errors",err);
+  
   
   
   return (
@@ -123,23 +144,45 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
       <div className=' mt-10  lg:grid lg:grid-cols-2 grid-cols-1 gap-2'>
         <div className='mt-5'>
           <p>Firstname</p>
-          <input type="text" name='firstName' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+          <input type="text" name='first' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
         <div className='mt-5'>
           <p>Lastname</p>
-          <input type="text" name='lastName' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+          <input type="text" name='last' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
+
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.first}</p>
+        </div>
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.last}</p>
+        </div>
+
         <div className='mt-5'>
           <p>Email</p>
-          <input type="text" name='email' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+          <input type="text" name='email' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
         <div className='mt-5'>
           <p>Phone</p>
-          <input type="text" name='phone' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+          <input type="text" name='phone' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
+        </div>
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.email}</p>
+        </div>
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.phone}</p>
         </div>
         <div className='mt-5'>
           <p>Qualification</p>
-          <input type="text" name='qualification' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} />
+          <input type="text" name='qualification' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
         <div className='mt-5'>
           <p>Experience</p>
@@ -153,14 +196,25 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     </select>
   </div>
         </div>
+
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.qualification}</p>
+        </div>
+        <div className='w-full'>
+          
+          <div/>
+          <p className='text-xs text-red-600' >{err.experience}</p>
+        </div>
         <div className='col-span-2 mt-5'>
           <div className='flex w-full '>
             
             {skills.map(ele=><span className='px-2 py-1 border'>{ele} <FontAwesomeIcon className='cursor-pointer' icon={faClose}/></span>)}
           </div>
-          <p>Skills</p>
+          <p>Skills (optional)</p>
           <div className='flex gap-2'>
-          <input type="text" value={skill}  onChange={(e)=>setSkill(e.target.value)} className='w-full border-2 rounded py-2 px-2 outline-none ' />
+          <input type="text" value={skill}  onChange={(e)=>setSkill(e.target.value)} className='w-full border-2 rounded py-2 px-2 outline-none '/>
 <h1 onClick={handleAddSkill} className='bg-black text-white px-2 rounded flex items-center cursor-pointer'>Add</h1>
           </div>
         </div>
@@ -178,7 +232,7 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
          
         </div>
         <input type="text" name='date'  className=' hidden'  value={date}
-        onChange={(e) => setCurrentDate(e.target.value)}/>
+        onChange={(e) => setCurrentDate(e.target.value)} required/>
        
        
         <div className='flex justify-center col-span-2 mt-8'>
