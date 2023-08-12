@@ -37,7 +37,7 @@ const [project,setProject]=useState<projects>()
       <div className='gap-2 lg:px-64 md:px-16 px-4 md:grid grid-cols-2  mt-8'>
         {arr1?.map((obj)=>
         <div className='w-full h-72 mb-4 md:mb-0 '>
-          <img className='w-full h-full' src={obj}/>
+          <img className='w-full h-full transition duration-300 ease-in-out hover:scale-95' src={obj}/>
         </div>
         )}
      
@@ -63,7 +63,7 @@ Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, 
       {
         arr2?.map((obj)=>(
           <div className='h-96 w-80 bg-gray-200'>
-                <img className='h-full w-full' src={obj}></img>
+                <img className='h-full w-full transition duration-300 ease-in-out hover:scale-105' src={obj}></img>
                 
               </div>
         ))

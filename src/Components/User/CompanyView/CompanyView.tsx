@@ -105,6 +105,10 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   const displayedservice = service?.slice(3)
   console.log(displayedImages);
 
+  const handleSubmit=()=>{
+    
+  }
+
   return (
     <div>
       <div className='h-screen p-3'>
@@ -115,7 +119,7 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
         </div>
         <div className='flex justify-end'>
         <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
-                  <p className='text-white text-xs text-center py-1 pb-10'>CONNECT</p>
+                  <p className='text-white text-xs text-center py-1 pb-10' onClick={handleSubmit}>CONNECT</p>
                 </div>
                 <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
                   <p className='text-white text-xs text-center py-1 pb-10'>CAREERS</p>
@@ -215,10 +219,10 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
           {
             project?.map((Projects) => (
               <div className='h-96 w-64 bg-gray-200'>
-                <img className='h-2/3 w-full' src={Projects.url?.[0]}></img>
+                <img className='h-2/3 w-full ' src={Projects.url?.[0]}></img>
                 <p className='p-3 text-xs'>{Projects.pname}</p>
                 <p className='ms-3 line-clamp-2 text-xs'>{Projects.description}</p>
-                <div className='ms-3 mt-2 w-24 h-7 bg-black cursor-pointer' key={Projects.pname} onClick={() => handleClick(Projects.pname)}>
+                <div className='ms-3 mt-2 w-24 h-7 transition duration-300 ease-in-out hover:scale-90 bg-black cursor-pointer' key={Projects.pname} onClick={() => handleClick(Projects.pname)}>
                   <p className='text-white text-xs text-center py-1 pb-10'>READ MORE</p>
                 </div>
               </div>

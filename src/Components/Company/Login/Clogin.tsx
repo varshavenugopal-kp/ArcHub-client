@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux'
 import { setCompany} from '../../../Redux/companySlice'
 import { NavLink } from 'react-router-dom'
 import { GoogleLogin } from '@react-oauth/google';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
 
 type userLog ={
     email:string;
@@ -66,11 +69,13 @@ useEffect(()=>{
     const handleLogin=async(e:FormEvent)=>{
       e.preventDefault();
       if (company.email.trim() === '') {
-        setErr((prevState) => ({ ...prevState, email: 'Email cannot be empty' }));
+        // setErr((prevState) => ({ ...prevState, email: 'Email cannot be empty' }));
+          toast.error("Email cannot be empty")
       }
       else  if (company.password.trim() === '') {
-            setErr((prevState) => ({ ...prevState, email: '' }));
-            setErr((prevState) => ({ ...prevState, password: 'Password cannot be empty' }));
+            // setErr((prevState) => ({ ...prevState, email: '' }));
+            // setErr((prevState) => ({ ...prevState, password: 'Password cannot be empty' }));
+            toast.error("Password cannot be empty")
         }
        else {
             const {data} = await apiAuth.post('/user/login',{...company}, { withCredentials: true });
@@ -84,10 +89,12 @@ useEffect(()=>{
       
         localStorage.setItem('company',JSON.stringify(data))
         dispatch(setCompany({cid:data.company._id,companyemail:data.company.email}))
+        toast.success("login successfull")
         navigate('/user');
     }
     if(data.invalid){    
-     setErr({...err,invalid:data.invalid,password:''})
+    //  setErr({...err,invalid:data.invalid,password:''})
+    toast.error(data.invalid)
         return
     }
           
@@ -96,10 +103,13 @@ useEffect(()=>{
   
       
     }
+
+    
       
   return (
     <div>
       <div className='flex justify-center mt-20'>
+      <ToastContainer position="top-right" autoClose={3000} />
      <form className='w-96 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>
         <div className='w-70'>
           <div>

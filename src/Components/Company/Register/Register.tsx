@@ -8,6 +8,8 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
+
+// const Swal = require('sweetalert2')
 type cmpnyAuth={
     cname:string;
     location:string;
@@ -35,13 +37,14 @@ if (file) {
 }
      
     })
-
+   
 
     const addUser=((e:ChangeEvent<HTMLInputElement>)=>{
       setUser({...company,[e.target.name]:e.target.value})
       validateUser(e.target.name,e.target.value,err,setErr,company.password)
     })
 
+    
     const handleSignup=async(e:FormEvent)=>{
         e.preventDefault()
         try{
@@ -62,6 +65,20 @@ if (file) {
                 navigate('/user/register')
               }
             }
+          //   for(let key in err){
+          //   if(key===''){
+          //    console.log({company});
+             
+          //  const {data}=await api.post('/user/register',{...company},{withCredentials:true})
+          //  console.log("rrrrr",data);
+        
+          //  if(data.company){
+          //    navigate('/user/login')
+          //  }else{
+          //    navigate('/user/register')
+          //  }
+          //   }
+          //   }
           }
           
           

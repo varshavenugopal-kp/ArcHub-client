@@ -31,8 +31,8 @@ function ExplorePage() {
         }
         console.log("ethyooo",data);
         
-        const handleClick=(catId:string)=>{
-            navigate(`/companies?id=${catId}`)
+        const handleClick=(category:string)=>{
+            navigate(`/getCategoryWise?id=${category}`)
         }
   return (
     <>
@@ -75,8 +75,8 @@ function ExplorePage() {
                         <img src={category.file} className='mt-4 pt-7 px-6 h-24'></img>
                         <h1 className='mt-6 text-2xl font-medium px-5 '>{category.category}</h1>
                         <div className='flex'>
-                        <h1 className='mt-4 text-xs font-semibold font-serif px-5 text-gray-400'>VIEW MORE</h1>
-                        <div><FontAwesomeIcon className='text-black mt-4' icon={faArrowRight} key={category._id} onClick={()=>handleClick(category._id)}/></div>
+                        <h1 className='arrow-icon-container relative mt-4 text-xs font-semibold font-serif px-5 text-gray-400'>VIEW MORE</h1>
+                        <div><FontAwesomeIcon className='text-black mt-4 arrow-icon relative duration-300 hover:translate-x-2' icon={faArrowRight} key={category.category} onClick={()=>handleClick(category.category)}/></div>
                          
                         </div>
                         </div>

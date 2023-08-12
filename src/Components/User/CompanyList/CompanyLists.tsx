@@ -77,7 +77,7 @@ Quality in Construction</h1>
             <div className="mt-16">
 
 <div className="max-w-xs">
-    <div className="bg-white shadow-xl rounded-lg py-3">
+    <div className="bg-white shadow-xl hover:shadow-lg rounded-lg py-3">
         <div className="photo-wrapper p-2">
             <img src={company.logo} className="w-32 h-32 rounded-full mx-auto"/>
         </div>

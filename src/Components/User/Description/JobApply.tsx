@@ -5,6 +5,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../../Services/axios'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { validateJobApply } from '../../../validations/ApplyValidation'
 interface apply{
   first?:string
@@ -104,9 +105,13 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault()
     try{
      const{first,last,email,phone,qualification,experience}=job
-     if(first!==''&&last!==''&&email!==''&&phone!==0&&qualification!==''&&experience!==''){
+     if(first!==''&&last!==''&&email!==''&&qualification!==''&&experience!==''){
+      console.log("uuuuuuuu");
+      
        const{first,last,email,phone,qualification,experience}=err
-       if(first==''&&last==''&&email==''&&phone==0&&qualification==''&&experience==''){
+       if(first==''&&last==''&&email==''&&qualification==''&&experience==''){
+        console.log("gfdgfdgfdgdf");
+        
         await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
         setData({first:'',
           last:'',
@@ -116,10 +121,21 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
           experience:'',
           file:'',  
         })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log("hjhjhjhgjhgjhgjhgjhgjhghjg");
+        
         navigate('/appliedJobs')
   
        }
      }
+     console.log("faileddddd");
+     
      navigate('/jobs')
       
     }
