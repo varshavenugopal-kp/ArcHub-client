@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client';
 import { api } from '../../Services/axios';
 import { useSelector } from 'react-redux';
@@ -61,11 +61,12 @@ function Chat(props:role) {
   const [chats, setChats] = useState<Chats[]>([]);
   const [selectedUser, setselectedUser] = useState<Chats>();
   const currentUserId = props.role === "user" ? userid : cid;
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   
-  useEffect(() => {
-    socket.emit("setup", currentUserId);
-  }, []);
+  // useEffect(() => {
+  //   socket.emit("setup", currentUserId);
+  // }, []);//vishnu
 
 const selectChat = (user: Chats) => {
   setselectedUser(user);
@@ -112,10 +113,16 @@ useEffect(() => {
         `Message from ${newMessage.user?.fname} ${newMessage.user?.lname}`
       );
     } else {
-      setMessages((messages) => [...messages, newMessage]);
+      setMessages([...messages, newMessage]);
     }
   });
-},[socket]);
+},[socket,messages]);
+
+useEffect(()=>{
+    if(containerRef.current){
+        containerRef.current.scrollTo(0,containerRef.current.scrollHeight)  
+    }
+},[messages])
 
 const handleMessageFetch = async (chatId: string) => {
   console.log("hey chatid", chatId);
@@ -158,6 +165,10 @@ const handleMessageSent = async () => {
     setMessages([...messages, res.msg]);
   }
 };
+
+useEffect(() => {
+  socket.emit("setup", currentUserId);
+}, [currentUserId, socket]);
 
 console.log("chats here",chats);
 console.log("chatId here",chatId);
@@ -269,7 +280,7 @@ console.log("chatId here",chatId);
             <span className="block ml-2 font-bold text-gray-600">Nihal</span>
             <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
           </div>
-          <div className="relative w-full p-6 overflow-y-auto h-[40rem]">
+          <div className="relative w-full p-6 overflow-y-auto h-[40rem]" ref={containerRef}>
             <ul className="space-y-2">
               {props.role === "user"
                 ? messages.map((obj) => (
