@@ -44,7 +44,7 @@ interface compannyProps {
 }
 // interface CompanyViewProps extends RouteComponentProps<CompanyViewParams> {}
 const CompanyView: React.FC<compannyProps> = ({ cid }) => {
-
+  const {userid,email}=useSelector((state:any)=>state.user)
   const [data, setData] = useState<companyAuth | null>(null)
   const [cmp, setCmp] = useState<cmp>()
   const [project, setProject] = useState<projectsAuth[] | null>(null)
@@ -106,7 +106,7 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   console.log(displayedImages);
 
   const handleSubmit=()=>{
-    
+     api.post('/addRequest',{userid,cid})
   }
 
   return (

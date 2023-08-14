@@ -50,6 +50,7 @@ import AppliedDetails from './Pages/User/AppliedDetails';
 import ProtectedAdmin from './Components/ProtectedAdmin';
 import ProtectedUser from './Components/ProtectedUser';
 import CategoryFilter from './Pages/User/CategoryFilter';
+import MsgRequests from './Pages/Company/MsgRequests';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -109,7 +110,7 @@ function App() {
     <Route path='/user/userDashboard' element={<AdminDashboard/>} />
     <Route path='/getAppliedDetails' element={<AppliedDetails/>} />
     <Route path='/getCategoryWise' element={<ProtectedUser><CategoryFilter/></ProtectedUser>} />
-    
+    <Route path='/user/msgRequests' element={<MsgRequests/>} />
 
   
     
