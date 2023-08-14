@@ -65,7 +65,7 @@ function Chat(props:role) {
   
   useEffect(() => {
     socket.emit("setup", currentUserId);
-  }, [currentUserId, socket]);
+  }, []);
 
 const selectChat = (user: Chats) => {
   setselectedUser(user);
@@ -158,10 +158,6 @@ const handleMessageSent = async () => {
     setMessages([...messages, res.msg]);
   }
 };
-
-useEffect(() => {
-  socket.emit("setup", currentUserId);
-}, [currentUserId, socket]);
 
 console.log("chats here",chats);
 console.log("chatId here",chatId);
