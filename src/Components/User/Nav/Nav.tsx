@@ -61,6 +61,16 @@ const Nav=()=> {
             </NavLink>
                 </li>
                 <li className='py-1'>
+         <NavLink to='/chat'>
+                <span>chat</span>
+            </NavLink>
+                </li>
+                <li className='py-1'>
+         <NavLink to='/userProfile'>
+                <span>Profile</span>
+            </NavLink>
+                </li>
+                <li className='py-1'>
          <NavLink to='/jobs'>
                 <span>Careers</span>
             </NavLink>
