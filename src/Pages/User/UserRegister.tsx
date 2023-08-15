@@ -5,7 +5,7 @@ import Register from '../../Components/User/Register/Register'
 function UserRegister() {
   return (
     <div>
-      <Nav/>
+     
       <Register/>
     </div>
   )

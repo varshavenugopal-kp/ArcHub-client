@@ -2,6 +2,7 @@ import React from 'react'
 import SideNav from '../../Components/Company/SideNav/SideNav'
 import AddProfile from '../../Components/Company/AddProfile/AddProfile'
 import Cnav from '../../Components/Company/Cnav'
+import Footer from '../../Components/User/Footer/Footer'
 
 function Profile() {
   return (
@@ -29,7 +30,9 @@ function Profile() {
      <AddProfile/>
     </div>
      </div>
-
+     <div className='pt-14'>
+      <Footer/>
+     </div>
     </div>
   )
 }

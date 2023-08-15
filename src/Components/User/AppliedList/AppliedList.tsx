@@ -65,9 +65,9 @@ const AppliedList:React.FC=()=>{
     <div>
       <div className='mt-14'>
       <div>
-            <h1 className='font-bold text-3xl text-sky-950'>
-             Applied Jobs
-            </h1>
+      <div className='border-b border-black'>
+           <h1 className='text-center text-2xl font-medium pb-3'>Applied Jobs</h1>
+        </div>
           </div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-10">
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-10">

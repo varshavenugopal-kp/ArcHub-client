@@ -12,7 +12,7 @@ function Userexplore() {
       <div>
         <ExplorePage/>
       </div>
-      
+     
     </div>
     
   )

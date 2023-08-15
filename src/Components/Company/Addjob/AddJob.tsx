@@ -54,9 +54,9 @@ const handleSubmt=async(e:FormEvent)=>{
       <div className='flex justify-center mt-20'>
         <form className='border border-gray-100 shadow-lg rounded w-3/4 px-8 pt-6 pb-8 mb-4 bg-slate-50 ' onSubmit={handleSubmt}>
         <div>
-            <h1 className='text-center font-bold text-3xl text-sky-950'>
-              Post a Job
-            </h1>
+        <div className='border-b border-black'>
+           <h1 className='text-center text-2xl font-medium pb-3'>Personal Info</h1>
+        </div>
           </div>
           <div>
             <div className='md:flex md:space-x-3 mt-5'>

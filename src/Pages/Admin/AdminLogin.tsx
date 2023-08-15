@@ -5,7 +5,7 @@ import Nav from '../../Components/User/Nav/Nav'
 function AdminLogin() {
   return (
     <div>
-        <Nav/>
+       
       <Alogin/>
     </div>
   )

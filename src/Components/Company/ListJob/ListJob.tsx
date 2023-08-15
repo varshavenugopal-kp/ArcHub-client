@@ -46,13 +46,13 @@ function ListJob() {
     <div>
       <div className='mt-8'>
       <div>
-            <h1 className='font-bold text-3xl text-sky-950'>
-              Jobs
-            </h1>
+      <div className=' border-black'>
+           <h1 className='text-center text-2xl font-medium pb-3'>Posted Jobs</h1>
+        </div>
           </div>
 { 
 job?(
-    <div className='mt-10'>
+    <div className='px-14'>
         {
           job.map((key)=>(
             <div className="max-w-4xl px-10 my-4 mt-10 py-6 bg-white rounded-lg shadow-md">

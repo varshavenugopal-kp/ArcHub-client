@@ -98,6 +98,10 @@ useEffect(()=>{
       }
   return (
     <div>
+       <nav className='shadow-md bg-sky-950 h-20'>
+            <div className='px-8 py-6'>
+</div>
+        </nav>
       <div className='flex justify-center mt-20'>
      <form className='w-96 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>
         <div className='w-70'>
@@ -134,12 +138,12 @@ useEffect(()=>{
           <div className='text-xs text-red-600'>
           <p>{err.password}</p>
          </div>
-          <div>
+          {/* <div>
             <label className='text-xs text-sky-600 flex justify-center mt-2 mr-2 lg:justify-end'>
               Forgot password?</label>
-          </div>
+          </div> */}
 
-          <div className='mt-5 flex justify-center'>
+          <div className='py-10 flex justify-center'>
           <button className="bg-sky-950 hover:bg-sky-900 text-white px-4 rounded h-9 w-80" onClick={handleLogin}>
            Login
           </button>
@@ -151,12 +155,12 @@ useEffect(()=>{
          </div>
 
           
-          <div className='inline-flex items-center justify-center w-full'>
+          {/* <div className='inline-flex items-center justify-center w-full'>
 
           <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
           <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">or</span>
            
-          </div>
+          </div> */}
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}

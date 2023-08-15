@@ -108,6 +108,14 @@ useEffect(()=>{
       
   return (
     <div>
+       <nav className='shadow-md bg-sky-950 h-20'>
+            <div className='px-8 py-6'>
+
+           
+
+
+       </div>
+        </nav>
       <div className='flex justify-center mt-20'>
       <ToastContainer position="top-right" autoClose={3000} />
      <form className='w-96 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>

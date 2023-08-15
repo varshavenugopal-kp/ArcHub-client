@@ -11,10 +11,10 @@ function JobAdd() {
           <Cnav/>  
         </div>
         <div className="grid grid-cols-4">
-        <div className="lg:col-span-1 col-span-7">
+        <div className="lg:col-span-1 col-span-7 bg-slate-200 mt-10 ml-10 shadow-md">
              <SideNav/>
             </div>
-            <div className="lg:col-span-3 col-span-7">
+            <div className="lg:col-span-3 col-span-7 ">
                 <AddJob/>
             </div>
      

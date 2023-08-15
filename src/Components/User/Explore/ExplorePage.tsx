@@ -5,6 +5,7 @@ import { api } from '../../../Services/axios'
 import { log } from 'console'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { NavLink, useNavigate } from 'react-router-dom'
+import Footer from '../Footer/Footer'
 interface catAuth{
     category:string
     file:string
@@ -90,10 +91,15 @@ function ExplorePage() {
                       <div></div>
                    )
                   }
-                 
+                
               </div>
-             
+              <div>
+                 <Footer/>
+                 </div>
           </div>
+          <div>
+      
+      </div>
       </>
   )
   }

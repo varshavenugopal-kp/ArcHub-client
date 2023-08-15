@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { api } from '../../../Services/axios';
 import { url } from 'inspector';
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 interface projects{
   pname:string
   url:string[]
@@ -75,6 +76,9 @@ Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, 
       <h1 className='text-xs p-2 mt-2 text-white cursor-pointer'>Back to Details</h1>
     </div>
     </NavLink>
+    </div>
+    <div>
+      <Footer/>
     </div>
     
     </div>

@@ -7,7 +7,7 @@ const UserLogin=()=> {
   console.log(process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID,"API")
   return (
     <div>
-      <Nav/>
+      
       <Login userType='client'/>
       
 

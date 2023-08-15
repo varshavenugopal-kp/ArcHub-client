@@ -3,6 +3,7 @@ import '../CompanyList/CompanyList.css'
 import { api } from '../../../Services/axios'
 import { log } from 'console'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom'
+import Footer from '../Footer/Footer'
 function CompanyLists() {
     interface cmpAuth{
       _id:string
@@ -113,7 +114,7 @@ Quality in Construction</h1>
       
         </div>
       </div>
-      <nav aria-label="Page navigation example " className='flex justify-end pe-36'>
+      <nav aria-label="Page navigation example " className='flex justify-end pe-36 mb-3'>
   <ul className="inline-flex -space-x-px text-sm">
   {
     page.map((obj)=>(
@@ -125,6 +126,9 @@ Quality in Construction</h1>
  
   </ul>
 </nav>
+<div>
+  <Footer/>
+</div>
       </div>
     </div>
   )

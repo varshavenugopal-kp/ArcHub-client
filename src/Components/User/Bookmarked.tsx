@@ -41,13 +41,13 @@ const Bookmarked = () => {
     <div>
     <div className='mt-8'>
     <div>
-          <h1 className='font-bold text-2xl text-sky-950'>
-            Saved jobs
-          </h1>
+    <div className='border-b border-black'>
+           <h1 className='text-center text-2xl font-medium pb-3'>Saved Jobs</h1>
+        </div>
         </div>
 { 
 job?(
-  <div className='mt-10'>
+  <div className='py-10 px-14'>
       {
         job.map((key)=>(
           <div className="max-w-4xl px-10 my-4 mt-10 py-6 bg-white rounded-lg shadow-md flex justify-between">

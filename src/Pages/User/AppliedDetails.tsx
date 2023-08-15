@@ -4,6 +4,7 @@ import Nav from '../../Components/User/Nav/Nav'
 import UserSideNav from '../../Components/User/UserSideNav'
 import AppliedList from '../../Components/User/AppliedList/AppliedList'
 import { useLocation } from 'react-router-dom'
+import Footer from '../../Components/User/Footer/Footer'
 
 function AppliedDetails() {
     const location = useLocation();
@@ -23,6 +24,9 @@ function AppliedDetails() {
   {jobId&&<DetailsApplied jobId={jobId}/>}
   </div>
    </div>
+   <div className='pt-14'>
+      <Footer/>
+     </div>
     </div>
   )
 }

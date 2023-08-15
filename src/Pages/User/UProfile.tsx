@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from '../../Components/User/Nav/Nav'
 import UserSideNav from '../../Components/User/UserSideNav'
 import UserProfile from '../../Components/User/UserProfile/UserProfile'
+import Footer from '../../Components/User/Footer/Footer'
 
 function UProfile() {
   return (
@@ -17,6 +18,9 @@ function UProfile() {
     <div className="md:col-span-5 col-span-7"> 
      <UserProfile/>
     </div>
+     </div>
+     <div className='pt-14'>
+      <Footer/>
      </div>
     </div>
   )

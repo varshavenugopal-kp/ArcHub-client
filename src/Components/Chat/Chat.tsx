@@ -62,6 +62,7 @@ function Chat(props:role) {
   const [selectedUser, setselectedUser] = useState<Chats>();
   const currentUserId = props.role === "user" ? userid : cid;
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const [typing,setTyping] = useState<boolean>(false)
 
   
   // useEffect(() => {
@@ -119,6 +120,13 @@ useEffect(() => {
 },[socket,messages]);
 
 useEffect(()=>{
+  socket.emit("typing",currentUserId)
+},[newMessage])
+
+socket.on("typing",()=>setTyping(true))
+socket.on("stoptyping",()=>setTyping(false))
+
+useEffect(()=>{
     if(containerRef.current){
         containerRef.current.scrollTo(0,containerRef.current.scrollHeight)  
     }
@@ -159,6 +167,7 @@ const handleMessageSent = async () => {
     const res = await sendMessage(newMessage, chatId, currentUserId);
     console.log("Got the message response", res);
     setNewMessage("");
+    socket.emit("stoptyping",currentUserId)
     socket?.emit("new message", res.msg);
     console.log("messageee",res.msg);
     
@@ -277,7 +286,7 @@ console.log("chatId here",chatId);
               src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
               alt="username"
             />
-            <span className="block ml-2 font-bold text-gray-600">Nihal</span>
+            <span className="block ml-2 font-bold text-gray-600">Nihal ({typing && "typing"})</span>
             <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
           </div>
           <div className="relative w-full p-6 overflow-y-auto h-[40rem]" ref={containerRef}>

@@ -49,7 +49,7 @@ function Cnav() {
 
         <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
           <li className='py-1'>
-            <NavLink to='/user/userDashboard'>
+            <NavLink to='/user'>
                 <span>Dashboard</span>
             </NavLink>
          </li>

@@ -2,6 +2,7 @@ import React from 'react'
 import UserSideNav from '../../Components/User/UserSideNav'
 import Nav from '../../Components/User/Nav/Nav'
 import Bookmarked from '../../Components/User/Bookmarked'
+import Footer from '../../Components/User/Footer/Footer'
 
 function Saved() {
   return (
@@ -18,6 +19,9 @@ function Saved() {
    <Bookmarked/>
   </div>
    </div>
+   <div className='pt-14'>
+      <Footer/>
+     </div>
   </div>
   )
 }

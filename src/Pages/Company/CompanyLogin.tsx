@@ -6,7 +6,7 @@ import Clogin from '../../Components/Company/Login/Clogin'
 function CompanyLogin() {
   return (
     <div>
-      <Nav/>
+     
        <Clogin/>
     </div>
   )

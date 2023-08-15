@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Home/Home.css'
+import Footer from '../Footer/Footer'
 function HomeUser() {
   return (
    
@@ -48,13 +49,13 @@ By using high-performance and environmentally friendly building products, and mi
         Building a Passive House
        </div>
        <div className='w-12 h-5 mt-5 md:w-36 md:h-14 rounded-full border border-white lg:mt-20'>
-                <h6 className='flex justify-center md:mt-4'>hello</h6>
+                <h6 className='flex justify-center md:mt-4 text-white'>explore</h6>
        </div>
        </div>
      </div>
 
 
-     <div className=' bg-sky-950 h-auto lg:h-screen bg-cover'>
+     <div className=' bg-sky-950 h-auto lg:h-auto bg-cover'>
       <div>
         <div className='text-white text-2xl py-7 flex justify-center md:text-5xl md:p-16'>Our Services</div>
         <div className='p-2'>
@@ -79,7 +80,9 @@ By using high-performance and environmentally friendly building products, and mi
        </div>
        </div>
      </div>
-
+    <div>
+      <Footer/>
+    </div>
     </div>
    
   )

@@ -5,6 +5,7 @@ import Description from '../../Components/User/Description/Description'
 import { useLocation } from 'react-router-dom';
 import AppliedList from '../../Components/User/AppliedList/AppliedList';
 import { isJSDoc } from 'typescript';
+import Footer from '../../Components/User/Footer/Footer';
 interface job{
   experience:string
 }
@@ -114,6 +115,9 @@ function Jobs() {
         </div>
       
     </div>
+    <div className='pt-14'>
+      <Footer/>
+     </div>
     </>
   )
 }

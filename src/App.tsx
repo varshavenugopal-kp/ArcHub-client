@@ -70,7 +70,7 @@ function App() {
     } />
     <Route path='/admin/user-list'  element={<ProtectedAdmin><UserList/></ProtectedAdmin>
     } />
-    <Route path='/user'  element={<CompanyHome/>
+    <Route path='/user'  element={<AdminDashboard/>
     } />
     <Route path='/admin'  element={<HomeAdmin/>
     } />
@@ -107,7 +107,7 @@ function App() {
     <Route path='/savedJobs' element={<Saved/>} />
     <Route path='/cProject' element={<Projectss/>} />
     <Route path='/user/applicationsDetails' element={<ApplyDetails/>} />
-    <Route path='/user/userDashboard' element={<AdminDashboard/>} />
+    {/* <Route path='/user/userDashboard' element={<AdminDashboard/>} /> */}
     <Route path='/getAppliedDetails' element={<AppliedDetails/>} />
     <Route path='/getCategoryWise' element={<ProtectedUser><CategoryFilter/></ProtectedUser>} />
     <Route path='/user/msgRequests' element={<MsgRequests/>} />

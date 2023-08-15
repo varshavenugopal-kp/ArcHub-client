@@ -171,6 +171,14 @@ if(data.invalid){
    
   return (
     <>
+     <nav className='shadow-md bg-sky-950 h-20'>
+            <div className='px-8 py-6'>
+
+           
+
+
+       </div>
+        </nav>
     <div className='flex justify-center mt-20'>
 
      <form className='w-96 shadow-lg rounded px-8 pt-6 pb-8 mb-4'>
@@ -254,7 +262,14 @@ if(data.invalid){
           </div>
         </div>
      </form>
+    
     </div>
+    <div className='flex justify-center mt-5'>
+            
+            <NavLink to='/user/login'>
+              <h6 className='text-xs  text-sky-600'>Login as Company</h6>
+            </NavLink>
+          </div>
     </>
   )
 }

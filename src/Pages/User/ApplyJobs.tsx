@@ -2,6 +2,7 @@ import React from 'react'
 import JobApply from '../../Components/User/Description/JobApply'
 import { useLocation } from 'react-router-dom';
 import Nav from '../../Components/User/Nav/Nav';
+import Footer from '../../Components/User/Footer/Footer';
 
 function ApplyJobs() {
   const location = useLocation();
@@ -13,6 +14,9 @@ function ApplyJobs() {
        <Nav/>
       </div>
       {jobId&&<JobApply jobId={jobId}/>}
+      <div className='pt-14'>
+      <Footer/>
+     </div>
     </div>
   )
 }

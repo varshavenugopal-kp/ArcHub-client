@@ -2,6 +2,7 @@ import React from 'react'
 import AppliedList from '../../Components/User/AppliedList/AppliedList'
 import UserSideNav from '../../Components/User/UserSideNav'
 import Nav from '../../Components/User/Nav/Nav'
+import Footer from '../../Components/User/Footer/Footer'
 
 function Applied() {
   return (
@@ -18,6 +19,9 @@ function Applied() {
    <AppliedList/>
   </div>
    </div>
+   <div className='pt-14'>
+      <Footer/>
+     </div>
   </div>
   )
 }
