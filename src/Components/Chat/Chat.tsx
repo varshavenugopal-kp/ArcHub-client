@@ -119,10 +119,10 @@ useEffect(() => {
         `Message from ${newMessage.user?.fname} ${newMessage.user?.lname}`
       );
     } else {
-      setMessages((messages)=>[...messages, newMessage]);
+      setMessages([...messages, newMessage]);
     }
   });
-},[socket]);
+},[socket,messages]);
 
 useEffect(()=>{
   socket.emit("typing",currentUserId)
