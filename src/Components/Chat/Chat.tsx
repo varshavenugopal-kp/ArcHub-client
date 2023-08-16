@@ -172,7 +172,7 @@ const handleMessageSent = async () => {
     const res = await sendMessage(newMessage, chatId, currentUserId);
     console.log("Got the message response", res);
     setNewMessage("");
-    socket.emit("stoptyping",currentUserId)
+    socket.emit("stoptyping",currentUserId) 
     socket?.emit("new message", res.msg);
     console.log("messageee",res.msg);
     
