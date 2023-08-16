@@ -64,10 +64,10 @@ function Chat(props:role) {
   const currentUserId = props.role === "user" ? userid : cid;
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [typing,setTyping] = useState<boolean>(false)
-  const [cmpName,setCmpName]=useState("")
-  const[userName,setUserName]=useState("")
-  const [cmpImg,setCmpImg]=useState("")
-  const[userImg,setUserImg]=useState("")
+  // const [cmpName,setCmpName]=useState("")
+  // const[userName,setUserName]=useState("")
+  // const [cmpImg,setCmpImg]=useState("")
+  // const[userImg,setUserImg]=useState("")
   
   
   // useEffect(() => {
@@ -226,8 +226,8 @@ console.log("chatId here",chatId);
                     selectChat(obj);
                     setChatId(obj._id);
                     handleMessageFetch(obj._id);
-                    setCmpName(obj.company.cname)
-                    setCmpImg(obj.company.logo)
+                    // setCmpName(obj.company.cname)
+                    // setCmpImg(obj.company.logo)
                   }}
                 >
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
@@ -257,8 +257,8 @@ console.log("chatId here",chatId);
                     selectChat(obj);
                     setChatId(obj._id);
                     handleMessageFetch(obj._id);
-                    setUserName(obj.user.fname)
-                    setUserImg(obj.user.image)
+                    // setUserName(obj.user.fname)
+                    // setUserImg(obj.user.image)
                   }}
                 >
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
@@ -291,7 +291,7 @@ console.log("chatId here",chatId);
               src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
               alt="username"
             />
-            <span className="block ml-2 font-bold text-gray-600">{cmpName}</span>
+            <span className="block ml-2 font-bold text-gray-600">varsha</span>
             <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
           </div>
           <div className="relative w-full p-6 overflow-y-auto h-[40rem]" ref={containerRef}>
