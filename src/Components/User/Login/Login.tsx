@@ -173,7 +173,9 @@ if(data.invalid){
     <>
      <nav className='shadow-md bg-sky-950 h-20'>
             <div className='px-8 py-6'>
-
+            <div>
+                <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
+              </div>
            
 
 
@@ -264,7 +266,7 @@ if(data.invalid){
      </form>
     
     </div>
-    <div className='flex justify-center mt-5'>
+    <div className='flex justify-center mt-2'>
             
             <NavLink to='/user/login'>
               <h6 className='text-xs  text-sky-600'>Login as Company</h6>

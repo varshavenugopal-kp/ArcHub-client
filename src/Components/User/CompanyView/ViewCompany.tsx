@@ -70,13 +70,13 @@ Donec posuere bibendum metus. Quisque gravida luctus volutpat. Mauris interdum, 
         ))
       }
     </div>
-    <div className='lg:h-20 px-10 flex justify-end'>
+    {/* <div className='lg:h-20 px-10 flex justify-end'>
       <NavLink to='/explore'>
     <div className='h-10 w-24 bg-sky-950'>
       <h1 className='text-xs p-2 mt-2 text-white cursor-pointer'>Back to Details</h1>
     </div>
     </NavLink>
-    </div>
+    </div> */}
     <div>
       <Footer/>
     </div>

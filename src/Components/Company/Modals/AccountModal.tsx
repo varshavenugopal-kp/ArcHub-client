@@ -56,31 +56,7 @@ function AccountModal(props:account) {
 
 
 
-  {/* <div className="mr-4">
-    <label htmlFor="formInputControl1" className="block text-sm mb-1 mt-3">
-     Company Name
-    </label>
-    <input
-      type="text"
-      id="formInputControl1"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-96 h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-      name="subcategory"
-    />
-  </div>
-
-  <div>
-    <label htmlFor="formInputControl2" className="block text-sm mb-1 mt-3">
-     Location
-    </label>
-    <input
-      type="text"
-      id="formInputControl2"
-      className="bg-gray-200 hover:shadow-inner appearance-none border-0 rounded w-96 h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none"
-      name="subcate"
-    />
-    </div> */}
-
-   
+ 
 </div>
 
 

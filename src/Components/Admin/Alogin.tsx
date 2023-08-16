@@ -100,6 +100,9 @@ useEffect(()=>{
     <div>
        <nav className='shadow-md bg-sky-950 h-20'>
             <div className='px-8 py-6'>
+            <div>
+                <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
+              </div>
 </div>
         </nav>
       <div className='flex justify-center mt-20'>

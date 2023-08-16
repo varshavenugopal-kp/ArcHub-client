@@ -129,7 +129,7 @@ console.log("hereeeeee",files);
             
                  <li className='cursor-pointer px-28 group/item hover:bg-slate-100' onClick={()=>navigate('/chat')}><FontAwesomeIcon icon={faMessage} className='text-lg text-violet-950'/><span className='ml-4 text-base'>Message</span></li>
             
-              <li className='cursor-pointer px-28 group/item hover:bg-slate-100' onClick={()=>navigate('/')}><FontAwesomeIcon icon={faLock} className='text-lg text-red-800'/><span className='ml-4 text-base'>Reset Password</span></li>
+              {/* <li className='cursor-pointer px-28 group/item hover:bg-slate-100' onClick={()=>navigate('/')}><FontAwesomeIcon icon={faLock} className='text-lg text-red-800'/><span className='ml-4 text-base'>Reset Password</span></li> */}
             
            
            

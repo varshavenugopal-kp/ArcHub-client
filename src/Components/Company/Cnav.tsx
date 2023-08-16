@@ -31,23 +31,14 @@ function Cnav() {
         <nav className=' shadow-md bg-sky-950 h-20'>
             <div className='px-8 py-6'>
 
-            <div className="md:hidden float-right">
-      <button className="flex items-center text-white focus:outline-none"  onClick={handleMenu} >
-        <svg className="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            className="fill-current"
-            d="M4 6H20M4 12H20M4 18H20"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-    </div>
 
 
-        <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
+              <div className='flex justify-between'>
+              <div>
+                <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
+              </div>
+              <div>
+              <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
           <li className='py-1'>
             <NavLink to='/user'>
                 <span>Dashboard</span>
@@ -78,7 +69,27 @@ function Cnav() {
 
                     
                 </li>
-                </ul></div>
+                </ul>
+              </div>
+              </div>
+
+            <div className="md:hidden float-right">
+      <button className="flex items-center text-white focus:outline-none"  onClick={handleMenu} >
+        <svg className="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            className="fill-current"
+            d="M4 6H20M4 12H20M4 18H20"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+
+
+        </div>
         </nav>
         <div className={`w-full  md:hidden bg-white text-black  justify-center ${isVisible ? 'flex' : 'hidden'}`}>
 

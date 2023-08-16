@@ -25,6 +25,7 @@ interface companyAuth {
 
 }
 interface cmp {
+  _id:string
   logo: string
   email: string
   description: string
@@ -47,9 +48,11 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   const {userid,email}=useSelector((state:any)=>state.user)
   const [data, setData] = useState<companyAuth | null>(null)
   const [cmp, setCmp] = useState<cmp>()
+  const [cmpid,setCmpid]=useState<cmp>()
   const [project, setProject] = useState<projectsAuth[] | null>(null)
   const [service, setService] = useState<serviceAuth[] | null>(null)
   const cardContainerRef = useRef<HTMLDivElement>(null)
+
   const navigate = useNavigate()
   useEffect(() => {
     fetchData()
@@ -60,6 +63,7 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
     console.log("please come", response);
 
     if (response) {
+      setCmpid(response.data.companies._id)
       setData(response.data.companies.details)
       setProject(response.data.companies.projects)
       setService(response.data.companies.services)
@@ -67,7 +71,7 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
     }
 
   })
-  console.log("data aarree..", data?.cmpName);
+  console.log("data aarree..", cmpid);
 
   const smoothScroll = (
     element: HTMLElement,
@@ -105,15 +109,26 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   const displayedservice = service?.slice(3)
   console.log(displayedImages);
 
-  const handleSubmit=()=>{
-     api.post('/addRequest',{userid,cid})
+  const handleSubmit=async()=>{
+    console.log("hgvggfgfcgggffvfffdfddffdfddgfdgfcgfgfcgfgfdfdffcgfc");
+    try{
+       const chat=await api.post('/chat/access-chat',{userid,cmpid},{withCredentials:true})
+       console.log("created",chat);
+    }catch(error){
+      console.log(error);
+       
+     
+    }
+    
+   
   }
+console.log("id receiveddd",cmpid);
 
   return (
     <div>
       <div className='h-screen p-3'>
         <div className='cbanner w-full h-2/3 bg-slate-700 bg-cover '>
-          <div className='mx-44 w-36 rounded-full overflow-hidden absolute bottom-24 bg-gray-400  h-36'>
+          <div className='mx-44 w-36 rounded-full overflow-hidden absolute bottom-32 bg-gray-400  h-36'>
             <img src={cmp?.logo} />
           </div>
         </div>
@@ -121,13 +136,13 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
         <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
                   <p className='text-white text-xs text-center py-1 pb-10' onClick={handleSubmit}>CONNECT</p>
                 </div>
-                <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
+                {/* <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
                   <p className='text-white text-xs text-center py-1 pb-10'>CAREERS</p>
-                </div>
+                </div> */}
         </div>
        
        
-        <div className='mt-12 px-8'>
+        <div className='mt-20 px-8'>
           <h1 className='text-4xl'>{data?.cmpName}</h1>
          
           <div className='flex space-x-1'>

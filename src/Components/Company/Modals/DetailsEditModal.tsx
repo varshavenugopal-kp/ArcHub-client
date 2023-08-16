@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
@@ -18,9 +18,10 @@ interface DetailsAuth {
   }
 
 function DetailsEditModal(props:editDetails) {
+  const { cid }=useSelector((state:any)=>state.company)
     const [data,setData]=useState<DetailsAuth>({})
     const [detail,setDetail]=useState<DetailsAuth>({})
-    const {cid}=useSelector((state:any)=>state.company)
+  
     const closeModal = () => {
         props.setEitDetails(false)
       }
@@ -41,6 +42,19 @@ function DetailsEditModal(props:editDetails) {
       const addDetails = ((e: ChangeEvent<HTMLInputElement>) => {
         setDetail({ ...detail, [e.target.name]: e.target.value })
       })
+      const handleSubmit = (async (e: FormEvent) => {
+        e.preventDefault()
+        try {
+          const { data } = await api.post('/user/editDetails',{cid,detail})
+          console.log("data", data);
+          closeModal()
+    
+          
+        }
+        catch (error) {
+    
+        }
+      })
       // setDetail({cmpName:cmpName,cmpLocation:cmplocation,cmpState:cmpState,cmpDistrict:cmpDistrict,Contact:contact,Website:website})
     return (
    <>
@@ -57,7 +71,7 @@ function DetailsEditModal(props:editDetails) {
               <hr></hr>
             </div>
           </div>
-          <form>
+          <form  onSubmit={handleSubmit}>
           <div className='md:flex md:space-x-3 mt-5'>
 
 <div className='w-full'>
@@ -137,7 +151,7 @@ function DetailsEditModal(props:editDetails) {
               </div>
             </div>
             <div className='flex justify-center mt-8'>
-              <button className='bg-sky-950 text-white py-2 px-6 text-sm rounded-md'>Add</button>
+              <button className='bg-sky-950 text-white py-2 px-6 text-sm rounded-md'>Edit</button>
             </div>
           </form>
      </div>

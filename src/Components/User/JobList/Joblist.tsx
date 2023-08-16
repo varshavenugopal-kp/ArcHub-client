@@ -19,6 +19,7 @@ interface jobsAuth{
   description:string
   cname?:string
   location:string
+  logo:string
   cmpInfo:cmpAuth[]
   bookmarks:string[]
 
@@ -26,6 +27,7 @@ interface jobsAuth{
 interface cmpAuth{
     cname:string
     location:string
+    logo:string
 }
 
 const Joblist: React.FC=()=> {
@@ -106,7 +108,9 @@ const Joblist: React.FC=()=> {
                            <div  className='flex justify-between'>
                             <div className=''>
 <div className='flex space-x-5'>
-<div className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1'></div>
+<div className=''>
+    <img className='w-5 h-5 lg:w-10 lg:h-10 rounded-full bg-gray-400 mt-1' src={jobs?.cmpInfo[0]?.logo}></img>
+</div>
                              <div><h1 className='mt-3'>{jobs.title}</h1></div>
 </div>
 

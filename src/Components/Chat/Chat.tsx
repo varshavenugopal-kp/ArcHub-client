@@ -64,10 +64,10 @@ function Chat(props:role) {
   const currentUserId = props.role === "user" ? userid : cid;
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [typing,setTyping] = useState<boolean>(false)
-  // const [cmpName,setCmpName]=useState("")
-  // const[userName,setUserName]=useState("")
-  // const [cmpImg,setCmpImg]=useState("")
-  // const[userImg,setUserImg]=useState("")
+  const [cmpName,setCmpName]=useState("")
+  const[userName,setUserName]=useState("")
+  const [cmpImg,setCmpImg]=useState("")
+  const[userImg,setUserImg]=useState("")
   
   
   // useEffect(() => {
@@ -226,25 +226,25 @@ console.log("chatId here",chatId);
                     selectChat(obj);
                     setChatId(obj._id);
                     handleMessageFetch(obj._id);
-                    // setCmpName(obj.company.cname)
-                    // setCmpImg(obj.company.logo)
+                    setCmpName(obj.company.cname)
+                    setCmpImg(obj.company.logo)
                   }}
                 >
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                     <img
                       className="object-cover w-10 h-10 rounded-full"
-                      src={obj.user.image}
+                      src={obj?.company?.logo}
                       alt="username"
                     />
                     <div className="w-full pb-2">
                       <div className="flex justify-between">
                         <span className="block ml-2 font-semibold text-gray-600">
-                          {obj.user.fname}
+                          {obj?.company?.cname}
                         </span>
                        
                       </div>
                       <span className="block ml-2 text-sm text-gray-600">
-                        {obj.latestMessage.content}
+                        {obj?.latestMessage?.content}
                       </span>
                     </div>
                   </a>
@@ -257,25 +257,25 @@ console.log("chatId here",chatId);
                     selectChat(obj);
                     setChatId(obj._id);
                     handleMessageFetch(obj._id);
-                    // setUserName(obj.user.fname)
-                    // setUserImg(obj.user.image)
+                    setUserName(obj.user.fname)
+                    setUserImg(obj.user.image)
                   }}
                 >
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                     <img
                       className="object-cover w-10 h-10 rounded-full"
-                      src="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
+                      src={obj.user.image}
                       alt="username"
                     />
                     <div className="w-full pb-2">
                       <div className="flex justify-between">
                         <span className="block ml-2 font-semibold text-gray-600">
-                          {obj.company.cname}
+                          {obj?.user?.fname}
                         </span>
                         
                       </div>
                       <span className="block ml-2 text-sm text-gray-600">
-                        {obj.latestMessage.content}
+                        {obj?.latestMessage?.content}
                       </span>
                     </div>
                   </a>
@@ -285,15 +285,31 @@ console.log("chatId here",chatId);
       </div>
       <div className="hidden lg:col-span-2 lg:block">
         <div className="w-full">
+         {
+           props.role==='user'?
+           <div className="relative flex items-center p-3 border-b border-gray-300">
+            <img
+              className="object-cover w-10 h-10 rounded-full"
+              src={cmpImg}
+              alt="username"
+            />
+            <span className="block ml-2 font-bold text-gray-600">{cmpName}</span>
+            <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
+          </div>
+          :
           <div className="relative flex items-center p-3 border-b border-gray-300">
             <img
               className="object-cover w-10 h-10 rounded-full"
-              src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
+              src={userImg}
               alt="username"
             />
-            <span className="block ml-2 font-bold text-gray-600">varsha</span>
+            <span className="block ml-2 font-bold text-gray-600">{userName}</span>
             <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
           </div>
+         }
+
+
+          
           <div className="relative w-full p-6 overflow-y-auto h-[40rem]" ref={containerRef}>
             <ul className="space-y-2">
               {props.role === "user"
