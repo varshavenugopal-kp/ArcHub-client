@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { api } from '../../../Services/axios'
 import ServiceModal from '../Modals/ServiceModal'
+import ServiceEdit from '../Modals/ServiceEdit'
 
 interface serviceAuth{
     category:string
@@ -13,6 +14,7 @@ interface serviceState{
 function ServiceView() {
     const { cid } = useSelector((state: any) => state.company)
     const [servicesShow, setServicesShow] = useState<serviceAuth[] >([])
+    const [serviceEdit, setServiceEdit] = useState<boolean>(false)
     const [service,setServices]=useState<boolean>(false)
     const cardContainerRef = useRef<HTMLDivElement>(null)
     useEffect(()=>{
@@ -30,6 +32,11 @@ function ServiceView() {
     // console.log("nandana",servicesShow);
     const servicesOpen=()=>{
       setServices(true)
+    }
+    const servicesEdit=()=>{
+      console.log("jhjhjhjhjhh");
+      
+       setServiceEdit(true)
     }
 
     const smoothScroll = (
@@ -110,10 +117,14 @@ function ServiceView() {
     <div className='h-10 w-24 bg-sky-950' onClick={()=>servicesOpen()}>
       <h1 className='text-sm p-2 mt-1 text-white cursor-pointer ms-5'>Add</h1>
     </div>
+    <div className='h-10 w-24 bg-sky-950 ms-2' onClick={()=>servicesEdit()}>
+      <h1 className='text-sm p-2 mt-1 text-white cursor-pointer ms-5'>edit</h1>
+    </div>
     </div>
     <div className=''>
       
       {service && <ServiceModal setServices={setServices}/>}
+      {serviceEdit && <ServiceEdit setServiceEdit={setServiceEdit}/>}
      </div>
    
     </div>

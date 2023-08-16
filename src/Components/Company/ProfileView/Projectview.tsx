@@ -71,7 +71,7 @@ function Projectview() {
       //       ))}
       //     </div>
       //   </div>
-      <div className='grid grid-cols-4 gap-4  p-10'>
+      <div className='grid grid-cols-3 gap-4  p-10'>
       {
         projectsShow?.map((Projects) => (
           <div className='h-96 w-64 bg-gray-200'>

@@ -51,6 +51,7 @@ import ProtectedAdmin from './Components/ProtectedAdmin';
 import ProtectedUser from './Components/ProtectedUser';
 import CategoryFilter from './Pages/User/CategoryFilter';
 import MsgRequests from './Pages/Company/MsgRequests';
+import Error from './Components/User/ErrorPage/Error';
 // import getApplied from './Pages/User/getApplied';
 
 function App() {
@@ -83,34 +84,63 @@ function App() {
      <Route path='/user/addjob'  element={<JobAdd/>
     } />
     <Route path='/admin/categories' element={<ProtectedAdmin><Categories/></ProtectedAdmin>} />
+
     <Route path='/explore' element={<ProtectedUser><Userexplore/></ProtectedUser>} />
+
     <Route path='/company-view' element={<ProtectedUser><CompanyDetails/></ProtectedUser>} />
+
     <Route path='/companies' element={<ProtectedUser><GetCompanies/></ProtectedUser>} />
+
     <Route path='/jobs' element={<ProtectedUser><Jobs/></ProtectedUser>} />
+
     <Route path='/user/job-List' element={<JobList/>} />
+
     <Route path='/user/Editjob' element={<JobEdit/>} />
+
     <Route path='/viewCompany' element={<ProtectedUser><ViewCompany/></ProtectedUser>} />
+
     <Route path='/applyJobs' element={<ProtectedUser><ApplyJobs/></ProtectedUser>} />
+
     <Route path='/chat' element={<SingleChat role={'user'}/>} />
+
     <Route path='/user/chat' element={<SingleChat role={'company'}/>} />
+
     <Route path='/userProfile' element={<ProtectedUser><UProfile/></ProtectedUser>} />
+
     {/* <Route path='/getApplied' element={<getApplied/>}/> */}
     <Route path='/List' element={<List/>} />
+
     <Route path='/admin/dashboard' element={<ProtectedAdmin><DashboardCompany/></ProtectedAdmin>} />
-    <Route path='/profile' element={<UserProfile/>} />
+
+    <Route path='*' element={<Error/>} />
+
     <Route path='/getCompanies' element={<ProtectedUser><GetCatCompanies/></ProtectedUser>} />
+
     <Route path='/getProjects' element={<Projects/>} />
+
     <Route path='/pswdReset' element={<ResetPassword/>} />
+
     <Route path='/resetPswd' element={<PasswordReset/>} />
+
     <Route path='/appliedJobs' element={<Applied/>} />
+
     <Route path='/user/applications' element={<Applicationslist/>} />
+
     <Route path='/savedJobs' element={<Saved/>} />
+
     <Route path='/cProject' element={<Projectss/>} />
+
     <Route path='/user/applicationsDetails' element={<ApplyDetails/>} />
+
     {/* <Route path='/user/userDashboard' element={<AdminDashboard/>} /> */}
+
     <Route path='/getAppliedDetails' element={<AppliedDetails/>} />
+
     <Route path='/getCategoryWise' element={<ProtectedUser><CategoryFilter/></ProtectedUser>} />
+
     <Route path='/user/msgRequests' element={<MsgRequests/>} />
+
+    {/* <Route path='/resetPassword' element={<MsgRequests/>} /> */}
 
   
     

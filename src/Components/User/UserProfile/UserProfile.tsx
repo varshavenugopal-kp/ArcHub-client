@@ -32,9 +32,10 @@ function UserProfile() {
   const handleUpdate=async(e:FormEvent)=>{
     e.preventDefault()
    console.log("kjkjkji");
-   console.log("~~~~~~~~~~~~",data,"~~~~~~~~~~~~~~~~")
+   console.log("~~~~~~~~~~~~",userid,"~~~~~~~~~~~~~~~~")
+
    const editdata=await api.post(`/updateProfile/${userid}`,{data});
-   console.log(editdata)
+   console.log(editdata,"kjhgfdsa...............")
   }
  console.log("????",edit);
  

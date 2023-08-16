@@ -40,13 +40,15 @@ interface applied{
 const Description:React.FC<DescriptionProps>=({jobId})=> {
   const {userid,email}=useSelector((state:any)=>state.user)
    const [jobs,setJobs]=useState<details|null>(null)
-   const [applied,setApplied]=useState<jobs[]>()
+   const [isapplied,setIsApplied]=useState<jobs[]>()
    const [jobOpen,setjobOpen]=useState<boolean>(false)
+
    const navigate=useNavigate()
    console.log("hihlo",jobId);
    useEffect(()=>{
       fetchData()
       // fetchjobs()
+      fetchApplied()
       
    },[jobId])
    const fetchData=(async()=>{
@@ -67,6 +69,14 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
       
     }   
    })
+   const fetchApplied=(async()=>{
+    console.log("hhhhhhhhaaaaaaaa");
+    
+    const response=await api.get(`/getApplieds?userid=${userid}&jobId=${jobId}`)
+    console.log("applied lists",response);
+    setIsApplied(response.data.job)
+    
+   })
 
   //  const fetchjobs=(async()=>{
   //   const {data}=await api.get(`/getAppliedJobs/${userid}`)
@@ -78,6 +88,7 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
    
 
    console.log("heyy data",jobs);
+   console.log("heyy zakkk",isapplied);
    
    const handleClick=(jobId:string)=>{
     navigate(`/applyJobs?id=${jobId}`)
@@ -90,10 +101,19 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
        <h1 className='text-xl'>{jobs?.title}</h1>
        <h1 className='text-blue-800 font-medium'>{jobs?.cmpInfo[0]?.cname}</h1>
       </div>
-      <div >
-        <button className='bg-sky-950
-          text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
-      </div>
+      {
+        isapplied?(
+          <div >
+          <button className='bg-sky-950 text-white rounded p-1 disabled:' >applied</button>
+        </div>
+        ):(
+          <div >
+          <button className='bg-sky-950
+            text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
+        </div>
+        )
+      }
+     
  </div>
 
       <div className='mt-4'>

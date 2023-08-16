@@ -104,15 +104,19 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   const handleClick=async(e:FormEvent)=>{
     e.preventDefault()
     try{
-     const{first,last,email,phone,qualification,experience}=job
+     const{first,last,email,qualification,experience}=job
      if(first!==''&&last!==''&&email!==''&&qualification!==''&&experience!==''){
       console.log("uuuuuuuu");
       
-       const{first,last,email,phone,qualification,experience}=err
-       if(first==''&&last==''&&email==''&&qualification==''&&experience==''){
+       const{first,last,email,qualification,experience}=err
+       console.log(err);
+       
+      //  if(first==''&&last==''&&email==''&&qualification==''&&experience==''){
         console.log("gfdgfdgfdgdf");
         
         await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
+        console.log("applied");
+        
         setData({first:'',
           last:'',
           email:'',
@@ -130,13 +134,13 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         })
         console.log("hjhjhjhgjhgjhgjhgjhgjhghjg");
         
-        navigate('/appliedJobs')
-  
-       }
+        
+       
      }
-     console.log("faileddddd");
+    //  console.log("faileddddd");
      
-     navigate('/jobs')
+    navigate('/appliedJobs')
+  
       
     }
     catch(error){
