@@ -93,7 +93,7 @@ function Adashboard() {
                     </div>
                    
                    <div className='h-24 w-24 bg-slate-400 mt-4'>
-                    <img src='/images/projects.png'/>
+                    <img src='/Images/projects.png'/>
                    
                    </div>
                 </div>           
@@ -106,7 +106,7 @@ function Adashboard() {
                     </div>
                    
                    <div className='h-24 w-24 bg-white mt-4'>
-                   <img src='/images/company.png'/>
+                   <img src='/Images/company.png'/>
                    
                    </div>
                 </div>           
@@ -119,7 +119,7 @@ function Adashboard() {
                     </div>
                    
                    <div className='h-24 w-24 bg-white mt-4'>
-                   <img src='/images/list.png'/>
+                   <img src='/Images/list.png'/>
                    
                    </div>
                 </div>           
@@ -132,7 +132,7 @@ function Adashboard() {
                     </div>
                    
                    <div className='h-24 w-24 bg-white mt-4'>
-                   <img src='/images/job.png'/>
+                   <img src='/Images/job.png'/>
                    
                    </div>
                 </div>           
