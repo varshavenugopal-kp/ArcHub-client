@@ -140,7 +140,7 @@ function Adashboard() {
       </div>
       <div className='w-full px-24 flex space-x-4 mt-4'>
 
-        <div className='h-96 w-3/5 shadow-lg bg-slate-200  overflow-y-scroll'>
+        <div className='h-96 w-full shadow-lg bg-slate-200  overflow-y-scroll'>
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
        
        <thead className="text-xs text-gray-700 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
@@ -189,7 +189,7 @@ function Adashboard() {
        </tbody>
    </table>
         </div>
-        <div className='h-96 w-2/5 shadow-lg bg-slate-200'></div>
+        {/* <div className='h-96 w-2/5 shadow-lg bg-slate-200'></div> */}
         </div>
         <div className='w-full px-24 py-10'></div>
     </div>

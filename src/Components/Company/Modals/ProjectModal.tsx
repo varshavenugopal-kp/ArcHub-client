@@ -27,6 +27,7 @@ function ProjectModal(props: projects) {
     const [err, setErr] = useState({ pname: '', description: '' })
     const closeModal = () => {
         props.setProject(false)
+        window.location.reload();
     }
 
     const addProject = ((e: ChangeEvent<HTMLInputElement>) => {

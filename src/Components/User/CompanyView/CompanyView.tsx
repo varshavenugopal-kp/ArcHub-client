@@ -188,9 +188,9 @@ console.log("id receiveddd",cmpid);
               <div className='space-y-8 mt-2'>
                 {
                   displayedImages?.map((obj) =>
-                    <div className='h-24 w-64 border border-white'>
+                    <div className='h-36 w-72 pe-3 border border-white'>
                       <h1 className='text-white text-xl font-semibold flex justify-end pe-3'>{obj.category}</h1>
-                      <p className='text-white text-sm p-2'>{obj.details}</p>
+                      <p className='text-white text-sm line-clamp-4 p-2'>{obj.details}</p>
                     </div>
                   )
                 }
@@ -199,12 +199,12 @@ console.log("id receiveddd",cmpid);
               <div>
                 <img src='./Images/pic5 (2).jpg '></img>
               </div>
-              <div className='space-y-8 px-4 mt-2'>
+              <div className='space-y-8 px-8 mt-2'>
                 {
                   displayedservice?.map((obj) =>
-                    <div className='h-24 w-64  border border-white'>
-                      <h1 className='text-white text-xl font-semibold flex justify-end pe-3'>{obj?.category}</h1>
-                      <p className='text-white text-xs'>{obj?.details}</p>
+                    <div className='h-36 w-72  border border-white'>
+                      <h1 className='text-white text-xl font-semibold flex justify-start pe-3'>{obj?.category}</h1>
+                      <p className='text-white line-clamp-4 text-sm'>{obj?.details}</p>
 
                     </div>
                   )

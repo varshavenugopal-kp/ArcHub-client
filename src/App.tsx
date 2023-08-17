@@ -117,7 +117,7 @@ function App() {
 
     <Route path='/getCompanies' element={<ProtectedUser><GetCatCompanies/></ProtectedUser>} />
 
-    <Route path='/getProjects' element={<ProtectedUser><Projects/></ProtectedUser>} />
+    <Route path='/getProjects' element={<Projects/>} />
 
     <Route path='/pswdReset' element={<ResetPassword/>} />
 
@@ -129,7 +129,7 @@ function App() {
 
     <Route path='/savedJobs' element={<ProtectedUser><Saved/></ProtectedUser>} />
 
-    <Route path='/cProject' element={<ProtectedUser><Projectss/></ProtectedUser>} />
+    <Route path='/cProject' element={<Projectss/>} />
 
     <Route path='/user/applicationsDetails' element={<ProtectedCompany><ApplyDetails/></ProtectedCompany>} />
 

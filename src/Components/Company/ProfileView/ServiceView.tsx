@@ -76,7 +76,7 @@ function ServiceView() {
       </div>
 
       <div className='flex justify-between'>
-          <h1 className='px-10 mt-10 text-2xl font-bold'>WORKS</h1>
+          <h1 className='px-10 mt-10 text-2xl font-bold'></h1>
           <div className='flex space-x-3 mt-9 pe-10'>
             <div className='border-2 border-black h-9 w-9 rounded-sm flex justify-center items-center' >
               <i className="fa-solid fa-chevron-left " onClick={() => handleScroll("left")}></i>
@@ -103,7 +103,7 @@ function ServiceView() {
     {/* Content of the inner card goes here */}
     <div className='pt-6 m-4'>
         <h1 className='font-medium text-xl'>{obj.category}</h1>
-        <h1 className=''>{obj.details}</h1>
+        <h1 className='line-clamp-2'>{obj.details}</h1>
     </div>
   </div>
       </div>

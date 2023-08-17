@@ -156,16 +156,16 @@ const ApplicationDetails:React.FC<compannyProps>=({userId})=> {
               </div >
 
               <div className='flex justify-between mt-4'>
-              <div className='h-10 w-28 bg-sky-950 mt-5 flex justify-center items-center'>
+              <div className='h-10 w-28 bg-sky-950 mt-5 flex justify-center items-center cursor-pointer'>
                      <a href={datas[0]?.file} className='text-white  '>
                     view Resume </a>
              
                      </div>
-                     <div className='h-10 w-28 bg-sky-950 mt-5 flex justify-center items-center'>
+                     {/* <div className='h-10 w-28 bg-sky-950 mt-5 flex justify-center items-center'>
                      <a href={datas[0]?.file} onClick={()=>downloadImage(datas[0]?.file as string)} className='text-white  '>
                     view Resume </a>
              
-                     </div>
+                     </div> */}
 
 
                      <div className='flex space-x-1 mt-4 cursor-pointer' onClick={()=>handleButtonClick(datas[0]?.details?.email)}>

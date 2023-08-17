@@ -19,6 +19,7 @@ function ServiceEdit(props:servicesEdit) {
     
     const closeModal = () => {
         props.setServiceEdit(false)
+        window.location.reload();
       }
       useEffect(()=>{
         fetchData()

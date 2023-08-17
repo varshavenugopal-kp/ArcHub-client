@@ -20,6 +20,7 @@ function AboutModal(props:about) {
   })
     const closeAbout=()=>{
         props.setAbout(false)
+        window.location.reload();
     }   
 
     const handleSubmit=(async(e:FormEvent)=>{

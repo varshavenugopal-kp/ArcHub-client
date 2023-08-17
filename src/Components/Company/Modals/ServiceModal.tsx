@@ -16,6 +16,7 @@ function ServiceModal(props:services) {
     const [categories,setCategory] = useState<details>()
     const closeModal = () => {
         props.setServices(false)
+        window.location.reload();
       }
   console.log("good",data);
   

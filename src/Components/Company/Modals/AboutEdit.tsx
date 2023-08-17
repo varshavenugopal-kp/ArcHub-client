@@ -36,6 +36,7 @@ function AboutEdit(props:aboutEdit) {
       })
     const closeAbout=()=>{
         props.setOpen(false)
+        window.location.reload();
     } 
     const handleEdit=(async(e:FormEvent)=>{
         e.preventDefault()

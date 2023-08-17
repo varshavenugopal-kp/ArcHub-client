@@ -24,6 +24,7 @@ function DetailsEditModal(props:editDetails) {
   
     const closeModal = () => {
         props.setEitDetails(false)
+        window.location.reload();
       }
 
       useEffect(()=>{
@@ -47,7 +48,7 @@ function DetailsEditModal(props:editDetails) {
         try {
           const { data } = await api.post('/user/editDetails',{cid,detail})
           console.log("data", data);
-          closeModal()
+          
     
           
         }

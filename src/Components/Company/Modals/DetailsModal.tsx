@@ -23,6 +23,7 @@ function DetailsModal(props: details) {
   const [datas, setData] = useState<DetailsAuth>({})
   const closeModal = () => {
     props.setIsOpen(false)
+    window.location.reload();
   }
 
   const addDetails = ((e: ChangeEvent<HTMLInputElement>) => {
