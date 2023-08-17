@@ -57,7 +57,7 @@ job?(
           job.map((key)=>(
             <div className="max-w-4xl px-10 my-4 mt-10 py-6 bg-white rounded-lg shadow-md">
             <div className="flex justify-between items-center">
-                <span className="font-light text-gray-600">mar 10, 2019</span>
+                <span className="font-light text-gray-600"></span>
                 <div className="px-2 py-1 bg-gray-600 text-gray-100 font-bold cursor-pointer rounded hover:bg-gray-500" key={key._id} onClick={()=>handleClick(key._id)}>Edit Job</div>
 
             </div>

@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { validateJobApply } from '../../../validations/ApplyValidation'
 interface apply{
-  first?:string
-  last?:string
+  firstName?:string
+  lastName?:string
   email?:string
   phone?:number
   qualification?:string
@@ -19,8 +19,8 @@ interface apply{
   other?:string
 }
 interface errAuth{
-  first?:string
-  last?:string
+  firstName?:string
+  lastName?:string
   email?:string
   phone?:number
   qualification?:string
@@ -68,7 +68,8 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   validateJobApply(e.target.name,e.target.value,err,setErr)
 };
 
-  const AddJob=((e:ChangeEvent<HTMLInputElement>)=>{
+  const 
+  AddJob=((e:ChangeEvent<HTMLInputElement>)=>{
          
          setData({...job,[e.target.name]:e.target.value})
          validateJobApply(e.target.name,e.target.value,err,setErr)
@@ -104,21 +105,21 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
   const handleClick=async(e:FormEvent)=>{
     e.preventDefault()
     try{
-     const{first,last,email,qualification,experience}=job
-     if(first!==''&&last!==''&&email!==''&&qualification!==''&&experience!==''){
-      console.log("uuuuuuuu");
+     const{firstName,lastName,email,qualification,experience}=job
+     if(firstName!==''&&lastName!==''&&email!==''&&qualification!==''&&experience!==''){
+      console.log("uuuuuuuu",job);
       
-       const{first,last,email,qualification,experience}=err
+       const{firstName,lastName,email,qualification,experience}=err
        console.log(err);
        
       //  if(first==''&&last==''&&email==''&&qualification==''&&experience==''){
-        console.log("gfdgfdgfdgdf");
+        console.log("gfdgfdgfdgdf",);
         
         await api.post('/jobApplied',{...job,date,skills,jobid:jobId,cid:id,userId:userid})
         console.log("applied");
         
-        setData({first:'',
-          last:'',
+        setData({firstName:'',
+          lastName:'',
           email:'',
           phone:0,
           qualification:'',
@@ -164,22 +165,22 @@ const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
       <div className=' mt-10  lg:grid lg:grid-cols-2 grid-cols-1 gap-2'>
         <div className='mt-5'>
           <p>Firstname</p>
-          <input type="text" name='first' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
+          <input type="text" name='firstName' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
         <div className='mt-5'>
           <p>Lastname</p>
-          <input type="text" name='last' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
+          <input type="text" name='lastName' className='w-full border-2 rounded py-2 px-2 outline-none ' onChange={AddJob} required/>
         </div>
 
         <div className='w-full'>
           
           <div/>
-          <p className='text-xs text-red-600' >{err.first}</p>
+          <p className='text-xs text-red-600' >{err.firstName}</p>
         </div>
         <div className='w-full'>
           
           <div/>
-          <p className='text-xs text-red-600' >{err.last}</p>
+          <p className='text-xs text-red-600' >{err.lastName}</p>
         </div>
 
         <div className='mt-5'>
