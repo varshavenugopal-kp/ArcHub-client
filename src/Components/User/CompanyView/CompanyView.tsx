@@ -112,7 +112,7 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   const handleSubmit=async()=>{
     console.log("hgvggfgfcgggffvfffdfddffdfddgfdgfcgfgfcgfgfdfdffcgfc");
     try{
-       const chat=await api.post('/chat/access-chat',{userid,cmpid},{withCredentials:true})
+       const chat=await api.post('/chat/access-chat',{userId:userid,cmpId:cmpid},{withCredentials:true})
        console.log("created",chat);
     }catch(error){
       console.log(error);
