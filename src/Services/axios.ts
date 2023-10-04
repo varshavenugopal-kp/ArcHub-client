@@ -11,34 +11,27 @@ export const api=axios.create({
 api.interceptors.request.use(
     (config)=>{
         let token:any=localStorage.getItem('admin')
-        // console.log("addd",token);
         if(token){
             token=JSON.parse(token)
             token=token.token
-        // console.log("minnn",token);
         }
         
 
 
         let userToken:any=localStorage.getItem('users')
+       
         if(userToken) {
             userToken=JSON.parse(userToken)
         userToken=userToken.token
-        // console.log("llll",userToken);
+        console.log("token here",userToken);
         }
 
 
-        // let empToken:any=localStorage.getItem('users')
-        //  console.log("emp token=",empToken);
-
+    
         let cmpToken:any=localStorage.getItem('company')
-        //  console.log("jjj",cmpToken);
-         
-        
-        if(cmpToken){
+       if(cmpToken){
             cmpToken=JSON.parse(cmpToken)
             cmpToken=cmpToken.token
-            // console.log("llll",cmpToken);
         }
 
         
@@ -80,7 +73,7 @@ api.interceptors.request.use(
 //         return config;
 //       } catch (error) {
 //         console.error('Error while setting headers:', error);
-//         return config;
+//         return config; 
 //       }
 //     }
     

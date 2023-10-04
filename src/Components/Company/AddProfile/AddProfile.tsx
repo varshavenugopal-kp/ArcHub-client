@@ -51,7 +51,7 @@ function AddProfile() {
 
      const {data}=await axios.post("https://api.cloudinary.com/v1_1/dn6cqglmo/image/upload",datas)
      console.log("urls:",data);
-     console.log("hahahahahahahahahahahahahahahahahahahahahahahahahahahaha");
+    
      
     setUrl(data.url)
     if(data.url){
@@ -60,7 +60,7 @@ function AddProfile() {
    
     
   }
- console.log("hereeeeee",fileUrl);
+ 
   useEffect(()=>{
     const fetch=async()=>{
     
@@ -79,11 +79,7 @@ function AddProfile() {
     try{
       const response=await api.get(`/user/details/${cid}`)
     
-      console.log("about",response);
      
-      console.log("responseeee",response.data.details.details);
-
-      console.log("projectssss",response.data.details.projects);
       if(response.data.details.image){
         setUrl(response.data.details.image)
       }

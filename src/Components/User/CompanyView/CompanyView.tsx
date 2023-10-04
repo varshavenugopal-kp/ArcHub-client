@@ -128,13 +128,13 @@ console.log("id receiveddd",cmpid);
     <div>
       <div className='h-screen p-3'>
         <div className='cbanner w-full h-2/3 bg-slate-700 bg-cover '>
-          <div className='mx-44 w-36 rounded-full overflow-hidden absolute bottom-32 bg-gray-400  h-36'>
+          <div className='mx-44 w-36 rounded-full overflow-hidden absolute bottom-24 bg-gray-400 h-36'>
             <img src={cmp?.logo} />
           </div>
         </div>
         <div className='flex justify-end'>
-        <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
-                  <p className='text-white text-xs text-center py-1 pb-10' onClick={handleSubmit}>CONNECT</p>
+        <div className='ms-3 mt-2 w-24 mr-4 h-8 bg-black cursor-pointer'>
+                  <p className='text-white text-xs text-center py-2 pb-10' onClick={handleSubmit}>CONNECT</p>
                 </div>
                 {/* <div className='ms-3 mt-2 w-24 h-8 bg-black cursor-pointer'>
                   <p className='text-white text-xs text-center py-1 pb-10'>CAREERS</p>
@@ -142,7 +142,7 @@ console.log("id receiveddd",cmpid);
         </div>
        
        
-        <div className='mt-20 px-8'>
+        <div className='mt-16 px-8'>
           <h1 className='text-4xl'>{data?.cmpName}</h1>
          
           <div className='flex space-x-1'>
@@ -163,7 +163,7 @@ console.log("id receiveddd",cmpid);
         </div>
 
       </div>
-      <div className='px-8'>
+      <div className='px-10'>
         <div className='w-full h-auto mb-12 '>
           <h1 className=' text-2xl font-bold'>About us</h1>
           <p>{cmp?.description}</p>
@@ -190,7 +190,7 @@ console.log("id receiveddd",cmpid);
                   displayedImages?.map((obj) =>
                     <div className='h-36 w-72 pe-3 border border-white'>
                       <h1 className='text-white text-xl font-semibold flex justify-end pe-3'>{obj.category}</h1>
-                      <p className='text-white text-sm line-clamp-4 p-2'>{obj.details}</p>
+                      <p className='text-white text-sm line-clamp-4 px-4 py-1'>{obj.details}</p>
                     </div>
                   )
                 }
@@ -203,8 +203,8 @@ console.log("id receiveddd",cmpid);
                 {
                   displayedservice?.map((obj) =>
                     <div className='h-36 w-72  border border-white'>
-                      <h1 className='text-white text-xl font-semibold flex justify-start pe-3'>{obj?.category}</h1>
-                      <p className='text-white line-clamp-4 text-sm'>{obj?.details}</p>
+                      <h1 className='text-white text-xl font-semibold flex justify-start ps-3'>{obj?.category}</h1>
+                      <p className='text-white line-clamp-4 text-sm px-4 py-1'>{obj?.details}</p>
 
                     </div>
                   )

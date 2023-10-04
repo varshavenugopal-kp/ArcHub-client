@@ -29,51 +29,9 @@ const Login=(props:LoginProps) =>{
   const [user,setUser]=useState<userLog>({email:'',password:''})
   const [err, setErr] = useState<ErrState>({})
 
-  // useEffect(()=>{
-  //   const user=localStorage.getItem('user')
-  //   console.log("ddddd",user);
-    
-  //   if(user){
-  //     const token=JSON.parse(user)
-  //     const decodedToken: any = jwtDecode(token.data);
-  //     const expirationTime = decodedToken.exp;
-  //     console.log("asdfghjk",token.data);
-      
-  //     if (token?.data) {
-
-  //       console.log("this is token",token.data);
-        
-       
-  
-  //       if (expirationTime && expirationTime < Date.now() / 1000) {
-  //         // Token has expired, perform necessary actions (e.g., refresh token, log out)
-  //         navigate('/login')
-  //         console.log("expired");
-          
-  //       } else {
-  //         // Token is still valid, continue with desired functionality
-  //         navigate('/home')
-  //         console.log("valid");
-          
-  //       }
-  //     } else {
-  //       // Token does not exist, handle accordingly (e.g., redirect to login)
-  //       navigate('/login')
-  //       console.log("not exist");
-        
-  //     }
-  //   }else{
-  //     navigate('/login')
-  //   }
-    
-  // },[])
-  //  if(props.userType==='client'){
-  //   console.log(props);
-    
-  //  }
   const googleSubmit=async(res:CredentialResponse)=>{
     const result:any=jwtDecode(res.credential as string)
-    console.log("mnmnnm" ,result);
+  
     
       const user={
          
@@ -144,7 +102,7 @@ const handleLogin=async(e:FormEvent)=>{
         setErr((prevState) => ({ ...prevState, password: 'Password cannot be empty' }));
     }
    else {
-        const {data} = await api.post('/login',{...user}, { withCredentials: true });
+        const {data} = await apiAuth.post('/login',{...user}, { withCredentials: true });
         console.log('data=',data);
         // if(data.student?.username && data.student?.email){
         //   dispatch(studentLogged({username:data.student.username,email:data.student.email}))
@@ -255,7 +213,7 @@ if(data.invalid){
           {/* <div className='w-full'>
             <input type='text' className='shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"'></input>
           </div> */}
-          <div className='flex justify-center mt-5'>
+          <div className='flex space-x-2 justify-center mt-5'>
             <h5 className='text-sm'>Not a member?</h5>
             <NavLink to='/register'>
               <h6 className='text-xs  text-sky-600'> register here</h6>

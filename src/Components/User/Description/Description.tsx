@@ -53,21 +53,17 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
    },[jobId])
    const fetchData=(async()=>{
     const response=await api.get(`/getjobDetails/${jobId}`)
-    console.log("response here",response);
-    console.log("varshaaaaaa",response);
-    
-    
-     
-      
-     
-    
+   
     if(response){
       const item=response.data.jobs[0]
       console.log("heyyyyyy",item);
       
       setJobs(item)
       
-    }   
+    }   else{
+      console.log("nothing");
+      
+    }
    })
    const fetchApplied=(async()=>{
     console.log("hhhhhhhhaaaaaaaa");
@@ -95,8 +91,12 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
    }
    
   return (
-    <div>    
-<div className='flex justify-between items-center'>
+
+    <div> 
+      {
+        jobs?(
+          <div>
+      <div className='flex justify-between items-center'>
       <div className='px-4'>
        <h1 className='text-xl'>{jobs?.title}</h1>
        <h1 className='text-blue-800 font-medium'>{jobs?.cmpInfo[0]?.cname}</h1>
@@ -107,9 +107,8 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
           <button className='bg-sky-950 text-white rounded p-1 disabled:' >applied</button>
         </div>
         ):(
-          <div >
-          <button className='bg-sky-950
-            text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
+          <div className='pe-3'>
+          <button className='bg-sky-950 text-white rounded p-1' key={jobId} onClick={()=>handleClick(jobId)}>Apply Now</button>
         </div>
         )
       }
@@ -165,6 +164,16 @@ const Description:React.FC<DescriptionProps>=({jobId})=> {
                 </div>
               </div>
           </div>
+
+        </div>
+        ):(
+        <div>
+          <h1>Select a job</h1>
+        </div>
+        )
+      }
+
+         
     </div>
   )
 }

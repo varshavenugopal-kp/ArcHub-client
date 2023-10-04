@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import {  useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
 import { setProfile } from '../../../Redux/UserSlice'
+import '../Nav/Nav.css'
 
 
 
@@ -40,7 +41,7 @@ const Nav=()=> {
               <div>
                 <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
               </div>
-              <div>
+              <div className='main-menu'>
                 
         <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
           <li className='py-1'>
