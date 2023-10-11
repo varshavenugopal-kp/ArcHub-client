@@ -32,16 +32,16 @@ const Nav=()=> {
     <>
     <div>
         <nav className='shadow-md bg-sky-950 h-20'>
-            <div className='px-8 py-6'>
+            <div className='px-6 py-2'>
 
              
 
 
               <div className='flex justify-between'>
               <div>
-                <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
+                <img className=" justify-start h-16 w-32" src='/Images/lastout.png'></img>
               </div>
-              <div className='main-menu'>
+              <div className='main-menu py-4'>
                 
         <ul className={`md:flex md:justify-end hidden md: space-x-4 text-white `}>
           <li className='py-1'>
