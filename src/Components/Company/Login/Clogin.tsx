@@ -109,10 +109,10 @@ useEffect(()=>{
   return (
     <div>
        <nav className='shadow-md bg-sky-950 h-20'>
-            <div className='px-8 py-6'>
+            <div className='px-6 py-2'>
 
             <div>
-                <img className=" justify-start h-8 w-36" src='/Images/archub.png'></img>
+                <img className=" justify-start h-16 w-32" src='/Images/lastout.png'></img>
               </div>
 
 

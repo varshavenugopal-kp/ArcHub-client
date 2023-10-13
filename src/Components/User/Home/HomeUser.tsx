@@ -48,9 +48,17 @@ By using high-performance and environmentally friendly building products, and mi
        <div className='text-white text-sm font-normal lg:text-4xl'>
         Building a Passive House
        </div>
-       <div className='w-12 h-5 mt-5 md:w-36 md:h-14 rounded-full border border-white lg:mt-20'>
-                <h6 className='flex justify-center md:mt-4 text-white'>explore</h6>
+       <div className='btn-animate w-12 h-5 mt-5 md:w-36 md:h-14 rounded-full border border-white lg:mt-20'>
+       <div className="hover"></div>
+                <span className='flex justify-center text-white'>explore</span>
        </div>
+
+       {/* <a href="#" class="btn-animate">
+                <div class="hover"></div>
+                <span>WATCH</span>
+            </a> */}
+
+
        </div>
      </div>
 
@@ -76,6 +84,7 @@ By using high-performance and environmentally friendly building products, and mi
       </div>
       <div className='pb-14 border-b border-white'>
       <div className='w-56 h-14 rounded-full border border-white mt-10  mx-auto'>
+      <div className="hover"></div>
                 <h6 className='flex justify-center mt-4 text-white'>Tell us about your project</h6>
        </div>
        </div>

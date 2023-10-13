@@ -80,7 +80,7 @@ Quality in Construction</h1>
 <div className="max-w-xs">
     <div className="bg-white shadow-xl hover:shadow-lg rounded-lg py-3">
         <div className="photo-wrapper p-2">
-            <img src={company.logo} className="w-32 h-32 rounded-full mx-auto"/>
+            <img src={company.logo?company.logo:"./Images/user.png"} className="w-32 h-32 rounded-full mx-auto"/>
         </div>
         <div className="p-2">
             <h3 className="text-center text-xl text-gray-900 font-medium leading-8">{company.cname}</h3>

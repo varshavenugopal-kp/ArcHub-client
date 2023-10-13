@@ -34,9 +34,6 @@ const Nav=()=> {
         <nav className='shadow-md bg-sky-950 h-20'>
             <div className='px-6 py-2'>
 
-             
-
-
               <div className='flex justify-between'>
               <div>
                 <img className=" justify-start h-16 w-32" src='/Images/lastout.png'></img>
