@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client';
 import { api } from '../../Services/axios';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 interface role{
   role:string
 }
@@ -69,6 +70,9 @@ function Chat(props:role) {
   const [cmpImg,setCmpImg]=useState("")
   const[userImg,setUserImg]=useState("")
   
+  const {state}=useLocation()
+  // console.log(state.id,"yyyy");
+  
   
   // useEffect(() => {
   //   socket.emit("setup", currentUserId);
@@ -106,6 +110,7 @@ useEffect(() => {
       console.log("cmpchat=", data.data);
       setChats(data.data.allChats);
     }
+   
   };
   fetch();
 }, []);
@@ -123,7 +128,25 @@ useEffect(() => {
     }
   });
 },[socket,messages]);
+useEffect(()=>{
+if(state?.id){
+  
+  handleMessageFetch(state.id)
+  const chat=chats.filter((item)=>item.company._id==state.id)
+  console.log(chats);
+  
+  selectChat(chat[0])
+  
+                  setChatId(chat[0]?._id);
+                  handleMessageFetch(chat[0]?._id);
+                  setCmpName(chat[0]?.company?.cname)
+                  setCmpImg(chat[0]?.company?.logo)
 
+}
+ 
+  
+ 
+},[chats])
 useEffect(()=>{
   socket.emit("typing",currentUserId)
 },[newMessage])
@@ -147,6 +170,7 @@ const handleMessageFetch = async (chatId: string) => {
   socket.emit("join chat", chatId);
   // return data.messages
 };
+
 
 const sendMessage = async (
   content: string,
@@ -217,7 +241,10 @@ console.log("chatId here",chatId);
         </div> */}
 
         <ul className="overflow-auto h-[32rem]">
-          <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
+          <div className='h-16 bg-sky-950'>
+
+          <h2 className="py-2 mb-2 ml-2 text-lg text-white font-semibold pt-3">Chats</h2>
+          </div>
           {props.role === "user"
             ? chats.map((obj) => (
                 <li
@@ -233,7 +260,7 @@ console.log("chatId here",chatId);
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                     <img
                       className="object-cover w-10 h-10 rounded-full"
-                      src={obj?.company?.logo}
+                      src={obj?.company?.logo?obj?.company?.logo:"./Images/user.png"}
                       alt="username"
                     />
                     <div className="w-full pb-2">
@@ -264,7 +291,7 @@ console.log("chatId here",chatId);
                   <a className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                     <img
                       className="object-cover w-10 h-10 rounded-full"
-                      src={obj.user.image}
+                      src={obj.user.image?obj.user.image:"./Images/user.png"}
                       alt="username"
                     />
                     <div className="w-full pb-2">
@@ -283,28 +310,30 @@ console.log("chatId here",chatId);
               ))}
         </ul>
       </div>
+      
       <div className="hidden lg:col-span-2 lg:block">
+      
         <div className="w-full">
          {
            props.role==='user'?
-           <div className="relative flex items-center p-3 border-b border-gray-300">
+           <div className="relative flex items-center p-3 border-b border-gray-300 bg-sky-950">
             <img
               className="object-cover w-10 h-10 rounded-full"
-              src={cmpImg}
+              src={cmpImg?cmpImg:"./Images/user.png"}
               alt="username"
             />
-            <span className="block ml-2 font-bold text-gray-600">{cmpName}</span>
-            <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
+            <span className="block ml-2 text-white font-semibold">{cmpName}</span>
+            <span className="absolute w-3 h-3 rounded-full left-10 top-3"></span>
           </div>
           :
           <div className="relative flex items-center p-3 border-b border-gray-300">
             <img
               className="object-cover w-10 h-10 rounded-full"
-              src={userImg}
+              src={userImg?userImg:"./Images/user.png"}
               alt="username"
             />
             <span className="block ml-2 font-bold text-gray-600">{userName}</span>
-            <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
+            {/* <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span> */}
           </div>
          }
 

@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { log } from 'console'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import Footer from '../Footer/Footer'
+import Smodal from './Smodal'
 const bgImage = '/Images/image1.jpg'
 
 
@@ -51,6 +52,8 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   const [cmpid,setCmpid]=useState<cmp>()
   const [project, setProject] = useState<projectsAuth[] | null>(null)
   const [service, setService] = useState<serviceAuth[] | null>(null)
+  const [open,isOpen]=useState<Boolean>(false)
+
   const cardContainerRef = useRef<HTMLDivElement>(null)
 
   const navigate = useNavigate()
@@ -110,10 +113,11 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
   console.log(displayedImages);
 
   const handleSubmit=async()=>{
-    console.log("hgvggfgfcgggffvfffdfddffdfddgfdgfcgfgfcgfgfdfdffcgfc");
+   
     try{
        const chat=await api.post('/chat/access-chat',{userId:userid,cmpId:cmpid},{withCredentials:true})
        console.log("created",chat);
+       navigate(`/chat`,{state:{id:cmpid}})
     }catch(error){
       console.log(error);
        
@@ -121,6 +125,9 @@ const CompanyView: React.FC<compannyProps> = ({ cid }) => {
     }
     
    
+  }
+  const ModalOpen=()=>{
+    isOpen(true)
   }
 console.log("id receiveddd",cmpid);
 
@@ -185,21 +192,21 @@ console.log("id receiveddd",cmpid);
 
               </div>
 
-              <div className='space-y-8 mt-2'>
+              <div className='space-y-8 px-2 mt-2'>
                 {
                   displayedImages?.map((obj) =>
                     <div className='h-36 w-72 pe-3 border border-white'>
                       <h1 className='text-white text-xl font-semibold flex justify-end pe-3'>{obj.category}</h1>
-                      <p className='text-white text-sm line-clamp-4 px-4 py-1'>{obj.details}</p>
+                      <p className='text-white text-sm line-clamp-4 px-4 py-1' onClick={ModalOpen}>{obj.details}</p>
                     </div>
                   )
                 }
                
               </div>
-              <div>
+              <div className='pt-2'>
                 <img src='./Images/pic5 (2).jpg '></img>
               </div>
-              <div className='space-y-8 px-8 mt-2'>
+              <div className='space-y-8 mt-2'>
                 {
                   displayedservice?.map((obj) =>
                     <div className='h-36 w-72  border border-white'>
@@ -243,6 +250,9 @@ console.log("id receiveddd",cmpid);
               </div>
            ))
           }
+      </div>
+      <div>
+       {open && <Smodal isOpen={isOpen}></Smodal>}
       </div>
     </div>
     <div>
